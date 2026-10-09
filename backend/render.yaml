@@ -1,0 +1,57 @@
+services:
+  - type: web
+    name: indian-food-planner-api
+    runtime: node
+    buildCommand: npm install && npm run migrate && npm run seed
+    startCommand: npm start
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: CORS_ORIGIN
+        sync: false
+      - key: APP_TIMEZONE
+        value: Asia/Kolkata
+      - key: DAILY_MENU_CRON
+        value: "0 7 * * *"
+      - key: SMTP_HOST
+        sync: false
+      - key: SMTP_PORT
+        value: "587"
+      - key: SMTP_SECURE
+        value: "false"
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASSWORD
+        sync: false
+      - key: SMTP_FROM
+        sync: false
+      - key: DEFAULT_MENU_RECIPIENT
+        sync: false
+      - key: DISABLE_SCHEDULER
+        value: "true"
+
+  - type: cron
+    name: indian-food-planner-daily-email
+    runtime: node
+    schedule: "0 7 * * *"
+    buildCommand: npm install
+    startCommand: npm run send-daily-menu
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: APP_TIMEZONE
+        value: Asia/Kolkata
+      - key: SMTP_HOST
+        sync: false
+      - key: SMTP_PORT
+        value: "587"
+      - key: SMTP_SECURE
+        value: "false"
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASSWORD
+        sync: false
+      - key: SMTP_FROM
+        sync: false
+      - key: DEFAULT_MENU_RECIPIENT
+        sync: false

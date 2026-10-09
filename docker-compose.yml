@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: daily-food-planner-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: food_planner
+      POSTGRES_USER: food_planner
+      POSTGRES_PASSWORD: food_planner
+    ports:
+      - "5432:5432"
+    volumes:
+      - food_planner_pgdata:/var/lib/postgresql/data
+
+volumes:
+  food_planner_pgdata:

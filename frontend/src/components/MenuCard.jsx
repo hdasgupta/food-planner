@@ -1,0 +1,2 @@
+const labels={breakfast:'🌅 Breakfast',morning:'☀️ Morning',lunch:'🍛 Lunch',evening:'☕ Evening',dinner:'🌙 Dinner'};
+export default function MenuCard({slot,items}){return <section className="menu-card"><h2>{labels[slot]||slot}</h2><div className="items">{items.map(i=><article key={i.id}><span className="pill">{i.category}</span><h3>{i.recipe.name}{i.recipe.contains_egg?' 🥚':''}</h3><p>{i.recipe.preparation?.[0]}</p><small>{i.recipe.prep_minutes+i.recipe.cook_minutes} min · serves {i.recipe.servings}</small></article>)}</div></section>}
