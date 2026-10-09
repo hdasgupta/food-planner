@@ -1,16 +1,5 @@
-import nodemailer from 'nodemailer';
 import { env } from '../config/env.js';
 import { getPlan } from '../models/planModel.js';
-
-function transporter() {
-  if (!env.smtp.host || !env.smtp.user || !env.smtp.pass) return null;
-  return nodemailer.createTransport({
-    host: env.smtp.host,
-    port: env.smtp.port,
-    secure: env.smtp.secure,
-    auth: { user: env.smtp.user, pass: env.smtp.pass }
-  });
-}
 
 const slotLabels = {
   breakfast: 'Breakfast',
@@ -46,18 +35,43 @@ function escapeHtml(value) {
 }
 
 export async function sendDailyMenuEmail(user, date) {
-  const mailer = transporter();
-  if (!mailer) throw new Error('SMTP is not configured');
-
   const plan = await getPlan(user.id, date);
   if (!plan.items.length) return { skipped: true, reason: 'No planned menu' };
 
+  if (!env.emailApi?.url) throw new Error('Google Apps Script email API URL is not configured');
+
   const content = renderMenuEmail(user, plan);
-  await mailer.sendMail({
-    from: env.smtp.from,
+  const payload = {
     to: user.email,
     subject: content.subject,
-    html: content.html
-  });
-  return { skipped: false };
+    htmlBody: content.html
+  };
+  // The API key is optional unless API_KEY is configured in Apps Script properties.
+  if (env.emailApi.apiKey) payload.apiKey = env.emailApi.apiKey;
+
+  let response;
+  try {
+    response = await fetch(env.emailApi.url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+      signal: AbortSignal.timeout(30000)
+    });
+  } catch (error) {
+    throw new Error(`Google Apps Script email API request failed: ${error.message}`);
+  }
+
+  const responseText = await response.text();
+  let result;
+  try {
+    result = JSON.parse(responseText);
+  } catch {
+    throw new Error(`Google Apps Script email API returned an invalid response (HTTP ${response.status})`);
+  }
+
+  if (!response.ok || result.success !== true) {
+    throw new Error(result.message || `Google Apps Script email API failed (HTTP ${response.status})`);
+  }
+
+  return { skipped: false, message: result.message || 'Email sent successfully' };
 }
