@@ -39,9 +39,16 @@ export default function MealSlot({ title, items, onEdit, onRemove, onShowRecipe,
       if (event.target.closest('.planned-item-name')) return;
       setExpandedName(null);
     };
+    const handleOtherTooltip = event => {
+      if (event.detail !== expandedName) setExpandedName(null);
+    };
 
     document.addEventListener('click', handleOutsideClick);
-    return () => document.removeEventListener('click', handleOutsideClick);
+    document.addEventListener('planner-recipe-tooltip-open', handleOtherTooltip);
+    return () => {
+      document.removeEventListener('click', handleOutsideClick);
+      document.removeEventListener('planner-recipe-tooltip-open', handleOtherTooltip);
+    };
   }, [expandedName]);
 
   return <section className="meal-slot">
@@ -56,8 +63,12 @@ export default function MealSlot({ title, items, onEdit, onRemove, onShowRecipe,
         return <div className="planned-item" key={itemKey}>
         <div className="planned-item-copy">
           <strong className="planned-item-name" title={item.recipeName} role="button" tabIndex={0} aria-expanded={nameExpanded}
-            onClick={() => setExpandedName(current => current === itemKey ? null : itemKey)}
-            onKeyDown={event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); setExpandedName(current => current === itemKey ? null : itemKey); } }}>{item.recipeName}</strong>
+            onClick={() => {
+              const next = expandedName === itemKey ? null : itemKey;
+              if (next !== null) document.dispatchEvent(new CustomEvent('planner-recipe-tooltip-open', { detail: next }));
+              setExpandedName(next);
+            }}
+            onKeyDown={event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); const next = expandedName === itemKey ? null : itemKey; if (next !== null) document.dispatchEvent(new CustomEvent('planner-recipe-tooltip-open', { detail: next })); setExpandedName(next); } }}>{item.recipeName}</strong>
           {nameExpanded && <span className="recipe-name-tooltip" role="tooltip">{item.recipeName}</span>}
           <small title={`${item.category} · ${item.quantity} ${item.unit}`}>{item.category} · {item.quantity} {item.unit}</small>
         </div>
