@@ -314,7 +314,10 @@
 
 
 /* Click-to-reveal full recipe names without changing the compact row layout. */
-.planned-item-copy { position: relative; }
+/* Allow the tooltip to extend beyond the text container instead of being clipped. */
+.planned-item-copy { position: relative; overflow: visible; }
+.planned-item { position: relative; }
+.recipe-name-tooltip { pointer-events: none; }
 .planned-item-name { cursor: pointer; }
 .planned-item-name:focus-visible { outline: 2px solid #8b5cf6; outline-offset: 2px; border-radius: 3px; }
 .recipe-name-tooltip {
