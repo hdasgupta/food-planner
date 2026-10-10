@@ -270,3 +270,10 @@
 .ingredient-name { min-width:0; flex:1; overflow-wrap:anywhere; }
 .ingredient-amount { flex:0 0 auto; min-width:70px; text-align:right; font-weight:700; color:var(--theme-accent); white-space:nowrap; }
 @media(max-width:620px) { .planner-grid { gap:8px; } .meal-slot { padding:10px; border-radius:12px; } .planned-item { gap:5px; } .planned-item-copy { gap:5px !important; } .planned-item-name { font-size:12px; } .planned-item-serving { font-size:10px; } .icon-actions { gap:2px; } .icon-button { width:25px; height:25px; } .icon-button svg { width:14px; height:14px; } }
+
+/* Keep planner action controls in a single horizontal row, overriding generic nested div layout. */
+.planned-item { display:flex !important; flex-flow:row nowrap !important; align-items:center !important; }
+.planned-item > .planned-item-copy { display:flex !important; flex-flow:row nowrap !important; align-items:center !important; min-width:0 !important; flex:1 1 auto !important; }
+.planned-item > .icon-actions { display:flex !important; flex-flow:row nowrap !important; align-items:center !important; justify-content:flex-end !important; flex:0 0 auto !important; }
+.planned-item > .icon-actions > .icon-button { display:inline-flex !important; flex:0 0 auto !important; align-items:center !important; justify-content:center !important; padding:0 !important; }
+.planned-item-name { min-width:0 !important; }

@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import api from '../services/api.js';
 
-const FOOD_IMAGES = ['photo-1546069901-ba9599a7e63c','photo-1540189549336-e6e99c3679fe','photo-1512621776951-a57141f2eefd','photo-1547592180-85f173990554','photo-1476224203421-9ac39bcb3327','photo-1565299624946-b28f40a0ae38','photo-1565299507177-b0ac66763828','photo-1504674900247-0877df9cc836'];
-function fallbackFoodImage(name = '') { const hash = [...String(name)].reduce((sum, char) => sum + char.charCodeAt(0), 0); return `https://images.unsplash.com/${FOOD_IMAGES[hash % FOOD_IMAGES.length]}?auto=format&fit=crop&w=640&q=80`; }
+function fallbackFoodImage(name = '') { const slug = String(name).toLowerCase().replace(/[^a-z0-9]+/g, ',').replace(/^,|,$/g, ''); const lock = [...String(name)].reduce((sum, char) => sum + char.charCodeAt(0), 0); return `https://loremflickr.com/640/480/indian-food,${slug}?lock=${lock}`; }
 
 export default function RecipePicker({onAdd}){
   const [recipes,setRecipes]=useState([]);
@@ -26,7 +25,7 @@ export default function RecipePicker({onAdd}){
     </div>
     {loading ? <p>Loading recipes…</p> :
       <div className="recipe-grid">{recipes.map(r=><button key={r.id} className="recipe-card" onClick={()=>onAdd(r)}>
-        {r.image_url && <img className="recipe-card-image" src={r.image_url} alt={r.name} loading="lazy" onError={event => { event.currentTarget.onerror = null; event.currentTarget.src = fallbackFoodImage(r.name); }} />}
+        {r.image_url && <img className="recipe-card-image" src={r.image_url} alt={r.name} loading="lazy" onError={event => { event.currentTarget.onerror = null; event.currentTarget.style.display = 'none'; }} />}
         <strong>{r.name}</strong><span>{r.category_name}</span><small>{r.region}{r.contains_egg?' • Egg':''}</small>
       </button>)}</div>}
   </section>;

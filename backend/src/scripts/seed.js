@@ -137,8 +137,8 @@ const legacyRows = await pool.query(`SELECT id,name,ingredients,ingredient_items
 for (const row of legacyRows.rows) {
   const items = Array.isArray(row.ingredient_items) ? row.ingredient_items : [];
   const parsedItems = items.length ? items : parseLegacyIngredients(row.ingredients);
-  const imageUrl = row.image_url || `https://loremflickr.com/640/480/indian,food,${slugify(row.name)}?lock=${row.id}`;
-  if (!items.length || !row.image_url) {
+  const imageUrl = `https://loremflickr.com/640/480/indian-food,${slugify(row.name)}?lock=${row.id}`;
+  if (!items.length || row.image_url !== imageUrl) {
     await pool.query(
       `UPDATE recipes SET ingredient_items=$2::jsonb,image_url=$3 WHERE id=$1`,
       [row.id, JSON.stringify(parsedItems), imageUrl]
