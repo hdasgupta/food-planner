@@ -1,7 +1,21 @@
 import { useEffect, useRef, useState } from 'react';
 import { formatIngredients, formatPreparationSteps } from '../utils/recipeFormatting.js';
 
-function fallbackFoodImage(name = '') { const slug = String(name).toLowerCase().replace(/[^a-z0-9]+/g, ',').replace(/^,|,$/g, ''); const lock = [...String(name)].reduce((sum, char) => sum + char.charCodeAt(0), 0); return `https://loremflickr.com/900/640/indian-food,${slug}?lock=${lock}`; }
+function recipeImageUrl(name = '') {
+  const tags = String(name).toLowerCase().match(/[a-z0-9]+/g)?.filter(word => !['with', 'and', 'of', 'the', 'a', 'in', 'style', 'homemade', 'traditional'].includes(word)).slice(0, 6).join(',') || 'indian-food';
+  const lock = [...String(name)].reduce((sum, char) => sum + char.charCodeAt(0), 1);
+  return `https://loremflickr.com/900/640/${tags}?lock=${lock}`;
+}
+function handleRecipeImageError(event) {
+  const image = event.currentTarget;
+  if (image.dataset.fallbackStep !== '1') {
+    image.dataset.fallbackStep = '1';
+    image.src = 'https://loremflickr.com/900/640/indian-food?lock=17';
+    return;
+  }
+  image.onerror = null;
+  image.src = "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 400'%3E%3Crect width='640' height='400' fill='%23f7efe3'/%3E%3Cellipse cx='320' cy='205' rx='190' ry='125' fill='white' stroke='%23d8c7b2' stroke-width='12'/%3E%3Cellipse cx='320' cy='205' rx='145' ry='88' fill='%23e8b66d'/%3E%3Ccircle cx='280' cy='180' r='18' fill='%237f9a4a'/%3E%3Ccircle cx='350' cy='220' r='22' fill='%23c45b3a'/%3E%3Ccircle cx='375' cy='170' r='13' fill='%237f9a4a'/%3E%3Cpath d='M250 230 Q310 275 370 225' fill='none' stroke='%23b77835' stroke-width='12' stroke-linecap='round'/%3E%3Ctext x='320' y='365' font-family='Arial,sans-serif' font-size='22' text-anchor='middle' fill='%23715b45'%3EIndian dish%3C/text%3E%3C/svg%3E";
+}
 
 export default function RecipeDetailsModal({ recipe, onClose }) {
   const [isClosing, setIsClosing] = useState(false);
@@ -26,7 +40,7 @@ export default function RecipeDetailsModal({ recipe, onClose }) {
         </div>
         <button type="button" onClick={closeWithAnimation} aria-label="Close recipe details">×</button>
       </div>
-      {recipe.image_url && <img className="recipe-detail-image" src={recipe.image_url} alt={recipe.name} onError={event => { event.currentTarget.onerror = null; event.currentTarget.style.display = 'none'; }} />}
+      <img className="recipe-detail-image" src={recipe.image_url || recipeImageUrl(recipe.name)} alt={recipe.name} onError={handleRecipeImageError} />
       <div className="recipe-meta">
         <span>{recipe.contains_egg ? 'Contains egg' : 'Vegetarian'}</span>
         <span>{recipe.serving_size || '2 servings'}</span>
