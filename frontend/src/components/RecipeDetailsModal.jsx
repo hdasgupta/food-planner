@@ -54,9 +54,49 @@ function isNonVegetarian(recipe) {
 }
 
 function formatPreparationSteps(value) {
-  if (Array.isArray(value)) return value.map(step => String(step).trim()).filter(Boolean);
   if (value == null || value === '') return [];
-  return String(value).split(/\n+/).map(step => step.replace(/^\s*\d+[.)]\s*/, '').trim()).filter(Boolean);
+
+  let steps = value;
+  if (typeof steps === 'string') {
+    const raw = steps.trim();
+    try {
+      const decoded = JSON.parse(raw);
+      if (Array.isArray(decoded) || (decoded && typeof decoded === 'object')) steps = decoded;
+    } catch { /* Plain text instructions are handled below. */ }
+  }
+
+  if (Array.isArray(steps)) {
+    const normalized = steps.map(step => {
+      if (typeof step === 'string' || typeof step === 'number') return String(step).trim();
+      if (step && typeof step === 'object') {
+        return String(step.instruction ?? step.step ?? step.description ?? step.text ?? '').trim();
+      }
+      return '';
+    }).filter(Boolean);
+    // A single array entry may itself contain several numbered instructions.
+    if (normalized.length > 1 || !normalized[0]) {
+      return normalized.flatMap(splitNumberedInstructions);
+    }
+    return splitNumberedInstructions(normalized[0]);
+  }
+
+  if (steps && typeof steps === 'object') {
+    const ordered = Object.keys(steps).sort((a, b) => Number(a) - Number(b));
+    return ordered.map(key => steps[key]).flatMap(step => formatPreparationSteps(step));
+  }
+
+  return splitNumberedInstructions(String(steps));
+}
+
+function splitNumberedInstructions(text) {
+  const normalized = String(text ?? '').replace(/\r/g, '').trim();
+  if (!normalized) return [];
+  // Split only at explicit step markers, not ordinary line wrapping/newlines.
+  const marked = normalized.replace(/\n+\s*(?=\d{1,2}[.)]\s)/g, ' ');
+  const parts = marked.split(/(?<!^)(?=\s+\d{1,2}[.)]\s)/).map(part =>
+    part.replace(/^\s*\d{1,2}[.)]\s*/, '').replace(/\s+/g, ' ').trim()
+  ).filter(Boolean);
+  return parts.length ? parts : [normalized.replace(/\s+/g, ' ')];
 }
 
 function fallbackFoodImage(name = '') { const slug = String(name).toLowerCase().replace(/[^a-z0-9]+/g, ',').replace(/^,|,$/g, ''); const lock = [...String(name)].reduce((sum, char) => sum + char.charCodeAt(0), 0); return `https://loremflickr.com/900/640/indian-food,${slug}?lock=${lock}`; }
