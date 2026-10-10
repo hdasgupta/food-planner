@@ -1,0 +1,1 @@
+Delete this obsolete file from your project: frontend/src/components/RecipeImage.jsx

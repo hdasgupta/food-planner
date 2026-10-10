@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import api from '../services/api.js';
-import RecipeImage from './RecipeImage.jsx';
 
 function fallbackFoodImage(name = '') { const slug = String(name).toLowerCase().replace(/[^a-z0-9]+/g, ',').replace(/^,|,$/g, ''); const lock = [...String(name)].reduce((sum, char) => sum + char.charCodeAt(0), 0); return `https://loremflickr.com/640/480/indian-food,${slug}?lock=${lock}`; }
 
@@ -26,7 +25,6 @@ export default function RecipePicker({onAdd}){
     </div>
     {loading ? <p>Loading recipes…</p> :
       <div className="recipe-grid">{recipes.map(r=><button key={r.id} className="recipe-card" onClick={()=>onAdd(r)}>
-        <RecipeImage name={r.name} />
         <strong>{r.name}</strong><span>{r.category_name}</span><small>{r.region}{r.contains_egg?' • Egg':''}</small>
       </button>)}</div>}
   </section>;

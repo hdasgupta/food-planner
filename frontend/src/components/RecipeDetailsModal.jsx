@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import { formatIngredients, formatPreparationSteps } from '../utils/recipeFormatting.js';
-import RecipeImage from './RecipeImage.jsx';
 
 function fallbackFoodImage(name = '') { const slug = String(name).toLowerCase().replace(/[^a-z0-9]+/g, ',').replace(/^,|,$/g, ''); const lock = [...String(name)].reduce((sum, char) => sum + char.charCodeAt(0), 0); return `https://loremflickr.com/900/640/indian-food,${slug}?lock=${lock}`; }
 
@@ -27,7 +26,6 @@ export default function RecipeDetailsModal({ recipe, onClose }) {
         </div>
         <button type="button" onClick={closeWithAnimation} aria-label="Close recipe details">×</button>
       </div>
-      <RecipeImage name={recipe.name} className="recipe-detail-image" loading="eager" />
       <div className="recipe-meta">
         <span>{recipe.contains_egg ? 'Contains egg' : 'Vegetarian'}</span>
         <span>{recipe.serving_size || '2 servings'}</span>
