@@ -1,14 +1,2 @@
-Fix: users.timezone missing
-
-The application code selects users.timezone, but the existing PostgreSQL database has not had the schema update applied.
-
-From the backend directory, run:
-  npm run db:init
-
-This runs backend/db/schema.sql, which already includes safe ALTER TABLE ... ADD COLUMN IF NOT EXISTS statements.
-
-Alternatively, run the included SQL file directly against the same PostgreSQL database used by the app:
-  psql "$DATABASE_URL" -f db/migrations/20261009_add_user_timezone.sql
-
-If DATABASE_URL is not set locally, run the SQL in your database provider's SQL console against the app's actual database.
-Restart/redeploy the backend after applying the migration. This does not delete user data.
+Replace frontend/src/components/RecipeDetailsModal.jsx with RecipeDetailsModal.jsx from this ZIP.
+The change fixes preparation step splitting when a numbered step begins with a time range, such as "4. (5–7 min) Fry...". Other ingredient and diet-label behavior is retained.
