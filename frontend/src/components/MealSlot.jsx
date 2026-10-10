@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export const MEALS = [
   ['breakfast', 'Breakfast'],
@@ -31,6 +31,18 @@ function ActionIcon({ name }) {
 
 export default function MealSlot({ title, items, onEdit, onRemove, onShowRecipe, disabled = false }) {
   const [expandedName, setExpandedName] = useState(null);
+
+  useEffect(() => {
+    if (expandedName === null) return undefined;
+
+    const handleOutsideClick = event => {
+      if (event.target.closest('.planned-item-name')) return;
+      setExpandedName(null);
+    };
+
+    document.addEventListener('click', handleOutsideClick);
+    return () => document.removeEventListener('click', handleOutsideClick);
+  }, [expandedName]);
 
   return <section className="meal-slot">
     <div className="slot-heading">
