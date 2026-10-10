@@ -6,6 +6,25 @@ import { pool } from '../config/db.js';
 const seedData = JSON.parse(await readFile(new URL('../data/indian-recipes.json', import.meta.url), 'utf8'));
 const { categories, recipes } = seedData;
 
+// Normalize ingredient fields consistently for both fresh seeds and database backfills.
+const ingredientUnitPattern = '(?:kilograms?|kg|grams?|gms?|gm|g|milligrams?|mg|millilit(?:er|re)s?|lit(?:er|re)s?|ml|l|cups?|tablespoons?|tbsp|teaspoons?|tsp|ounces?|oz|pounds?|lbs?|pieces?|pcs?|cloves?|pods?|pinches?|bunches?|sprigs?|slices?|sticks?|leaves?|heads?)';
+const ingredientQuantityPattern = '(?:(?:about|approximately)\\s+)?(?:\\d+\\s*[½¼¾⅓⅔⅛⅜⅝⅞]|\\d+(?:\\.\\d+)?(?:\\s*\\/\\s*\\d+)?|[½¼¾⅓⅔⅛⅜⅝⅞])(?:\\s*[-–—]\\s*(?:\\d+\\s*[½¼¾⅓⅔⅛⅜⅝⅞]|\\d+(?:\\.\\d+)?(?:\\s*\\/\\s*\\d+)?|[½¼¾⅓⅔⅛⅜⅝⅞]))?|(?:a|one|two|three|four|five|six|seven|eight|nine|ten)';
+function normalizeIngredient(value) {
+  const ingredient = typeof value === 'object' && value !== null ? { ...value } : { item: String(value ?? '') };
+  const original = String(ingredient.original || ingredient.item || '').trim();
+  if (!original) return ingredient;
+  if (String(ingredient.quantity || '').trim() && String(ingredient.item || '').trim() !== String(ingredient.quantity || '').trim()) return ingredient;
+  const match = original.match(new RegExp('^\\s*(' + ingredientQuantityPattern + ')\\s*(' + ingredientUnitPattern + ')?\\s+(.+?)\\s*$', 'i'));
+  if (match && /[A-Za-z]/.test(match[3])) {
+    ingredient.quantity = match[1].trim(); ingredient.unit = (match[2] || '').trim(); ingredient.item = match[3].trim().replace(/^[,;:\-]+|[,;:\-]+$/g, ''); ingredient.original = original;
+  } else {
+    const special = original.match(/^(to taste|as needed|a pinch|a handful|as required)\\s+(.+)$/i);
+    if (special) { ingredient.quantity = special[1]; ingredient.unit = ''; ingredient.item = special[2].trim(); ingredient.original = original; }
+  }
+  return ingredient;
+}
+for (const recipe of recipes) recipe.ingredients = (Array.isArray(recipe.ingredients) ? recipe.ingredients : []).map(normalizeIngredient);
+
 // Support deployed databases where recipe detail columns are JSON/JSONB, as well
 // as fresh installations where those columns are TEXT.
 const recipeColumnTypesResult = await pool.query(`
@@ -118,14 +137,10 @@ for (const recipe of recipes) {
 function parseLegacyIngredient(raw) {
   const original = String(raw ?? '').trim().replace(/^[-*•]\s*/, '');
   if (!original) return null;
-  const unitPattern = '(?:kg|g|gm|mg|ml|l|litre|liter|cups?|tbsp|tablespoons?|tsp|teaspoons?|pieces?|cloves?|pods?|pinches?|bunches?|sprigs?|slices?|grams?|kilograms?)';
-  const match = original.match(new RegExp(`^((?:about\\s+)?(?:\\d+(?:[./]\\d+)?(?:\\s*[-–]\\s*\\d+(?:[./]\\d+)?)?|[½¼¾⅓⅔⅛]|to taste|as needed|a pinch|small|large|medium))\\s*(${unitPattern})?\\s*(.+)$`, 'i'));
-  return match
-    ? { quantity: match[1].trim(), unit: (match[2] || '').trim(), item: match[3].trim().replace(/^[,—-]+|[,—-]+$/g, ''), original }
-    : { quantity: '', unit: '', item: original, original };
+  return normalizeIngredient({ item: original, quantity: '', unit: '', original });
 }
 function parseLegacyIngredients(value) {
-  if (Array.isArray(value)) return value;
+  if (Array.isArray(value)) return value.map(item => typeof item === 'object' && item !== null ? normalizeIngredient(item) : parseLegacyIngredient(item)).filter(Boolean);
   const raw = String(value ?? '');
   try {
     const parsed = JSON.parse(raw);
@@ -136,10 +151,10 @@ function parseLegacyIngredients(value) {
 const legacyRows = await pool.query(`SELECT id,name,ingredients,ingredient_items,image_url FROM recipes`);
 for (const row of legacyRows.rows) {
   const items = Array.isArray(row.ingredient_items) ? row.ingredient_items : [];
-  const parsedItems = items.length ? items : parseLegacyIngredients(row.ingredients);
-  const imageTags = String(row.name || '').toLowerCase().match(/[a-z0-9]+/g)?.filter(word => !['with', 'and', 'of', 'the', 'a', 'in', 'style', 'homemade', 'traditional'].includes(word)).slice(0, 6).join(',') || 'indian-food';
-  const imageUrl = `https://loremflickr.com/640/480/${imageTags}?lock=${row.id}`;
-  if (!items.length || row.image_url !== imageUrl) {
+  const parsedItems = items.length ? items.map(normalizeIngredient) : parseLegacyIngredients(row.ingredients);
+  const ingredientItemsChanged = JSON.stringify(parsedItems) !== JSON.stringify(items);
+  const imageUrl = row.image_url || `https://loremflickr.com/640/480/indian,food,${slugify(row.name)}?lock=${row.id}`;
+  if (!items.length || ingredientItemsChanged || !row.image_url) {
     await pool.query(
       `UPDATE recipes SET ingredient_items=$2::jsonb,image_url=$3 WHERE id=$1`,
       [row.id, JSON.stringify(parsedItems), imageUrl]
