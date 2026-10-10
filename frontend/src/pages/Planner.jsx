@@ -104,8 +104,33 @@ export default function Planner() {
     return () => { active = false; };
   }, [date]);
 
+  // Keep menu items in a predictable course order, regardless of the order
+  // in which they were added. Categories not listed here follow alphabetically.
+  const courseOrder = category => {
+    const name = String(category || '').trim().toLowerCase().replace(/[-_]+/g, ' ');
+    if (/^(drink|drinks|beverage|beverages)$/.test(name)) return 0;
+    if (/^(starter|starters|appetizer|appetizers)$/.test(name)) return 1;
+    if (/^(main|main course|main courses)$/.test(name)) return 2;
+    if (/^(side|side dish|side dishes)$/.test(name)) return 3;
+    if (/^(snack|snacks)$/.test(name)) return 4;
+    if (/^(dessert|desserts|sweet|sweets)$/.test(name)) return 5;
+    return 6;
+  };
+
+  const compareByCourse = (a, b) => {
+    const aCategory = a.category_name || a.category || '';
+    const bCategory = b.category_name || b.category || '';
+    const orderDifference = courseOrder(aCategory) - courseOrder(bCategory);
+    if (orderDifference !== 0) return orderDifference;
+    const categoryDifference = String(aCategory).localeCompare(String(bCategory), undefined, { sensitivity: 'base' });
+    if (categoryDifference !== 0) return categoryDifference;
+    return String(a.name || a.recipeName || '').localeCompare(String(b.name || b.recipeName || ''), undefined, { sensitivity: 'base' });
+  };
+
   const grouped = useMemo(() => Object.fromEntries(
-    MEALS.map(([key]) => [key, plan.items.filter(item => item.mealSlot === key)])
+    MEALS.map(([key]) => [key, plan.items
+      .filter(item => item.mealSlot === key)
+      .sort(compareByCourse)])
   ), [plan.items]);
 
   const filteredRecipes = useMemo(() => {
@@ -113,7 +138,7 @@ export default function Planner() {
     return recipes.filter(recipe =>
       (!categoryId || String(recipe.category_id) === categoryId) &&
       (!term || recipe.name.toLowerCase().includes(term) || String(recipe.ingredients || '').toLowerCase().includes(term))
-    );
+    ).sort(compareByCourse);
   }, [recipes, categoryId, recipeSearch]);
   const selectedRecipe = recipes.find(recipe => String(recipe.id) === recipeId);
   const selectedDateLabel = new Date(`${date}T12:00:00`).toLocaleDateString(undefined, {
