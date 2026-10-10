@@ -1,30 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-
-function formatIngredients(value) {
-  if (Array.isArray(value)) return value.map(item => String(item).trim()).filter(Boolean);
-  if (value == null || value === '') return [];
-
-  if (typeof value === 'object') {
-    return Object.values(value).map(item => String(item).trim()).filter(Boolean);
-  }
-
-  const text = String(value).trim();
-  if (!text) return [];
-
-  // Some PostgreSQL drivers return JSON/JSONB as a serialized string.
-  try {
-    const parsed = JSON.parse(text);
-    if (Array.isArray(parsed)) return parsed.map(item => String(item).trim()).filter(Boolean);
-    if (parsed && typeof parsed === 'object') {
-      return Object.values(parsed).map(item => String(item).trim()).filter(Boolean);
-    }
-  } catch {
-    // Plain-text ingredients are supported below.
-  }
-
-  // Handle older plain-text recipe records too.
-  return text.split(/\s*,\s*|\s*;\s*|\n+/).map(item => item.trim()).filter(Boolean);
-}
+import { formatIngredients, formatPreparationSteps } from '../utils/recipeFormatting.js';
 
 export default function RecipeDetailsModal({ recipe, onClose }) {
   const [isClosing, setIsClosing] = useState(false);
@@ -37,6 +12,7 @@ export default function RecipeDetailsModal({ recipe, onClose }) {
   };
   if (!recipe) return null;
   const ingredients = formatIngredients(recipe.ingredients);
+  const preparationSteps = formatPreparationSteps(recipe.preparation);
 
   return <div className={`modal-backdrop${isClosing ? ' is-closing' : ''}`} onClick={closeWithAnimation}>
     <article className={`modal recipe-detail${isClosing ? ' is-closing' : ''}`} role="dialog" aria-modal="true" aria-labelledby="recipe-detail-title"
@@ -60,7 +36,11 @@ export default function RecipeDetailsModal({ recipe, onClose }) {
         </ul>
       ) : <p className="recipe-long-text">No ingredients listed.</p>}
       <h3>Preparation</h3>
-      <p className="recipe-long-text">{recipe.preparation || 'No preparation instructions listed.'}</p>
+      {preparationSteps.length > 0 ? (
+        <ol className="recipe-preparation-steps">
+          {preparationSteps.map((step, index) => <li key={`${index}-${step}`}>{step}</li>)}
+        </ol>
+      ) : <p className="recipe-long-text">No preparation instructions listed.</p>}
       {recipe.notes && <><h3>Notes</h3><p className="recipe-long-text">{recipe.notes}</p></>}
     </article>
   </div>;
