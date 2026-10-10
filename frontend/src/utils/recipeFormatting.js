@@ -10,37 +10,26 @@ function parseSerialized(value) {
 }
 
 function ingredientText(item) {
-  if (item == null) return '';
-  if (typeof item !== 'object') return String(item).trim();
-
-  const name = item.name ?? item.ingredient ?? item.item ?? item.title ?? '';
-  const amount = item.amount ?? item.quantity ?? item.qty ?? '';
-  const unit = item.unit ?? '';
-  const detail = [amount, unit].filter(Boolean).join(' ');
-  if (name || detail) return [detail, name].filter(Boolean).join(' ').trim();
-
-  return Object.entries(item)
-    .map(([key, value]) => `${key.replace(/[_-]/g, ' ')}: ${typeof value === 'object' ? JSON.stringify(value) : value}`)
-    .join(' · ');
+  if (item == null) return { item: '', quantity: '', unit: '', original: '' };
+  if (typeof item !== 'object') return { item: String(item).trim(), quantity: '', unit: '', original: String(item).trim() };
+  const name = String(item.item ?? item.name ?? item.ingredient ?? item.title ?? '').trim();
+  const quantity = String(item.quantity ?? item.amount ?? item.qty ?? '').trim();
+  const unit = String(item.unit ?? '').trim();
+  const original = String(item.original ?? [quantity, unit, name].filter(Boolean).join(' ')).trim();
+  return { item: name, quantity, unit, original };
 }
 
 export function formatIngredients(value) {
   const parsed = parseSerialized(value);
   if (parsed == null || parsed === '') return [];
-  if (Array.isArray(parsed)) return parsed.map(ingredientText).filter(Boolean);
-  if (typeof parsed === 'object') {
-    return Object.entries(parsed).map(([key, item]) => {
-      if (item && typeof item === 'object' && !Array.isArray(item)) return ingredientText(item);
-      const label = String(key).replace(/[_-]/g, ' ').trim();
-      const detail = ingredientText(item);
-      return label && detail ? `${label}: ${detail}` : (detail || label);
-    }).filter(Boolean);
-  }
-
-  return String(parsed)
-    .split(/\n+|\s*;\s*|\s*,\s*/)
-    .map(item => item.trim().replace(/^(?:[-*•]|\d+[.)])\s*/, ''))
-    .filter(Boolean);
+  let values;
+  if (Array.isArray(parsed)) values = parsed;
+  else if (typeof parsed === 'object') values = Object.entries(parsed).map(([key, item]) => {
+    if (item && typeof item === 'object' && !Array.isArray(item)) return { item: item.item ?? item.name ?? key, ...item };
+    return { item: key, quantity: item, original: `${key}: ${item}` };
+  });
+  else values = String(parsed).split(/\n+|\s*;\s*|\s*,\s*/).map(item => item.trim().replace(/^(?:[-*•]|\d+[.)])\s*/, '')).filter(Boolean);
+  return values.map(ingredientText).filter(item => item.item || item.quantity || item.original);
 }
 
 export function formatPreparationSteps(value) {

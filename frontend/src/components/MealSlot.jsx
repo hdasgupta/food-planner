@@ -70,7 +70,7 @@ export default function MealSlot({ title, items, onEdit, onRemove, onShowRecipe,
             }}
             onKeyDown={event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); const next = expandedName === itemKey ? null : itemKey; if (next !== null) document.dispatchEvent(new CustomEvent('planner-recipe-tooltip-open', { detail: next })); setExpandedName(next); } }}>{item.recipeName}</strong>
           {nameExpanded && <span className="recipe-name-tooltip" role="tooltip">{item.recipeName}</span>}
-          <small title={`${item.category} · ${item.quantity} ${item.unit}`}>{item.category} · {item.quantity} {item.unit}</small>
+          <small className="planned-item-serving" title={`${item.quantity} ${item.unit}`}>{item.quantity} {item.unit}</small>
         </div>
         <div className="icon-actions">
           <button type="button" className="icon-button" onClick={() => onEdit(item)} disabled={disabled}
