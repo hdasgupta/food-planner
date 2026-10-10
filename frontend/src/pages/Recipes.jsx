@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import api from '../services/api.js';
 import { formatIngredients, formatPreparationSteps } from '../utils/recipeFormatting.js';
 
@@ -12,6 +12,38 @@ const displayText = value => {
   }
   return '';
 };
+
+function safelyFormat(formatter, value) {
+  try {
+    const result = formatter(value);
+    if (!Array.isArray(result)) return [];
+    return result.map(entry => {
+      if (entry && typeof entry === 'object') {
+        // Ingredient formatter returns { item, quantity, unit }; preserve both parts.
+        const item = displayText(entry.item ?? entry.name ?? entry.ingredient ?? entry.title);
+        const quantity = displayText(entry.quantity ?? entry.amount ?? entry.qty);
+        const unit = displayText(entry.unit);
+        return [item, [quantity, unit].filter(Boolean).join(' ')].filter(Boolean).join(' — ')
+          || displayText(entry.original ?? entry.instruction ?? entry.step ?? entry.text);
+      }
+      return displayText(entry);
+    }).filter(Boolean);
+  } catch (error) {
+    console.error('Unable to format recipe details:', error);
+    return [];
+  }
+}
+
+// Keep a malformed legacy recipe from blanking the entire page on click.
+class RecipeDetailsErrorBoundary extends React.Component {
+  constructor(props) { super(props); this.state = { failed: false }; }
+  static getDerivedStateFromError() { return { failed: true }; }
+  componentDidCatch(error) { console.error('Recipe detail rendering failed:', error); }
+  render() {
+    if (this.state.failed) return <div className="modal-backdrop"><article className="modal recipe-detail" role="dialog" aria-modal="true"><h2>Recipe details unavailable</h2><p>This recipe contains data the page cannot display. Close this dialog and try another recipe.</p><button type="button" onClick={this.props.onClose}>Close</button></article></div>;
+    return this.props.children;
+  }
+}
 
 export default function Recipes() {
   const [recipes, setRecipes] = useState([]);
@@ -51,7 +83,7 @@ export default function Recipes() {
   const ingredientSource = selected
     ? (selected.ingredient_items?.length ? selected.ingredient_items : selected.ingredients)
     : [];
-  const ingredients = selected ? formatIngredients(ingredientSource) : [];
+  const ingredients = selected ? safelyFormat(formatIngredients, ingredientSource) : [];
   const preparationSteps = selected ? safelyFormat(formatPreparationSteps, selected.preparation) : [];
   const name = displayText(selected?.name) || 'Recipe details';
   const category = displayText(selected?.category_name ?? selected?.category);
@@ -80,6 +112,7 @@ export default function Recipes() {
         ))}
       </div>
       {selected && (
+        <RecipeDetailsErrorBoundary key={selected.id ?? displayText(selected.name)} onClose={() => { setSelected(null); setIsClosing(false); }}>
         <div className={`modal-backdrop${isClosing ? ' is-closing' : ''}`} onClick={closeSelected}>
           <article className={`modal recipe-detail${isClosing ? ' is-closing' : ''}`} role="dialog" aria-modal="true" aria-label={name} onClick={event => event.stopPropagation()}>
             <div className="modal-title">
@@ -89,12 +122,7 @@ export default function Recipes() {
             <p><b>{category}</b>{category && region ? ' · ' : ''}{region}{servingSize ? ` · ${servingSize}` : ''}</p>
             <h3>Ingredients</h3>
             {ingredients.length ? (
-              <ul className="recipe-ingredients">{ingredients.map((ingredient, index) => (
-                <li className="ingredient-row" key={`${index}-${ingredient.item}-${ingredient.quantity}`}>
-                  <span className="ingredient-name">{ingredient.item || ingredient.original}</span>
-                  {(ingredient.quantity || ingredient.unit) && <span className="ingredient-amount">{[ingredient.quantity, ingredient.unit].filter(Boolean).join(' ')}</span>}
-                </li>
-              ))}</ul>
+              <ul className="recipe-ingredients">{ingredients.map((ingredient, index) => <li key={`${index}-${ingredient}`}>{ingredient}</li>)}</ul>
             ) : <p className="recipe-long-text">No ingredients listed.</p>}
             <h3>Preparation</h3>
             {preparationSteps.length ? (
@@ -105,6 +133,7 @@ export default function Recipes() {
             {notes && <p><b>Notes:</b> {notes}</p>}
           </article>
         </div>
+        </RecipeDetailsErrorBoundary>
       )}
     </div>
   );
