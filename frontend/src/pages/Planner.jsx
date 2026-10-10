@@ -103,6 +103,15 @@ export default function Planner() {
   const selectedDateLabel = new Date(`${date}T12:00:00`).toLocaleDateString(undefined, {
     weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
   });
+
+  const changeDateBy = (days) => {
+    const nextDate = new Date(`${date}T12:00:00`);
+    nextDate.setDate(nextDate.getDate() + days);
+    const year = nextDate.getFullYear();
+    const month = String(nextDate.getMonth() + 1).padStart(2, '0');
+    const day = String(nextDate.getDate()).padStart(2, '0');
+    setDate(`${year}-${month}-${day}`);
+  };
   const maxMealCount = Math.max(1, ...MEALS.map(([key]) => grouped[key].length));
 
   const persist = async (nextPlan, successMessage = 'Menu saved.') => {
@@ -229,10 +238,34 @@ export default function Planner() {
     <div className="page-header">
       <div><h1>Daily Food Planner</h1><p>Plan homemade Indian food from breakfast to dinner.</p></div>
       <div className="date-actions">
+        <button
+          type="button"
+          className="icon-button"
+          aria-label="Previous day"
+          title="Previous day"
+          onClick={() => changeDateBy(-1)}
+          disabled={busy || loadingPlan}
+        >
+          <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="m15 18-6-6 6-6" />
+          </svg>
+        </button>
         <label className="date-field">Menu date
           <input aria-label="Menu date" type="date" value={date} onChange={event => setDate(event.target.value)} disabled={busy} />
           <span className="selected-date-label">{selectedDateLabel}</span>
         </label>
+        <button
+          type="button"
+          className="icon-button"
+          aria-label="Next day"
+          title="Next day"
+          onClick={() => changeDateBy(1)}
+          disabled={busy || loadingPlan}
+        >
+          <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="m9 18 6-6-6-6" />
+          </svg>
+        </button>
       </div>
     </div>
 
