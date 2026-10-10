@@ -48,9 +48,30 @@ function formatIngredients(value) {
 }
 
 function isNonVegetarian(recipe) {
-  if (recipe.is_vegetarian === false) return true;
-  const text = `${recipe.name || ''} ${Array.isArray(recipe.ingredients) ? recipe.ingredients.map(item => typeof item === 'string' ? item : `${item?.item || ''} ${item?.original || ''}`).join(' ') : recipe.ingredients || ''}`.toLowerCase();
-  return /\b(prawn|shrimp|fish|salmon|tuna|crab|lobster|meat|chicken|mutton|lamb|beef|pork|duck|keema|anchov(?:y|ies))\b/.test(text);
+  // Database/API values can arrive as booleans, numbers, or strings such as "false"/"0".
+  const flag = recipe?.is_vegetarian;
+  if (flag === false || flag === 0 || /^(false|0|no|non.?vegetarian|nonveg)$/i.test(String(flag ?? '').trim())) return true;
+
+  // Always prioritize the dish name and all ingredient representations over a stale
+  // vegetarian flag. This catches seafood/meat recipes even when the DB flag is wrong.
+  const ingredientText = value => {
+    if (value == null) return '';
+    if (typeof value === 'string') {
+      try { return ingredientText(JSON.parse(value)); } catch { return value; }
+    }
+    if (Array.isArray(value)) return value.map(ingredientText).join(' ');
+    if (typeof value === 'object') return Object.values(value).map(ingredientText).join(' ');
+    return String(value);
+  };
+  const text = [
+    recipe?.name,
+    recipe?.category,
+    recipe?.category_name,
+    recipe?.ingredients,
+    recipe?.ingredient_items,
+    recipe?.ingredients_original,
+  ].map(ingredientText).join(' ').toLowerCase();
+  return /\b(prawn|shrimp|fish|salmon|tuna|crab|lobster|seafood|anchov(?:y|ies)|chicken|mutton|lamb|beef|pork|duck|keema|meat|bacon|ham|turkey|goat)\b/.test(text);
 }
 
 function formatPreparationSteps(value) {
