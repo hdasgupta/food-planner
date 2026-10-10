@@ -25,51 +25,38 @@ function parseIngredientLine(value) {
 function formatIngredients(value) {
   let parsed = value;
   if (typeof parsed === 'string') {
-    try { parsed = JSON.parse(parsed); } catch { parsed = parsed.split(/\s*[,;]\s*|\n+/).filter(Boolean); }
+    try { parsed = JSON.parse(parsed); } catch { parsed = parsed.split(/\n+|\s*;\s*/).filter(Boolean); }
   }
-  if (!Array.isArray(parsed)) return [];
-  return parsed.map(parseIngredientLine).filter(item => item.item || item.quantity || item.unit);
+  if (!Array.isArray(parsed)) {
+    if (parsed && typeof parsed === 'object') parsed = Object.entries(parsed).map(([item, quantity]) => ({ item, quantity: typeof quantity === 'object' ? quantity?.quantity : quantity, ...(typeof quantity === 'object' ? quantity : {}) }));
+    else return [];
+  }
+  // Some legacy recipe records contain multiple semicolon-separated ingredients
+  // in one item. Split those lines before parsing each quantity independently.
+  return parsed.flatMap(entry => {
+    if (entry && typeof entry === 'object') {
+      const item = String(entry.item ?? entry.name ?? entry.original ?? '').trim();
+      const quantity = String(entry.quantity ?? '').trim();
+      const unit = String(entry.unit ?? '').trim();
+      if (!quantity && !unit && item.includes(';')) {
+        return item.split(/\s*;\s*/).filter(Boolean).map(parseIngredientLine);
+      }
+      return [parseIngredientLine(entry)];
+    }
+    return String(entry ?? '').split(/\s*;\s*/).filter(Boolean).map(parseIngredientLine);
+  }).filter(item => item.item || item.quantity || item.unit);
+}
+
+function isNonVegetarian(recipe) {
+  if (recipe.is_vegetarian === false) return true;
+  const text = `${recipe.name || ''} ${Array.isArray(recipe.ingredients) ? recipe.ingredients.map(item => typeof item === 'string' ? item : `${item?.item || ''} ${item?.original || ''}`).join(' ') : recipe.ingredients || ''}`.toLowerCase();
+  return /\b(prawn|shrimp|fish|salmon|tuna|crab|lobster|meat|chicken|mutton|lamb|beef|pork|duck|keema|anchov(?:y|ies))\b/.test(text);
 }
 
 function formatPreparationSteps(value) {
+  if (Array.isArray(value)) return value.map(step => String(step).trim()).filter(Boolean);
   if (value == null || value === '') return [];
-
-  // Some API/database rows return preparation as a JSON-encoded array rather
-  // than an actual array. Decode it before splitting so the JSON is not shown
-  // as one long instruction.
-  let steps = value;
-  if (typeof steps === 'string') {
-    const source = steps.trim();
-    if (!source) return [];
-    if ((source.startsWith('[') && source.endsWith(']')) ||
-        (source.startsWith('\"') && source.endsWith('\"'))) {
-      try {
-        const decoded = JSON.parse(source);
-        if (Array.isArray(decoded)) steps = decoded;
-        else if (typeof decoded === 'string') steps = decoded;
-      } catch { /* Treat malformed JSON as ordinary instruction text. */ }
-    }
-  }
-
-  const cleanStep = step => {
-    if (step && typeof step === 'object') {
-      step = step.step ?? step.instruction ?? step.text ?? step.description ?? step.preparation ?? '';
-    }
-    return String(step ?? '').replace(/^\s*(?:(?:step\s*)?\d+\s*[.):-]|[-*•]+)\s*/i, '').trim();
-  };
-
-  if (Array.isArray(steps)) {
-    return steps.map(cleanStep).filter(Boolean);
-  }
-
-  const source = String(steps).trim();
-  if (!source) return [];
-  // Handle newline/bullet lists and numbered steps that were flattened into
-  // one line by the API, while keeping ordinary sentence text intact.
-  return source
-    .split(/\r?\n+|\s+(?=(?:(?:step\s*)?\d+\s*[.):]|[-*•])\s+)/i)
-    .map(cleanStep)
-    .filter(Boolean);
+  return String(value).split(/\n+/).map(step => step.replace(/^\s*\d+[.)]\s*/, '').trim()).filter(Boolean);
 }
 
 function fallbackFoodImage(name = '') { const slug = String(name).toLowerCase().replace(/[^a-z0-9]+/g, ',').replace(/^,|,$/g, ''); const lock = [...String(name)].reduce((sum, char) => sum + char.charCodeAt(0), 0); return `https://loremflickr.com/900/640/indian-food,${slug}?lock=${lock}`; }
@@ -99,7 +86,7 @@ export default function RecipeDetailsModal({ recipe, onClose }) {
       </div>
       {recipe.image_url && <img className="recipe-detail-image" src={recipe.image_url} alt={recipe.name} onError={event => { event.currentTarget.onerror = null; event.currentTarget.style.display = 'none'; }} />}
       <div className="recipe-meta">
-        <span>{recipe.contains_egg ? 'Contains egg' : 'Vegetarian'}</span>
+        <span>{isNonVegetarian(recipe) ? 'Non-vegetarian' : recipe.contains_egg ? 'Contains egg' : 'Vegetarian'}</span>
         <span>{recipe.serving_size || '2 servings'}</span>
         <span>{Number(recipe.prep_minutes || 0) + Number(recipe.cook_minutes || 0)} min total</span>
       </div>
