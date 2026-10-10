@@ -247,7 +247,10 @@
 :root[data-theme="dark"] .recipe-preparation-steps { color: var(--theme-text-muted); }
 
 
-/* Compact, responsive single-line planner menu rows. */
+/* Compact, responsive single-line planner rows. */
+.planner-grid { gap: 12px; }
+.meal-slot { min-width: 0; padding: 13px; }
+.slot-heading { padding-bottom: 8px; }
 .planned-item {
   display: flex;
   align-items: center;
@@ -256,35 +259,29 @@
   padding: 7px 0;
 }
 .planned-item-copy {
-  display: flex;
+  display: flex !important;
   align-items: center;
-  gap: 8px;
+  gap: 8px !important;
   flex: 1 1 auto;
   min-width: 0;
   overflow: hidden;
 }
-.planned-item-copy strong {
-  display: block;
-  flex: 1 1 auto;
-  min-width: 0;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
+.planned-item-copy strong,
 .planned-item-copy small {
   display: block;
-  flex: 0 0 auto;
   min-width: 0;
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
+.planned-item-copy strong { flex: 1 1 auto; }
+.planned-item-copy small { flex: 0 1 38%; }
 .icon-actions {
-  display: flex;
+  display: flex !important;
   flex: 0 0 auto;
+  flex-wrap: nowrap;
   align-items: center;
   gap: 4px;
-  white-space: nowrap;
 }
 .icon-actions .icon-button {
   flex: 0 0 32px;
@@ -292,16 +289,25 @@
   height: 32px;
 }
 @media (max-width: 620px) {
-  .meal-slot { min-width: 0; padding: 12px; }
+  .page { padding: 14px 10px 28px; }
+  .planner-grid { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .meal-slot { padding: 11px; border-radius: 14px; }
+  .slot-heading h2 { font-size: 17px; }
   .planned-item { gap: 6px; padding: 6px 0; }
-  .planned-item-copy { gap: 6px; }
-  .planned-item-copy strong { font-size: 14px; }
-  .planned-item-copy small { font-size: 11px; max-width: 92px; }
+  .planned-item-copy { gap: 5px !important; }
+  .planned-item-copy strong { flex-basis: 45%; }
+  .planned-item-copy small { flex-basis: 34%; font-size: 11px; }
   .icon-actions { gap: 3px; }
-  .icon-actions .icon-button { flex-basis: 29px; width: 29px; height: 29px; border-radius: 7px; }
+  .icon-actions .icon-button { flex-basis: 29px; width: 29px; height: 29px; border-radius: 8px; }
   .icon-actions .icon-button svg { width: 16px; height: 16px; }
+  .empty-slot { padding: 12px 3px; }
+  .notes { margin-top: 12px; gap: 6px; }
+  .notes textarea { min-height: 64px; }
 }
 @media (max-width: 380px) {
-  .planned-item-copy small { max-width: 70px; font-size: 10px; }
-  .icon-actions .icon-button { flex-basis: 27px; width: 27px; height: 27px; }
+  .planned-item { gap: 4px; }
+  .planned-item-copy { gap: 4px !important; }
+  .planned-item-copy small { flex-basis: 31%; font-size: 10px; }
+  .icon-actions { gap: 2px; }
+  .icon-actions .icon-button { flex-basis: 27px; width: 27px; height: 29px; }
 }

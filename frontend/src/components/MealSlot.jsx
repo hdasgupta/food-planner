@@ -36,8 +36,8 @@ export default function MealSlot({ title, items, onEdit, onRemove, onShowRecipe,
     {items.length === 0 ? <div className="empty-slot">No food selected yet.</div> :
       items.map(item => <div className="planned-item" key={item.id ?? item._key}>
         <div className="planned-item-copy">
-          <strong>{item.recipeName}</strong>
-          <small>{item.category} · {item.quantity} {item.unit}</small>
+          <strong title={item.recipeName}>{item.recipeName}</strong>
+          <small title={`${item.category} · ${item.quantity} ${item.unit}`}>{item.category} · {item.quantity} {item.unit}</small>
         </div>
         <div className="icon-actions">
           <button type="button" className="icon-button" onClick={() => onEdit(item)} disabled={disabled}
