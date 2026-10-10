@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 export const MEALS = [
   ['breakfast', 'Breakfast'],
@@ -32,25 +32,6 @@ function ActionIcon({ name }) {
 export default function MealSlot({ title, items, onEdit, onRemove, onShowRecipe, disabled = false }) {
   const [expandedName, setExpandedName] = useState(null);
 
-  useEffect(() => {
-    if (expandedName === null) return undefined;
-
-    const handleOutsideClick = event => {
-      if (event.target.closest('.planned-item-name')) return;
-      setExpandedName(null);
-    };
-    const handleOtherTooltip = event => {
-      if (event.detail !== expandedName) setExpandedName(null);
-    };
-
-    document.addEventListener('click', handleOutsideClick);
-    document.addEventListener('planner-recipe-tooltip-open', handleOtherTooltip);
-    return () => {
-      document.removeEventListener('click', handleOutsideClick);
-      document.removeEventListener('planner-recipe-tooltip-open', handleOtherTooltip);
-    };
-  }, [expandedName]);
-
   return <section className="meal-slot">
     <div className="slot-heading">
       <h2>{title}</h2>
@@ -63,14 +44,10 @@ export default function MealSlot({ title, items, onEdit, onRemove, onShowRecipe,
         return <div className="planned-item" key={itemKey}>
         <div className="planned-item-copy">
           <strong className="planned-item-name" title={item.recipeName} role="button" tabIndex={0} aria-expanded={nameExpanded}
-            onClick={() => {
-              const next = expandedName === itemKey ? null : itemKey;
-              if (next !== null) document.dispatchEvent(new CustomEvent('planner-recipe-tooltip-open', { detail: next }));
-              setExpandedName(next);
-            }}
-            onKeyDown={event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); const next = expandedName === itemKey ? null : itemKey; if (next !== null) document.dispatchEvent(new CustomEvent('planner-recipe-tooltip-open', { detail: next })); setExpandedName(next); } }}>{item.recipeName}</strong>
+            onClick={() => setExpandedName(current => current === itemKey ? null : itemKey)}
+            onKeyDown={event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); setExpandedName(current => current === itemKey ? null : itemKey); } }}>{item.recipeName}</strong>
           {nameExpanded && <span className="recipe-name-tooltip" role="tooltip">{item.recipeName}</span>}
-          <small className="planned-item-serving" title={`${item.quantity} ${item.unit}`}>{item.quantity} {item.unit}</small>
+          <small title={`${item.category} · ${item.quantity} ${item.unit}`}>{item.category} · {item.quantity} {item.unit}</small>
         </div>
         <div className="icon-actions">
           <button type="button" className="icon-button" onClick={() => onEdit(item)} disabled={disabled}
