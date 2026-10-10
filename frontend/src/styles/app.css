@@ -311,3 +311,28 @@
   .icon-actions { gap: 2px; }
   .icon-actions .icon-button { flex-basis: 27px; width: 27px; height: 29px; }
 }
+
+
+/* Click-to-reveal full recipe names without changing the compact row layout. */
+.planned-item-copy { position: relative; }
+.planned-item-name { cursor: pointer; }
+.planned-item-name:focus-visible { outline: 2px solid #8b5cf6; outline-offset: 2px; border-radius: 3px; }
+.recipe-name-tooltip {
+  position: absolute;
+  z-index: 20;
+  left: 0;
+  top: calc(100% + 5px);
+  max-width: min(320px, calc(100vw - 48px));
+  width: max-content;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  padding: 8px 10px;
+  border: 1px solid var(--theme-border, #4b5563);
+  border-radius: 8px;
+  background: var(--theme-card, #1f232d);
+  color: var(--theme-text, #f9fafb);
+  box-shadow: 0 5px 16px #0004;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+}

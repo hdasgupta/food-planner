@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 export const MEALS = [
   ['breakfast', 'Breakfast'],
   ['lunch', 'Lunch'],
@@ -28,26 +30,23 @@ function ActionIcon({ name }) {
 }
 
 export default function MealSlot({ title, items, onEdit, onRemove, onShowRecipe, disabled = false }) {
+  const [expandedName, setExpandedName] = useState(null);
+
   return <section className="meal-slot">
     <div className="slot-heading">
       <h2>{title}</h2>
       <span>{items.length} item{items.length !== 1 ? 's' : ''}</span>
     </div>
     {items.length === 0 ? <div className="empty-slot">No food selected yet.</div> :
-      items.map(item => <div className="planned-item" key={item.id ?? item._key}>
+      items.map(item => {
+        const itemKey = item.id ?? item._key;
+        const nameExpanded = expandedName === itemKey;
+        return <div className="planned-item" key={itemKey}>
         <div className="planned-item-copy">
-          <strong
-            title="Tap to view the full recipe name"
-            role="button"
-            tabIndex={0}
-            onClick={() => window.alert(item.recipeName)}
-            onKeyDown={event => {
-              if (event.key === 'Enter' || event.key === ' ') {
-                event.preventDefault();
-                window.alert(item.recipeName);
-              }
-            }}
-          >{item.recipeName}</strong>
+          <strong className="planned-item-name" title={item.recipeName} role="button" tabIndex={0} aria-expanded={nameExpanded}
+            onClick={() => setExpandedName(current => current === itemKey ? null : itemKey)}
+            onKeyDown={event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); setExpandedName(current => current === itemKey ? null : itemKey); } }}>{item.recipeName}</strong>
+          {nameExpanded && <span className="recipe-name-tooltip" role="tooltip">{item.recipeName}</span>}
           <small title={`${item.category} · ${item.quantity} ${item.unit}`}>{item.category} · {item.quantity} {item.unit}</small>
         </div>
         <div className="icon-actions">
@@ -58,6 +57,7 @@ export default function MealSlot({ title, items, onEdit, onRemove, onShowRecipe,
           <button type="button" className="icon-button danger" onClick={() => onRemove(item)} disabled={disabled}
             title={`Remove ${item.recipeName}`} aria-label={`Remove ${item.recipeName}`}><ActionIcon name="remove" /></button>
         </div>
-      </div>)}
+      </div>;
+      })}
   </section>;
 }
