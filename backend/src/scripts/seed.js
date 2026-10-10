@@ -43,11 +43,8 @@ async function uniqueSlug(name, categoryName, categoryId) {
 }
 
 const serializeRecipeField = (column, value) => {
+  if (column === 'ingredients') return JSON.stringify(Array.isArray(value) ? value : String(value ?? '').split(',').map(item => item.trim()).filter(Boolean));
   if (!isJsonColumn(column)) return value;
-  if (column === 'ingredients') {
-    const items = Array.isArray(value) ? value : String(value ?? '').split(',').map(item => item.trim()).filter(Boolean);
-    return JSON.stringify(items);
-  }
   return JSON.stringify(value ?? '');
 };
 
@@ -66,7 +63,9 @@ await pool.query(`
     ADD COLUMN IF NOT EXISTS serving_size VARCHAR(100),
     ADD COLUMN IF NOT EXISTS prep_minutes INT,
     ADD COLUMN IF NOT EXISTS cook_minutes INT,
-    ADD COLUMN IF NOT EXISTS notes TEXT
+    ADD COLUMN IF NOT EXISTS notes TEXT,
+    ADD COLUMN IF NOT EXISTS ingredient_items JSONB NOT NULL DEFAULT '[]'::jsonb,
+    ADD COLUMN IF NOT EXISTS image_url TEXT
 `);
 
 for (const category of categories) {
@@ -86,7 +85,7 @@ for (const recipe of recipes) {
   const recipeValues = [recipe.name, cat.rows[0].id, recipe.region, !recipe.contains_egg, recipe.contains_egg,
     serializeRecipeField('ingredients', recipe.ingredients),
     serializeRecipeField('preparation', recipe.preparation), recipe.serving_size || '2 servings',
-    recipe.prep_minutes, recipe.cook_minutes, recipe.notes || ''];
+    recipe.prep_minutes, recipe.cook_minutes, recipe.notes || '', JSON.stringify(recipe.ingredients || []), recipe.image_url || null];
 
   // Older deployed databases may not have a unique constraint on
   // (name, category_id). Update existing recipes first, then insert only if
@@ -94,22 +93,56 @@ for (const recipe of recipes) {
   // schemas also require a non-null slug, so supply it whenever that column exists.
   const hasSlug = hasSlugColumn;
   const updateSql = hasSlug
-    ? `UPDATE recipes SET slug=$12,region=$3,is_vegetarian=$4,contains_egg=$5,ingredients=$6,preparation=$7,
-         serving_size=$8,prep_minutes=$9,cook_minutes=$10,notes=$11
+    ? `UPDATE recipes SET region=$3,is_vegetarian=$4,contains_egg=$5,ingredients=$6,preparation=$7,
+         serving_size=$8,prep_minutes=$9,cook_minutes=$10,notes=$11,ingredient_items=$12::jsonb,image_url=$13,slug=$14
        WHERE name=$1 AND category_id=$2`
     : `UPDATE recipes SET region=$3,is_vegetarian=$4,contains_egg=$5,ingredients=$6,preparation=$7,
-         serving_size=$8,prep_minutes=$9,cook_minutes=$10,notes=$11
+         serving_size=$8,prep_minutes=$9,cook_minutes=$10,notes=$11,ingredient_items=$12::jsonb,image_url=$13
        WHERE name=$1 AND category_id=$2`;
   const updateValues = hasSlug ? [...recipeValues, slug] : recipeValues;
   const updated = await pool.query(updateSql, updateValues);
   if (updated.rowCount === 0) {
     const insertColumns = hasSlug
-      ? '(name,category_id,region,is_vegetarian,contains_egg,ingredients,preparation,serving_size,prep_minutes,cook_minutes,notes,slug)'
-      : '(name,category_id,region,is_vegetarian,contains_egg,ingredients,preparation,serving_size,prep_minutes,cook_minutes,notes)';
+      ? '(name,category_id,region,is_vegetarian,contains_egg,ingredients,preparation,serving_size,prep_minutes,cook_minutes,notes,ingredient_items,image_url,slug)'
+      : '(name,category_id,region,is_vegetarian,contains_egg,ingredients,preparation,serving_size,prep_minutes,cook_minutes,notes,ingredient_items,image_url)';
     const placeholders = hasSlug
-      ? '($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)'
-      : '($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)';
+      ? '($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12::jsonb,$13,$14)'
+      : '($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12::jsonb,$13)';
     await pool.query(`INSERT INTO recipes ${insertColumns} VALUES${placeholders}`, updateValues);
+  }
+}
+
+
+// Backfill any recipes already in the database but not present in the current
+// JSON catalog. This deliberately updates rows in place and never deletes recipes.
+function parseLegacyIngredient(raw) {
+  const original = String(raw ?? '').trim().replace(/^[-*•]\s*/, '');
+  if (!original) return null;
+  const unitPattern = '(?:kg|g|gm|mg|ml|l|litre|liter|cups?|tbsp|tablespoons?|tsp|teaspoons?|pieces?|cloves?|pods?|pinches?|bunches?|sprigs?|slices?|grams?|kilograms?)';
+  const match = original.match(new RegExp(`^((?:about\\s+)?(?:\\d+(?:[./]\\d+)?(?:\\s*[-–]\\s*\\d+(?:[./]\\d+)?)?|[½¼¾⅓⅔⅛]|to taste|as needed|a pinch|small|large|medium))\\s*(${unitPattern})?\\s*(.+)$`, 'i'));
+  return match
+    ? { quantity: match[1].trim(), unit: (match[2] || '').trim(), item: match[3].trim().replace(/^[,—-]+|[,—-]+$/g, ''), original }
+    : { quantity: '', unit: '', item: original, original };
+}
+function parseLegacyIngredients(value) {
+  if (Array.isArray(value)) return value;
+  const raw = String(value ?? '');
+  try {
+    const parsed = JSON.parse(raw);
+    if (Array.isArray(parsed)) return parsed.map(item => typeof item === 'object' ? item : parseLegacyIngredient(item)).filter(Boolean);
+  } catch {}
+  return raw.split(/,|\n/).map(parseLegacyIngredient).filter(Boolean);
+}
+const legacyRows = await pool.query(`SELECT id,name,ingredients,ingredient_items,image_url FROM recipes`);
+for (const row of legacyRows.rows) {
+  const items = Array.isArray(row.ingredient_items) ? row.ingredient_items : [];
+  const parsedItems = items.length ? items : parseLegacyIngredients(row.ingredients);
+  const imageUrl = row.image_url || `https://loremflickr.com/640/480/indian,food,${slugify(row.name)}?lock=${row.id}`;
+  if (!items.length || !row.image_url) {
+    await pool.query(
+      `UPDATE recipes SET ingredient_items=$2::jsonb,image_url=$3 WHERE id=$1`,
+      [row.id, JSON.stringify(parsedItems), imageUrl]
+    );
   }
 }
 

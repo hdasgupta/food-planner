@@ -23,6 +23,7 @@ export default function RecipePicker({onAdd}){
     </div>
     {loading ? <p>Loading recipes…</p> :
       <div className="recipe-grid">{recipes.map(r=><button key={r.id} className="recipe-card" onClick={()=>onAdd(r)}>
+        {r.image_url && <img className="recipe-card-image" src={r.image_url} alt={r.name} loading="lazy" />}
         <strong>{r.name}</strong><span>{r.category_name}</span><small>{r.region}{r.contains_egg?' • Egg':''}</small>
       </button>)}</div>}
   </section>;

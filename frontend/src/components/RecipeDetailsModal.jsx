@@ -11,7 +11,7 @@ export default function RecipeDetailsModal({ recipe, onClose }) {
     closeTimer.current = setTimeout(onClose, 400);
   };
   if (!recipe) return null;
-  const ingredients = formatIngredients(recipe.ingredients);
+  const ingredients = formatIngredients(recipe.ingredient_items?.length ? recipe.ingredient_items : recipe.ingredients);
   const preparationSteps = formatPreparationSteps(recipe.preparation);
 
   return <div className={`modal-backdrop${isClosing ? ' is-closing' : ''}`} onClick={closeWithAnimation}>
@@ -24,6 +24,7 @@ export default function RecipeDetailsModal({ recipe, onClose }) {
         </div>
         <button type="button" onClick={closeWithAnimation} aria-label="Close recipe details">×</button>
       </div>
+      {recipe.image_url && <img className="recipe-detail-image" src={recipe.image_url} alt={recipe.name} />}
       <div className="recipe-meta">
         <span>{recipe.contains_egg ? 'Contains egg' : 'Vegetarian'}</span>
         <span>{recipe.serving_size || '2 servings'}</span>

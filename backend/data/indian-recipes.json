@@ -3,520 +3,3131 @@
     "name": "Masala Chai",
     "slug": "masala-chai",
     "category": "Drinks",
-    "mealTypes": ["breakfast", "evening"],
+    "mealTypes": [
+      "breakfast",
+      "evening"
+    ],
     "isEgg": false,
     "prepMinutes": 5,
     "cookMinutes": 8,
     "servings": 2,
-    "ingredients": ["1 cup milk", "1 cup water", "2 tsp tea leaves", "1-2 tsp sugar", "2 crushed cardamom pods", "small piece ginger"],
-    "instructions": ["Boil water with ginger and cardamom.", "Add tea leaves and simmer briefly.", "Add milk and sugar.", "Simmer until aromatic, strain and serve hot."],
-    "tags": ["tea", "quick", "homemade"]
+    "ingredients": [
+      {
+        "item": "milk",
+        "quantity": "1",
+        "unit": "cup",
+        "original": "1 cup milk"
+      },
+      {
+        "item": "water",
+        "quantity": "1",
+        "unit": "cup",
+        "original": "1 cup water"
+      },
+      {
+        "item": "tea leaves",
+        "quantity": "2",
+        "unit": "tsp",
+        "original": "2 tsp tea leaves"
+      },
+      {
+        "item": "sugar",
+        "quantity": "1-2",
+        "unit": "tsp",
+        "original": "1-2 tsp sugar"
+      },
+      {
+        "item": "crushed cardamom pods",
+        "quantity": "2",
+        "unit": "",
+        "original": "2 crushed cardamom pods"
+      },
+      {
+        "item": "ginger",
+        "quantity": "small",
+        "unit": "piece",
+        "original": "small piece ginger"
+      }
+    ],
+    "instructions": [
+      "Boil water with ginger and cardamom.",
+      "Add tea leaves and simmer briefly.",
+      "Add milk and sugar.",
+      "Simmer until aromatic, strain and serve hot."
+    ],
+    "tags": [
+      "tea",
+      "quick",
+      "homemade"
+    ],
+    "ingredients_original": [
+      "1 cup milk",
+      "1 cup water",
+      "2 tsp tea leaves",
+      "1-2 tsp sugar",
+      "2 crushed cardamom pods",
+      "small piece ginger"
+    ],
+    "image_url": "https://loremflickr.com/640/480/indian,food,masala-chai?lock=1001"
   },
   {
     "name": "South Indian Filter Coffee",
     "slug": "south-indian-filter-coffee",
     "category": "Drinks",
-    "mealTypes": ["breakfast", "evening"],
+    "mealTypes": [
+      "breakfast",
+      "evening"
+    ],
     "isEgg": false,
     "prepMinutes": 5,
     "cookMinutes": 5,
     "servings": 2,
-    "ingredients": ["2 tbsp filter coffee powder", "1 cup hot water", "1 cup hot milk", "sugar to taste"],
-    "instructions": ["Prepare a strong coffee decoction using a South Indian filter.", "Mix hot milk with the decoction.", "Sweeten to taste and serve hot."],
-    "tags": ["coffee", "south-indian", "quick"]
+    "ingredients": [
+      {
+        "item": "filter coffee powder",
+        "quantity": "2",
+        "unit": "tbsp",
+        "original": "2 tbsp filter coffee powder"
+      },
+      {
+        "item": "hot water",
+        "quantity": "1",
+        "unit": "cup",
+        "original": "1 cup hot water"
+      },
+      {
+        "item": "hot milk",
+        "quantity": "1",
+        "unit": "cup",
+        "original": "1 cup hot milk"
+      },
+      {
+        "item": "sugar to taste",
+        "quantity": "",
+        "unit": "",
+        "original": "sugar to taste"
+      }
+    ],
+    "instructions": [
+      "Prepare a strong coffee decoction using a South Indian filter.",
+      "Mix hot milk with the decoction.",
+      "Sweeten to taste and serve hot."
+    ],
+    "tags": [
+      "coffee",
+      "south-indian",
+      "quick"
+    ],
+    "ingredients_original": [
+      "2 tbsp filter coffee powder",
+      "1 cup hot water",
+      "1 cup hot milk",
+      "sugar to taste"
+    ],
+    "image_url": "https://loremflickr.com/640/480/indian,food,south-indian-filter-coffee?lock=1002"
   },
   {
     "name": "Poha with Peanuts",
     "slug": "poha-with-peanuts",
     "category": "Breakfast",
-    "mealTypes": ["breakfast"],
+    "mealTypes": [
+      "breakfast"
+    ],
     "isEgg": false,
     "prepMinutes": 10,
     "cookMinutes": 12,
     "servings": 2,
-    "ingredients": ["2 cups flattened rice", "1/3 cup peanuts", "1 onion, chopped", "1 green chilli", "1/2 tsp mustard seeds", "curry leaves", "turmeric", "salt", "lemon juice"],
-    "instructions": ["Rinse poha lightly and drain.", "Temper mustard seeds, peanuts and curry leaves.", "Add onion and chilli and cook until soft.", "Add turmeric, poha and salt.", "Cook briefly, finish with lemon juice."],
-    "tags": ["breakfast", "maharashtrian", "quick"]
+    "ingredients": [
+      {
+        "item": "flattened rice",
+        "quantity": "2",
+        "unit": "cups",
+        "original": "2 cups flattened rice"
+      },
+      {
+        "item": "peanuts",
+        "quantity": "1/3",
+        "unit": "cup",
+        "original": "1/3 cup peanuts"
+      },
+      {
+        "item": "onion, chopped",
+        "quantity": "1",
+        "unit": "",
+        "original": "1 onion, chopped"
+      },
+      {
+        "item": "green chilli",
+        "quantity": "1",
+        "unit": "",
+        "original": "1 green chilli"
+      },
+      {
+        "item": "mustard seeds",
+        "quantity": "1/2",
+        "unit": "tsp",
+        "original": "1/2 tsp mustard seeds"
+      },
+      {
+        "item": "curry leaves",
+        "quantity": "",
+        "unit": "",
+        "original": "curry leaves"
+      },
+      {
+        "item": "turmeric",
+        "quantity": "",
+        "unit": "",
+        "original": "turmeric"
+      },
+      {
+        "item": "salt",
+        "quantity": "",
+        "unit": "",
+        "original": "salt"
+      },
+      {
+        "item": "lemon juice",
+        "quantity": "",
+        "unit": "",
+        "original": "lemon juice"
+      }
+    ],
+    "instructions": [
+      "Rinse poha lightly and drain.",
+      "Temper mustard seeds, peanuts and curry leaves.",
+      "Add onion and chilli and cook until soft.",
+      "Add turmeric, poha and salt.",
+      "Cook briefly, finish with lemon juice."
+    ],
+    "tags": [
+      "breakfast",
+      "maharashtrian",
+      "quick"
+    ],
+    "ingredients_original": [
+      "2 cups flattened rice",
+      "1/3 cup peanuts",
+      "1 onion, chopped",
+      "1 green chilli",
+      "1/2 tsp mustard seeds",
+      "curry leaves",
+      "turmeric",
+      "salt",
+      "lemon juice"
+    ],
+    "image_url": "https://loremflickr.com/640/480/indian,food,poha-with-peanuts?lock=1003"
   },
   {
     "name": "Vegetable Upma",
     "slug": "vegetable-upma",
     "category": "Breakfast",
-    "mealTypes": ["breakfast"],
+    "mealTypes": [
+      "breakfast"
+    ],
     "isEgg": false,
     "prepMinutes": 10,
     "cookMinutes": 15,
     "servings": 2,
-    "ingredients": ["1 cup semolina", "1 onion", "1/2 cup mixed vegetables", "1 tsp mustard seeds", "curry leaves", "2.5 cups water", "salt", "1 tbsp oil"],
-    "instructions": ["Dry roast semolina and keep aside.", "Temper mustard seeds and curry leaves.", "Saute onion and vegetables.", "Add water and salt and bring to a boil.", "Slowly add semolina while stirring.", "Cover and cook until fluffy."],
-    "tags": ["breakfast", "south-indian", "vegetarian"]
+    "ingredients": [
+      {
+        "item": "semolina",
+        "quantity": "1",
+        "unit": "cup",
+        "original": "1 cup semolina"
+      },
+      {
+        "item": "onion",
+        "quantity": "1",
+        "unit": "",
+        "original": "1 onion"
+      },
+      {
+        "item": "mixed vegetables",
+        "quantity": "1/2",
+        "unit": "cup",
+        "original": "1/2 cup mixed vegetables"
+      },
+      {
+        "item": "mustard seeds",
+        "quantity": "1",
+        "unit": "tsp",
+        "original": "1 tsp mustard seeds"
+      },
+      {
+        "item": "curry leaves",
+        "quantity": "",
+        "unit": "",
+        "original": "curry leaves"
+      },
+      {
+        "item": "water",
+        "quantity": "2.5",
+        "unit": "cups",
+        "original": "2.5 cups water"
+      },
+      {
+        "item": "salt",
+        "quantity": "",
+        "unit": "",
+        "original": "salt"
+      },
+      {
+        "item": "oil",
+        "quantity": "1",
+        "unit": "tbsp",
+        "original": "1 tbsp oil"
+      }
+    ],
+    "instructions": [
+      "Dry roast semolina and keep aside.",
+      "Temper mustard seeds and curry leaves.",
+      "Saute onion and vegetables.",
+      "Add water and salt and bring to a boil.",
+      "Slowly add semolina while stirring.",
+      "Cover and cook until fluffy."
+    ],
+    "tags": [
+      "breakfast",
+      "south-indian",
+      "vegetarian"
+    ],
+    "ingredients_original": [
+      "1 cup semolina",
+      "1 onion",
+      "1/2 cup mixed vegetables",
+      "1 tsp mustard seeds",
+      "curry leaves",
+      "2.5 cups water",
+      "salt",
+      "1 tbsp oil"
+    ],
+    "image_url": "https://loremflickr.com/640/480/indian,food,vegetable-upma?lock=1004"
   },
   {
     "name": "Aloo Paratha",
     "slug": "aloo-paratha",
     "category": "Indian Bread",
-    "mealTypes": ["breakfast", "lunch"],
+    "mealTypes": [
+      "breakfast",
+      "lunch"
+    ],
     "isEgg": false,
     "prepMinutes": 25,
     "cookMinutes": 20,
     "servings": 4,
-    "ingredients": ["2 cups whole wheat flour", "3 boiled potatoes", "1 green chilli", "1/2 tsp cumin", "1/2 tsp ajwain", "coriander", "salt", "ghee"],
-    "instructions": ["Knead flour with water into a soft dough.", "Mash potatoes with spices, chilli and coriander.", "Fill dough portions with potato mixture and roll gently.", "Cook on a hot tawa on both sides.", "Apply ghee and serve with curd or pickle."],
-    "tags": ["bread", "punjabi", "breakfast"]
+    "ingredients": [
+      {
+        "item": "whole wheat flour",
+        "quantity": "2",
+        "unit": "cups",
+        "original": "2 cups whole wheat flour"
+      },
+      {
+        "item": "boiled potatoes",
+        "quantity": "3",
+        "unit": "",
+        "original": "3 boiled potatoes"
+      },
+      {
+        "item": "green chilli",
+        "quantity": "1",
+        "unit": "",
+        "original": "1 green chilli"
+      },
+      {
+        "item": "cumin",
+        "quantity": "1/2",
+        "unit": "tsp",
+        "original": "1/2 tsp cumin"
+      },
+      {
+        "item": "ajwain",
+        "quantity": "1/2",
+        "unit": "tsp",
+        "original": "1/2 tsp ajwain"
+      },
+      {
+        "item": "coriander",
+        "quantity": "",
+        "unit": "",
+        "original": "coriander"
+      },
+      {
+        "item": "salt",
+        "quantity": "",
+        "unit": "",
+        "original": "salt"
+      },
+      {
+        "item": "ghee",
+        "quantity": "",
+        "unit": "",
+        "original": "ghee"
+      }
+    ],
+    "instructions": [
+      "Knead flour with water into a soft dough.",
+      "Mash potatoes with spices, chilli and coriander.",
+      "Fill dough portions with potato mixture and roll gently.",
+      "Cook on a hot tawa on both sides.",
+      "Apply ghee and serve with curd or pickle."
+    ],
+    "tags": [
+      "bread",
+      "punjabi",
+      "breakfast"
+    ],
+    "ingredients_original": [
+      "2 cups whole wheat flour",
+      "3 boiled potatoes",
+      "1 green chilli",
+      "1/2 tsp cumin",
+      "1/2 tsp ajwain",
+      "coriander",
+      "salt",
+      "ghee"
+    ],
+    "image_url": "https://loremflickr.com/640/480/indian,food,aloo-paratha?lock=1005"
   },
   {
     "name": "Moong Dal Chilla",
     "slug": "moong-dal-chilla",
     "category": "Breakfast",
-    "mealTypes": ["breakfast"],
+    "mealTypes": [
+      "breakfast"
+    ],
     "isEgg": false,
     "prepMinutes": 20,
     "cookMinutes": 15,
     "servings": 3,
-    "ingredients": ["1 cup yellow moong dal", "1 green chilli", "1 inch ginger", "1/2 tsp cumin", "salt", "water", "oil"],
-    "instructions": ["Soak dal for 3-4 hours.", "Blend with ginger, chilli, cumin, salt and enough water for a pourable batter.", "Pour on a hot tawa and spread thin.", "Cook both sides with a little oil."],
-    "tags": ["breakfast", "high-protein", "north-indian"]
+    "ingredients": [
+      {
+        "item": "yellow moong dal",
+        "quantity": "1",
+        "unit": "cup",
+        "original": "1 cup yellow moong dal"
+      },
+      {
+        "item": "green chilli",
+        "quantity": "1",
+        "unit": "",
+        "original": "1 green chilli"
+      },
+      {
+        "item": "inch ginger",
+        "quantity": "1",
+        "unit": "",
+        "original": "1 inch ginger"
+      },
+      {
+        "item": "cumin",
+        "quantity": "1/2",
+        "unit": "tsp",
+        "original": "1/2 tsp cumin"
+      },
+      {
+        "item": "salt",
+        "quantity": "",
+        "unit": "",
+        "original": "salt"
+      },
+      {
+        "item": "water",
+        "quantity": "",
+        "unit": "",
+        "original": "water"
+      },
+      {
+        "item": "oil",
+        "quantity": "",
+        "unit": "",
+        "original": "oil"
+      }
+    ],
+    "instructions": [
+      "Soak dal for 3-4 hours.",
+      "Blend with ginger, chilli, cumin, salt and enough water for a pourable batter.",
+      "Pour on a hot tawa and spread thin.",
+      "Cook both sides with a little oil."
+    ],
+    "tags": [
+      "breakfast",
+      "high-protein",
+      "north-indian"
+    ],
+    "ingredients_original": [
+      "1 cup yellow moong dal",
+      "1 green chilli",
+      "1 inch ginger",
+      "1/2 tsp cumin",
+      "salt",
+      "water",
+      "oil"
+    ],
+    "image_url": "https://loremflickr.com/640/480/indian,food,moong-dal-chilla?lock=1006"
   },
   {
     "name": "Vegetable Besan Chilla",
     "slug": "vegetable-besan-chilla",
     "category": "Breakfast",
-    "mealTypes": ["breakfast"],
+    "mealTypes": [
+      "breakfast"
+    ],
     "isEgg": false,
     "prepMinutes": 10,
     "cookMinutes": 15,
     "servings": 3,
-    "ingredients": ["1 cup gram flour", "1 small onion", "1 small tomato", "green chilli", "coriander", "carom seeds", "salt", "water"],
-    "instructions": ["Mix gram flour with water into a smooth batter.", "Fold in chopped vegetables and spices.", "Spread batter on a hot tawa.", "Cook until golden on both sides."],
-    "tags": ["breakfast", "besan", "quick"]
+    "ingredients": [
+      {
+        "item": "gram flour",
+        "quantity": "1",
+        "unit": "cup",
+        "original": "1 cup gram flour"
+      },
+      {
+        "item": "small onion",
+        "quantity": "1",
+        "unit": "",
+        "original": "1 small onion"
+      },
+      {
+        "item": "small tomato",
+        "quantity": "1",
+        "unit": "",
+        "original": "1 small tomato"
+      },
+      {
+        "item": "green chilli",
+        "quantity": "",
+        "unit": "",
+        "original": "green chilli"
+      },
+      {
+        "item": "coriander",
+        "quantity": "",
+        "unit": "",
+        "original": "coriander"
+      },
+      {
+        "item": "carom seeds",
+        "quantity": "",
+        "unit": "",
+        "original": "carom seeds"
+      },
+      {
+        "item": "salt",
+        "quantity": "",
+        "unit": "",
+        "original": "salt"
+      },
+      {
+        "item": "water",
+        "quantity": "",
+        "unit": "",
+        "original": "water"
+      }
+    ],
+    "instructions": [
+      "Mix gram flour with water into a smooth batter.",
+      "Fold in chopped vegetables and spices.",
+      "Spread batter on a hot tawa.",
+      "Cook until golden on both sides."
+    ],
+    "tags": [
+      "breakfast",
+      "besan",
+      "quick"
+    ],
+    "ingredients_original": [
+      "1 cup gram flour",
+      "1 small onion",
+      "1 small tomato",
+      "green chilli",
+      "coriander",
+      "carom seeds",
+      "salt",
+      "water"
+    ],
+    "image_url": "https://loremflickr.com/640/480/indian,food,vegetable-besan-chilla?lock=1007"
   },
   {
     "name": "Masala Omelette",
     "slug": "masala-omelette",
     "category": "Egg",
-    "mealTypes": ["breakfast", "lunch"],
+    "mealTypes": [
+      "breakfast",
+      "lunch"
+    ],
     "isEgg": true,
     "prepMinutes": 8,
     "cookMinutes": 7,
     "servings": 1,
-    "ingredients": ["2 eggs", "1 small onion, finely chopped", "1 green chilli", "coriander", "1/4 tsp turmeric", "salt", "1 tsp oil"],
-    "instructions": ["Whisk eggs with onion, chilli, coriander, turmeric and salt.", "Heat oil in a pan.", "Pour in the mixture and cook until set.", "Fold and serve hot."],
-    "tags": ["egg", "breakfast", "quick"]
+    "ingredients": [
+      {
+        "item": "eggs",
+        "quantity": "2",
+        "unit": "",
+        "original": "2 eggs"
+      },
+      {
+        "item": "small onion, finely chopped",
+        "quantity": "1",
+        "unit": "",
+        "original": "1 small onion, finely chopped"
+      },
+      {
+        "item": "green chilli",
+        "quantity": "1",
+        "unit": "",
+        "original": "1 green chilli"
+      },
+      {
+        "item": "coriander",
+        "quantity": "",
+        "unit": "",
+        "original": "coriander"
+      },
+      {
+        "item": "turmeric",
+        "quantity": "1/4",
+        "unit": "tsp",
+        "original": "1/4 tsp turmeric"
+      },
+      {
+        "item": "salt",
+        "quantity": "",
+        "unit": "",
+        "original": "salt"
+      },
+      {
+        "item": "oil",
+        "quantity": "1",
+        "unit": "tsp",
+        "original": "1 tsp oil"
+      }
+    ],
+    "instructions": [
+      "Whisk eggs with onion, chilli, coriander, turmeric and salt.",
+      "Heat oil in a pan.",
+      "Pour in the mixture and cook until set.",
+      "Fold and serve hot."
+    ],
+    "tags": [
+      "egg",
+      "breakfast",
+      "quick"
+    ],
+    "ingredients_original": [
+      "2 eggs",
+      "1 small onion, finely chopped",
+      "1 green chilli",
+      "coriander",
+      "1/4 tsp turmeric",
+      "salt",
+      "1 tsp oil"
+    ],
+    "image_url": "https://loremflickr.com/640/480/indian,food,masala-omelette?lock=1008"
   },
   {
     "name": "Idli",
     "slug": "idli",
     "category": "Breakfast",
-    "mealTypes": ["breakfast"],
+    "mealTypes": [
+      "breakfast"
+    ],
     "isEgg": false,
     "prepMinutes": 20,
     "cookMinutes": 15,
     "servings": 4,
-    "ingredients": ["2 cups idli rice", "1 cup urad dal", "1 tsp fenugreek seeds", "salt"],
-    "instructions": ["Soak rice and dal separately.", "Grind to a smooth batter and ferment overnight.", "Add salt and pour into greased idli moulds.", "Steam until cooked."],
-    "tags": ["south-indian", "breakfast", "fermented"]
+    "ingredients": [
+      {
+        "item": "idli rice",
+        "quantity": "2",
+        "unit": "cups",
+        "original": "2 cups idli rice"
+      },
+      {
+        "item": "urad dal",
+        "quantity": "1",
+        "unit": "cup",
+        "original": "1 cup urad dal"
+      },
+      {
+        "item": "fenugreek seeds",
+        "quantity": "1",
+        "unit": "tsp",
+        "original": "1 tsp fenugreek seeds"
+      },
+      {
+        "item": "salt",
+        "quantity": "",
+        "unit": "",
+        "original": "salt"
+      }
+    ],
+    "instructions": [
+      "Soak rice and dal separately.",
+      "Grind to a smooth batter and ferment overnight.",
+      "Add salt and pour into greased idli moulds.",
+      "Steam until cooked."
+    ],
+    "tags": [
+      "south-indian",
+      "breakfast",
+      "fermented"
+    ],
+    "ingredients_original": [
+      "2 cups idli rice",
+      "1 cup urad dal",
+      "1 tsp fenugreek seeds",
+      "salt"
+    ],
+    "image_url": "https://loremflickr.com/640/480/indian,food,idli?lock=1009"
   },
   {
     "name": "Masala Dosa",
     "slug": "masala-dosa",
     "category": "Breakfast",
-    "mealTypes": ["breakfast"],
+    "mealTypes": [
+      "breakfast"
+    ],
     "isEgg": false,
     "prepMinutes": 25,
     "cookMinutes": 25,
     "servings": 4,
-    "ingredients": ["3 cups dosa rice", "1 cup urad dal", "3 potatoes", "1 onion", "mustard seeds", "curry leaves", "turmeric", "salt"],
-    "instructions": ["Prepare and ferment dosa batter.", "Make a potato masala with onion, mustard and curry leaves.", "Spread batter thin on a hot tawa.", "Cook until crisp, fill with potato masala and fold."],
-    "tags": ["south-indian", "breakfast", "crispy"]
+    "ingredients": [
+      {
+        "item": "dosa rice",
+        "quantity": "3",
+        "unit": "cups",
+        "original": "3 cups dosa rice"
+      },
+      {
+        "item": "urad dal",
+        "quantity": "1",
+        "unit": "cup",
+        "original": "1 cup urad dal"
+      },
+      {
+        "item": "potatoes",
+        "quantity": "3",
+        "unit": "",
+        "original": "3 potatoes"
+      },
+      {
+        "item": "onion",
+        "quantity": "1",
+        "unit": "",
+        "original": "1 onion"
+      },
+      {
+        "item": "mustard seeds",
+        "quantity": "",
+        "unit": "",
+        "original": "mustard seeds"
+      },
+      {
+        "item": "curry leaves",
+        "quantity": "",
+        "unit": "",
+        "original": "curry leaves"
+      },
+      {
+        "item": "turmeric",
+        "quantity": "",
+        "unit": "",
+        "original": "turmeric"
+      },
+      {
+        "item": "salt",
+        "quantity": "",
+        "unit": "",
+        "original": "salt"
+      }
+    ],
+    "instructions": [
+      "Prepare and ferment dosa batter.",
+      "Make a potato masala with onion, mustard and curry leaves.",
+      "Spread batter thin on a hot tawa.",
+      "Cook until crisp, fill with potato masala and fold."
+    ],
+    "tags": [
+      "south-indian",
+      "breakfast",
+      "crispy"
+    ],
+    "ingredients_original": [
+      "3 cups dosa rice",
+      "1 cup urad dal",
+      "3 potatoes",
+      "1 onion",
+      "mustard seeds",
+      "curry leaves",
+      "turmeric",
+      "salt"
+    ],
+    "image_url": "https://loremflickr.com/640/480/indian,food,masala-dosa?lock=1010"
   },
   {
     "name": "Vegetable Sandwich",
     "slug": "vegetable-sandwich",
     "category": "Breakfast",
-    "mealTypes": ["breakfast", "snack"],
+    "mealTypes": [
+      "breakfast",
+      "snack"
+    ],
     "isEgg": false,
     "prepMinutes": 10,
     "cookMinutes": 8,
     "servings": 2,
-    "ingredients": ["4 bread slices", "1 boiled potato", "1 tomato", "1 cucumber", "mint chutney", "butter", "salt", "pepper"],
-    "instructions": ["Spread mint chutney and butter on bread.", "Layer sliced vegetables and potato.", "Season lightly.", "Toast or serve fresh."],
-    "tags": ["breakfast", "snack", "quick"]
+    "ingredients": [
+      {
+        "item": "bread slices",
+        "quantity": "4",
+        "unit": "",
+        "original": "4 bread slices"
+      },
+      {
+        "item": "boiled potato",
+        "quantity": "1",
+        "unit": "",
+        "original": "1 boiled potato"
+      },
+      {
+        "item": "tomato",
+        "quantity": "1",
+        "unit": "",
+        "original": "1 tomato"
+      },
+      {
+        "item": "cucumber",
+        "quantity": "1",
+        "unit": "",
+        "original": "1 cucumber"
+      },
+      {
+        "item": "mint chutney",
+        "quantity": "",
+        "unit": "",
+        "original": "mint chutney"
+      },
+      {
+        "item": "butter",
+        "quantity": "",
+        "unit": "",
+        "original": "butter"
+      },
+      {
+        "item": "salt",
+        "quantity": "",
+        "unit": "",
+        "original": "salt"
+      },
+      {
+        "item": "pepper",
+        "quantity": "",
+        "unit": "",
+        "original": "pepper"
+      }
+    ],
+    "instructions": [
+      "Spread mint chutney and butter on bread.",
+      "Layer sliced vegetables and potato.",
+      "Season lightly.",
+      "Toast or serve fresh."
+    ],
+    "tags": [
+      "breakfast",
+      "snack",
+      "quick"
+    ],
+    "ingredients_original": [
+      "4 bread slices",
+      "1 boiled potato",
+      "1 tomato",
+      "1 cucumber",
+      "mint chutney",
+      "butter",
+      "salt",
+      "pepper"
+    ],
+    "image_url": "https://loremflickr.com/640/480/indian,food,vegetable-sandwich?lock=1011"
   },
   {
     "name": "Dal Tadka",
     "slug": "dal-tadka",
     "category": "Dal",
-    "mealTypes": ["lunch", "dinner"],
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
     "isEgg": false,
     "prepMinutes": 10,
     "cookMinutes": 25,
     "servings": 4,
-    "ingredients": ["1 cup yellow lentils", "1 tomato", "1 onion", "1/2 tsp turmeric", "1 tsp cumin", "garlic", "ghee", "salt"],
-    "instructions": ["Pressure cook dal with turmeric and salt.", "Saute onion, tomato and garlic.", "Add cooked dal and simmer.", "Temper cumin and garlic in ghee and pour over dal."],
-    "tags": ["dal", "north-indian", "everyday"]
+    "ingredients": [
+      {
+        "item": "yellow lentils",
+        "quantity": "1",
+        "unit": "cup",
+        "original": "1 cup yellow lentils"
+      },
+      {
+        "item": "tomato",
+        "quantity": "1",
+        "unit": "",
+        "original": "1 tomato"
+      },
+      {
+        "item": "onion",
+        "quantity": "1",
+        "unit": "",
+        "original": "1 onion"
+      },
+      {
+        "item": "turmeric",
+        "quantity": "1/2",
+        "unit": "tsp",
+        "original": "1/2 tsp turmeric"
+      },
+      {
+        "item": "cumin",
+        "quantity": "1",
+        "unit": "tsp",
+        "original": "1 tsp cumin"
+      },
+      {
+        "item": "garlic",
+        "quantity": "",
+        "unit": "",
+        "original": "garlic"
+      },
+      {
+        "item": "ghee",
+        "quantity": "",
+        "unit": "",
+        "original": "ghee"
+      },
+      {
+        "item": "salt",
+        "quantity": "",
+        "unit": "",
+        "original": "salt"
+      }
+    ],
+    "instructions": [
+      "Pressure cook dal with turmeric and salt.",
+      "Saute onion, tomato and garlic.",
+      "Add cooked dal and simmer.",
+      "Temper cumin and garlic in ghee and pour over dal."
+    ],
+    "tags": [
+      "dal",
+      "north-indian",
+      "everyday"
+    ],
+    "ingredients_original": [
+      "1 cup yellow lentils",
+      "1 tomato",
+      "1 onion",
+      "1/2 tsp turmeric",
+      "1 tsp cumin",
+      "garlic",
+      "ghee",
+      "salt"
+    ],
+    "image_url": "https://loremflickr.com/640/480/indian,food,dal-tadka?lock=1012"
   },
   {
     "name": "Moong Dal Fry",
     "slug": "moong-dal-fry",
     "category": "Dal",
-    "mealTypes": ["lunch", "dinner"],
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
     "isEgg": false,
     "prepMinutes": 8,
     "cookMinutes": 22,
     "servings": 4,
-    "ingredients": ["1 cup yellow moong dal", "1 tomato", "ginger", "cumin", "turmeric", "red chilli powder", "salt", "oil"],
-    "instructions": ["Cook dal with turmeric until soft.", "Prepare a cumin, ginger and tomato tempering.", "Combine with dal and simmer for a few minutes.", "Adjust salt and spice."],
-    "tags": ["dal", "light", "everyday"]
+    "ingredients": [
+      {
+        "item": "yellow moong dal",
+        "quantity": "1",
+        "unit": "cup",
+        "original": "1 cup yellow moong dal"
+      },
+      {
+        "item": "tomato",
+        "quantity": "1",
+        "unit": "",
+        "original": "1 tomato"
+      },
+      {
+        "item": "ginger",
+        "quantity": "",
+        "unit": "",
+        "original": "ginger"
+      },
+      {
+        "item": "cumin",
+        "quantity": "",
+        "unit": "",
+        "original": "cumin"
+      },
+      {
+        "item": "turmeric",
+        "quantity": "",
+        "unit": "",
+        "original": "turmeric"
+      },
+      {
+        "item": "red chilli powder",
+        "quantity": "",
+        "unit": "",
+        "original": "red chilli powder"
+      },
+      {
+        "item": "salt",
+        "quantity": "",
+        "unit": "",
+        "original": "salt"
+      },
+      {
+        "item": "oil",
+        "quantity": "",
+        "unit": "",
+        "original": "oil"
+      }
+    ],
+    "instructions": [
+      "Cook dal with turmeric until soft.",
+      "Prepare a cumin, ginger and tomato tempering.",
+      "Combine with dal and simmer for a few minutes.",
+      "Adjust salt and spice."
+    ],
+    "tags": [
+      "dal",
+      "light",
+      "everyday"
+    ],
+    "ingredients_original": [
+      "1 cup yellow moong dal",
+      "1 tomato",
+      "ginger",
+      "cumin",
+      "turmeric",
+      "red chilli powder",
+      "salt",
+      "oil"
+    ],
+    "image_url": "https://loremflickr.com/640/480/indian,food,moong-dal-fry?lock=1013"
   },
   {
     "name": "Rajma Masala",
     "slug": "rajma-masala",
     "category": "Main Course",
-    "mealTypes": ["lunch", "dinner"],
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
     "isEgg": false,
     "prepMinutes": 10,
     "cookMinutes": 45,
     "servings": 4,
-    "ingredients": ["1.5 cups kidney beans", "2 onions", "2 tomatoes", "ginger", "garlic", "cumin", "garam masala", "salt", "oil"],
-    "instructions": ["Soak kidney beans overnight and pressure cook until tender.", "Prepare onion, ginger, garlic and tomato masala.", "Add beans and cooking liquid.", "Simmer until thick and flavorful.", "Finish with garam masala."],
-    "tags": ["punjabi", "beans", "main-course"]
+    "ingredients": [
+      {
+        "item": "kidney beans",
+        "quantity": "1.5",
+        "unit": "cups",
+        "original": "1.5 cups kidney beans"
+      },
+      {
+        "item": "onions",
+        "quantity": "2",
+        "unit": "",
+        "original": "2 onions"
+      },
+      {
+        "item": "tomatoes",
+        "quantity": "2",
+        "unit": "",
+        "original": "2 tomatoes"
+      },
+      {
+        "item": "ginger",
+        "quantity": "",
+        "unit": "",
+        "original": "ginger"
+      },
+      {
+        "item": "garlic",
+        "quantity": "",
+        "unit": "",
+        "original": "garlic"
+      },
+      {
+        "item": "cumin",
+        "quantity": "",
+        "unit": "",
+        "original": "cumin"
+      },
+      {
+        "item": "garam masala",
+        "quantity": "",
+        "unit": "",
+        "original": "garam masala"
+      },
+      {
+        "item": "salt",
+        "quantity": "",
+        "unit": "",
+        "original": "salt"
+      },
+      {
+        "item": "oil",
+        "quantity": "",
+        "unit": "",
+        "original": "oil"
+      }
+    ],
+    "instructions": [
+      "Soak kidney beans overnight and pressure cook until tender.",
+      "Prepare onion, ginger, garlic and tomato masala.",
+      "Add beans and cooking liquid.",
+      "Simmer until thick and flavorful.",
+      "Finish with garam masala."
+    ],
+    "tags": [
+      "punjabi",
+      "beans",
+      "main-course"
+    ],
+    "ingredients_original": [
+      "1.5 cups kidney beans",
+      "2 onions",
+      "2 tomatoes",
+      "ginger",
+      "garlic",
+      "cumin",
+      "garam masala",
+      "salt",
+      "oil"
+    ],
+    "image_url": "https://loremflickr.com/640/480/indian,food,rajma-masala?lock=1014"
   },
   {
     "name": "Chole",
     "slug": "chole",
     "category": "Main Course",
-    "mealTypes": ["lunch", "dinner"],
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
     "isEgg": false,
     "prepMinutes": 10,
     "cookMinutes": 45,
     "servings": 4,
-    "ingredients": ["1.5 cups chickpeas", "2 onions", "2 tomatoes", "ginger", "garlic", "chole masala", "tea bag optional", "salt", "oil"],
-    "instructions": ["Soak chickpeas overnight and pressure cook.", "Cook onion, ginger, garlic and tomato masala.", "Add chickpeas and spice blend.", "Simmer until gravy thickens."],
-    "tags": ["punjabi", "chickpeas", "main-course"]
+    "ingredients": [
+      {
+        "item": "chickpeas",
+        "quantity": "1.5",
+        "unit": "cups",
+        "original": "1.5 cups chickpeas"
+      },
+      {
+        "item": "onions",
+        "quantity": "2",
+        "unit": "",
+        "original": "2 onions"
+      },
+      {
+        "item": "tomatoes",
+        "quantity": "2",
+        "unit": "",
+        "original": "2 tomatoes"
+      },
+      {
+        "item": "ginger",
+        "quantity": "",
+        "unit": "",
+        "original": "ginger"
+      },
+      {
+        "item": "garlic",
+        "quantity": "",
+        "unit": "",
+        "original": "garlic"
+      },
+      {
+        "item": "chole masala",
+        "quantity": "",
+        "unit": "",
+        "original": "chole masala"
+      },
+      {
+        "item": "tea bag optional",
+        "quantity": "",
+        "unit": "",
+        "original": "tea bag optional"
+      },
+      {
+        "item": "salt",
+        "quantity": "",
+        "unit": "",
+        "original": "salt"
+      },
+      {
+        "item": "oil",
+        "quantity": "",
+        "unit": "",
+        "original": "oil"
+      }
+    ],
+    "instructions": [
+      "Soak chickpeas overnight and pressure cook.",
+      "Cook onion, ginger, garlic and tomato masala.",
+      "Add chickpeas and spice blend.",
+      "Simmer until gravy thickens."
+    ],
+    "tags": [
+      "punjabi",
+      "chickpeas",
+      "main-course"
+    ],
+    "ingredients_original": [
+      "1.5 cups chickpeas",
+      "2 onions",
+      "2 tomatoes",
+      "ginger",
+      "garlic",
+      "chole masala",
+      "tea bag optional",
+      "salt",
+      "oil"
+    ],
+    "image_url": "https://loremflickr.com/640/480/indian,food,chole?lock=1015"
   },
   {
     "name": "Aloo Gobi",
     "slug": "aloo-gobi",
     "category": "Side Dish",
-    "mealTypes": ["lunch", "dinner"],
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
     "isEgg": false,
     "prepMinutes": 12,
     "cookMinutes": 25,
     "servings": 4,
-    "ingredients": ["2 potatoes", "1 cauliflower", "1 tomato", "cumin", "turmeric", "coriander powder", "garam masala", "salt"],
-    "instructions": ["Cut potatoes and cauliflower into bite-size pieces.", "Temper cumin and add vegetables.", "Add spices and tomato.", "Cover and cook until tender, stirring occasionally.", "Finish with garam masala."],
-    "tags": ["vegetable", "punjabi", "everyday"]
+    "ingredients": [
+      {
+        "item": "potatoes",
+        "quantity": "2",
+        "unit": "",
+        "original": "2 potatoes"
+      },
+      {
+        "item": "cauliflower",
+        "quantity": "1",
+        "unit": "",
+        "original": "1 cauliflower"
+      },
+      {
+        "item": "tomato",
+        "quantity": "1",
+        "unit": "",
+        "original": "1 tomato"
+      },
+      {
+        "item": "cumin",
+        "quantity": "",
+        "unit": "",
+        "original": "cumin"
+      },
+      {
+        "item": "turmeric",
+        "quantity": "",
+        "unit": "",
+        "original": "turmeric"
+      },
+      {
+        "item": "coriander powder",
+        "quantity": "",
+        "unit": "",
+        "original": "coriander powder"
+      },
+      {
+        "item": "garam masala",
+        "quantity": "",
+        "unit": "",
+        "original": "garam masala"
+      },
+      {
+        "item": "salt",
+        "quantity": "",
+        "unit": "",
+        "original": "salt"
+      }
+    ],
+    "instructions": [
+      "Cut potatoes and cauliflower into bite-size pieces.",
+      "Temper cumin and add vegetables.",
+      "Add spices and tomato.",
+      "Cover and cook until tender, stirring occasionally.",
+      "Finish with garam masala."
+    ],
+    "tags": [
+      "vegetable",
+      "punjabi",
+      "everyday"
+    ],
+    "ingredients_original": [
+      "2 potatoes",
+      "1 cauliflower",
+      "1 tomato",
+      "cumin",
+      "turmeric",
+      "coriander powder",
+      "garam masala",
+      "salt"
+    ],
+    "image_url": "https://loremflickr.com/640/480/indian,food,aloo-gobi?lock=1016"
   },
   {
     "name": "Bhindi Masala",
     "slug": "bhindi-masala",
     "category": "Side Dish",
-    "mealTypes": ["lunch", "dinner"],
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
     "isEgg": false,
     "prepMinutes": 12,
     "cookMinutes": 20,
     "servings": 4,
-    "ingredients": ["500 g okra", "1 onion", "1 tomato", "cumin", "turmeric", "coriander powder", "amchur", "salt", "oil"],
-    "instructions": ["Wash and completely dry okra, then slice.", "Saute okra until less sticky and lightly browned.", "Cook onion and tomato with spices separately.", "Combine and cook until tender.", "Finish with amchur."],
-    "tags": ["vegetable", "everyday", "dry-curry"]
+    "ingredients": [
+      {
+        "item": "okra",
+        "quantity": "500",
+        "unit": "g",
+        "original": "500 g okra"
+      },
+      {
+        "item": "onion",
+        "quantity": "1",
+        "unit": "",
+        "original": "1 onion"
+      },
+      {
+        "item": "tomato",
+        "quantity": "1",
+        "unit": "",
+        "original": "1 tomato"
+      },
+      {
+        "item": "cumin",
+        "quantity": "",
+        "unit": "",
+        "original": "cumin"
+      },
+      {
+        "item": "turmeric",
+        "quantity": "",
+        "unit": "",
+        "original": "turmeric"
+      },
+      {
+        "item": "coriander powder",
+        "quantity": "",
+        "unit": "",
+        "original": "coriander powder"
+      },
+      {
+        "item": "amchur",
+        "quantity": "",
+        "unit": "",
+        "original": "amchur"
+      },
+      {
+        "item": "salt",
+        "quantity": "",
+        "unit": "",
+        "original": "salt"
+      },
+      {
+        "item": "oil",
+        "quantity": "",
+        "unit": "",
+        "original": "oil"
+      }
+    ],
+    "instructions": [
+      "Wash and completely dry okra, then slice.",
+      "Saute okra until less sticky and lightly browned.",
+      "Cook onion and tomato with spices separately.",
+      "Combine and cook until tender.",
+      "Finish with amchur."
+    ],
+    "tags": [
+      "vegetable",
+      "everyday",
+      "dry-curry"
+    ],
+    "ingredients_original": [
+      "500 g okra",
+      "1 onion",
+      "1 tomato",
+      "cumin",
+      "turmeric",
+      "coriander powder",
+      "amchur",
+      "salt",
+      "oil"
+    ],
+    "image_url": "https://loremflickr.com/640/480/indian,food,bhindi-masala?lock=1017"
   },
   {
     "name": "Baingan Bharta",
     "slug": "baingan-bharta",
     "category": "Side Dish",
-    "mealTypes": ["lunch", "dinner"],
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
     "isEgg": false,
     "prepMinutes": 10,
     "cookMinutes": 35,
     "servings": 4,
-    "ingredients": ["1 large eggplant", "1 onion", "2 tomatoes", "green chilli", "ginger", "coriander", "salt", "oil"],
-    "instructions": ["Roast eggplant until charred and soft.", "Peel and mash the cooked eggplant.", "Saute onion, ginger, chilli and tomato.", "Add mashed eggplant and cook together.", "Finish with coriander."],
-    "tags": ["vegetable", "punjabi", "roasted"]
+    "ingredients": [
+      {
+        "item": "large eggplant",
+        "quantity": "1",
+        "unit": "",
+        "original": "1 large eggplant"
+      },
+      {
+        "item": "onion",
+        "quantity": "1",
+        "unit": "",
+        "original": "1 onion"
+      },
+      {
+        "item": "tomatoes",
+        "quantity": "2",
+        "unit": "",
+        "original": "2 tomatoes"
+      },
+      {
+        "item": "green chilli",
+        "quantity": "",
+        "unit": "",
+        "original": "green chilli"
+      },
+      {
+        "item": "ginger",
+        "quantity": "",
+        "unit": "",
+        "original": "ginger"
+      },
+      {
+        "item": "coriander",
+        "quantity": "",
+        "unit": "",
+        "original": "coriander"
+      },
+      {
+        "item": "salt",
+        "quantity": "",
+        "unit": "",
+        "original": "salt"
+      },
+      {
+        "item": "oil",
+        "quantity": "",
+        "unit": "",
+        "original": "oil"
+      }
+    ],
+    "instructions": [
+      "Roast eggplant until charred and soft.",
+      "Peel and mash the cooked eggplant.",
+      "Saute onion, ginger, chilli and tomato.",
+      "Add mashed eggplant and cook together.",
+      "Finish with coriander."
+    ],
+    "tags": [
+      "vegetable",
+      "punjabi",
+      "roasted"
+    ],
+    "ingredients_original": [
+      "1 large eggplant",
+      "1 onion",
+      "2 tomatoes",
+      "green chilli",
+      "ginger",
+      "coriander",
+      "salt",
+      "oil"
+    ],
+    "image_url": "https://loremflickr.com/640/480/indian,food,baingan-bharta?lock=1018"
   },
   {
     "name": "Matar Paneer",
     "slug": "matar-paneer",
     "category": "Main Course",
-    "mealTypes": ["lunch", "dinner"],
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
     "isEgg": false,
     "prepMinutes": 15,
     "cookMinutes": 25,
     "servings": 4,
-    "ingredients": ["250 g paneer", "1 cup peas", "2 tomatoes", "1 onion", "ginger", "garlic", "garam masala", "cream optional", "salt"],
-    "instructions": ["Brown paneer lightly.", "Cook onion, ginger, garlic and tomato into a masala.", "Add peas and water and simmer.", "Add paneer and garam masala.", "Simmer briefly and finish with cream if desired."],
-    "tags": ["paneer", "north-indian", "main-course"]
+    "ingredients": [
+      {
+        "item": "paneer",
+        "quantity": "250",
+        "unit": "g",
+        "original": "250 g paneer"
+      },
+      {
+        "item": "peas",
+        "quantity": "1",
+        "unit": "cup",
+        "original": "1 cup peas"
+      },
+      {
+        "item": "tomatoes",
+        "quantity": "2",
+        "unit": "",
+        "original": "2 tomatoes"
+      },
+      {
+        "item": "onion",
+        "quantity": "1",
+        "unit": "",
+        "original": "1 onion"
+      },
+      {
+        "item": "ginger",
+        "quantity": "",
+        "unit": "",
+        "original": "ginger"
+      },
+      {
+        "item": "garlic",
+        "quantity": "",
+        "unit": "",
+        "original": "garlic"
+      },
+      {
+        "item": "garam masala",
+        "quantity": "",
+        "unit": "",
+        "original": "garam masala"
+      },
+      {
+        "item": "cream optional",
+        "quantity": "",
+        "unit": "",
+        "original": "cream optional"
+      },
+      {
+        "item": "salt",
+        "quantity": "",
+        "unit": "",
+        "original": "salt"
+      }
+    ],
+    "instructions": [
+      "Brown paneer lightly.",
+      "Cook onion, ginger, garlic and tomato into a masala.",
+      "Add peas and water and simmer.",
+      "Add paneer and garam masala.",
+      "Simmer briefly and finish with cream if desired."
+    ],
+    "tags": [
+      "paneer",
+      "north-indian",
+      "main-course"
+    ],
+    "ingredients_original": [
+      "250 g paneer",
+      "1 cup peas",
+      "2 tomatoes",
+      "1 onion",
+      "ginger",
+      "garlic",
+      "garam masala",
+      "cream optional",
+      "salt"
+    ],
+    "image_url": "https://loremflickr.com/640/480/indian,food,matar-paneer?lock=1019"
   },
   {
     "name": "Palak Paneer",
     "slug": "palak-paneer",
     "category": "Main Course",
-    "mealTypes": ["lunch", "dinner"],
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
     "isEgg": false,
     "prepMinutes": 15,
     "cookMinutes": 25,
     "servings": 4,
-    "ingredients": ["300 g spinach", "250 g paneer", "1 onion", "2 tomatoes", "ginger", "garlic", "cumin", "garam masala", "salt"],
-    "instructions": ["Blanch spinach and blend to a puree.", "Saute cumin, onion, ginger and garlic.", "Add tomato and cook down.", "Add spinach puree and simmer.", "Add paneer and garam masala and cook briefly."],
-    "tags": ["paneer", "spinach", "north-indian"]
+    "ingredients": [
+      {
+        "item": "spinach",
+        "quantity": "300",
+        "unit": "g",
+        "original": "300 g spinach"
+      },
+      {
+        "item": "paneer",
+        "quantity": "250",
+        "unit": "g",
+        "original": "250 g paneer"
+      },
+      {
+        "item": "onion",
+        "quantity": "1",
+        "unit": "",
+        "original": "1 onion"
+      },
+      {
+        "item": "tomatoes",
+        "quantity": "2",
+        "unit": "",
+        "original": "2 tomatoes"
+      },
+      {
+        "item": "ginger",
+        "quantity": "",
+        "unit": "",
+        "original": "ginger"
+      },
+      {
+        "item": "garlic",
+        "quantity": "",
+        "unit": "",
+        "original": "garlic"
+      },
+      {
+        "item": "cumin",
+        "quantity": "",
+        "unit": "",
+        "original": "cumin"
+      },
+      {
+        "item": "garam masala",
+        "quantity": "",
+        "unit": "",
+        "original": "garam masala"
+      },
+      {
+        "item": "salt",
+        "quantity": "",
+        "unit": "",
+        "original": "salt"
+      }
+    ],
+    "instructions": [
+      "Blanch spinach and blend to a puree.",
+      "Saute cumin, onion, ginger and garlic.",
+      "Add tomato and cook down.",
+      "Add spinach puree and simmer.",
+      "Add paneer and garam masala and cook briefly."
+    ],
+    "tags": [
+      "paneer",
+      "spinach",
+      "north-indian"
+    ],
+    "ingredients_original": [
+      "300 g spinach",
+      "250 g paneer",
+      "1 onion",
+      "2 tomatoes",
+      "ginger",
+      "garlic",
+      "cumin",
+      "garam masala",
+      "salt"
+    ],
+    "image_url": "https://loremflickr.com/640/480/indian,food,palak-paneer?lock=1020"
   },
   {
     "name": "Jeera Rice",
     "slug": "jeera-rice",
     "category": "Rice",
-    "mealTypes": ["lunch", "dinner"],
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
     "isEgg": false,
     "prepMinutes": 5,
     "cookMinutes": 20,
     "servings": 4,
-    "ingredients": ["2 cups basmati rice", "1 tbsp cumin seeds", "1 bay leaf", "1 tbsp ghee", "salt", "water"],
-    "instructions": ["Rinse and soak rice briefly.", "Temper cumin and bay leaf in ghee.", "Add rice and water with salt.", "Cook until grains are fluffy and separate."],
-    "tags": ["rice", "side", "quick"]
+    "ingredients": [
+      {
+        "item": "basmati rice",
+        "quantity": "2",
+        "unit": "cups",
+        "original": "2 cups basmati rice"
+      },
+      {
+        "item": "cumin seeds",
+        "quantity": "1",
+        "unit": "tbsp",
+        "original": "1 tbsp cumin seeds"
+      },
+      {
+        "item": "bay leaf",
+        "quantity": "1",
+        "unit": "",
+        "original": "1 bay leaf"
+      },
+      {
+        "item": "ghee",
+        "quantity": "1",
+        "unit": "tbsp",
+        "original": "1 tbsp ghee"
+      },
+      {
+        "item": "salt",
+        "quantity": "",
+        "unit": "",
+        "original": "salt"
+      },
+      {
+        "item": "water",
+        "quantity": "",
+        "unit": "",
+        "original": "water"
+      }
+    ],
+    "instructions": [
+      "Rinse and soak rice briefly.",
+      "Temper cumin and bay leaf in ghee.",
+      "Add rice and water with salt.",
+      "Cook until grains are fluffy and separate."
+    ],
+    "tags": [
+      "rice",
+      "side",
+      "quick"
+    ],
+    "ingredients_original": [
+      "2 cups basmati rice",
+      "1 tbsp cumin seeds",
+      "1 bay leaf",
+      "1 tbsp ghee",
+      "salt",
+      "water"
+    ],
+    "image_url": "https://loremflickr.com/640/480/indian,food,jeera-rice?lock=1021"
   },
   {
     "name": "Vegetable Pulao",
     "slug": "vegetable-pulao",
     "category": "Rice",
-    "mealTypes": ["lunch", "dinner"],
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
     "isEgg": false,
     "prepMinutes": 15,
     "cookMinutes": 25,
     "servings": 4,
-    "ingredients": ["2 cups basmati rice", "1 cup mixed vegetables", "1 onion", "whole spices", "1 tbsp ghee", "salt"],
-    "instructions": ["Soak rice briefly.", "Saute whole spices and onion in ghee.", "Add vegetables and rice.", "Add water and salt and cook covered until rice is done."],
-    "tags": ["rice", "one-pot", "vegetarian"]
+    "ingredients": [
+      {
+        "item": "basmati rice",
+        "quantity": "2",
+        "unit": "cups",
+        "original": "2 cups basmati rice"
+      },
+      {
+        "item": "mixed vegetables",
+        "quantity": "1",
+        "unit": "cup",
+        "original": "1 cup mixed vegetables"
+      },
+      {
+        "item": "onion",
+        "quantity": "1",
+        "unit": "",
+        "original": "1 onion"
+      },
+      {
+        "item": "whole spices",
+        "quantity": "",
+        "unit": "",
+        "original": "whole spices"
+      },
+      {
+        "item": "ghee",
+        "quantity": "1",
+        "unit": "tbsp",
+        "original": "1 tbsp ghee"
+      },
+      {
+        "item": "salt",
+        "quantity": "",
+        "unit": "",
+        "original": "salt"
+      }
+    ],
+    "instructions": [
+      "Soak rice briefly.",
+      "Saute whole spices and onion in ghee.",
+      "Add vegetables and rice.",
+      "Add water and salt and cook covered until rice is done."
+    ],
+    "tags": [
+      "rice",
+      "one-pot",
+      "vegetarian"
+    ],
+    "ingredients_original": [
+      "2 cups basmati rice",
+      "1 cup mixed vegetables",
+      "1 onion",
+      "whole spices",
+      "1 tbsp ghee",
+      "salt"
+    ],
+    "image_url": "https://loremflickr.com/640/480/indian,food,vegetable-pulao?lock=1022"
   },
   {
     "name": "Plain Steamed Rice",
     "slug": "plain-steamed-rice",
     "category": "Rice",
-    "mealTypes": ["lunch", "dinner"],
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
     "isEgg": false,
     "prepMinutes": 5,
     "cookMinutes": 20,
     "servings": 4,
-    "ingredients": ["2 cups rice", "water", "salt optional"],
-    "instructions": ["Rinse rice until water is mostly clear.", "Cook with the appropriate amount of water.", "Rest covered for 5 minutes and fluff."],
-    "tags": ["rice", "everyday", "staple"]
+    "ingredients": [
+      {
+        "item": "rice",
+        "quantity": "2",
+        "unit": "cups",
+        "original": "2 cups rice"
+      },
+      {
+        "item": "water",
+        "quantity": "",
+        "unit": "",
+        "original": "water"
+      },
+      {
+        "item": "salt optional",
+        "quantity": "",
+        "unit": "",
+        "original": "salt optional"
+      }
+    ],
+    "instructions": [
+      "Rinse rice until water is mostly clear.",
+      "Cook with the appropriate amount of water.",
+      "Rest covered for 5 minutes and fluff."
+    ],
+    "tags": [
+      "rice",
+      "everyday",
+      "staple"
+    ],
+    "ingredients_original": [
+      "2 cups rice",
+      "water",
+      "salt optional"
+    ],
+    "image_url": "https://loremflickr.com/640/480/indian,food,plain-steamed-rice?lock=1023"
   },
   {
     "name": "Roti",
     "slug": "roti",
     "category": "Indian Bread",
-    "mealTypes": ["lunch", "dinner"],
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
     "isEgg": false,
     "prepMinutes": 20,
     "cookMinutes": 15,
     "servings": 4,
-    "ingredients": ["2 cups whole wheat flour", "water", "salt optional"],
-    "instructions": ["Knead flour with water into a soft dough.", "Rest for 15 minutes.", "Divide and roll into thin rounds.", "Cook on a hot tawa and finish directly over flame if desired."],
-    "tags": ["bread", "everyday", "north-indian"]
+    "ingredients": [
+      {
+        "item": "whole wheat flour",
+        "quantity": "2",
+        "unit": "cups",
+        "original": "2 cups whole wheat flour"
+      },
+      {
+        "item": "water",
+        "quantity": "",
+        "unit": "",
+        "original": "water"
+      },
+      {
+        "item": "salt optional",
+        "quantity": "",
+        "unit": "",
+        "original": "salt optional"
+      }
+    ],
+    "instructions": [
+      "Knead flour with water into a soft dough.",
+      "Rest for 15 minutes.",
+      "Divide and roll into thin rounds.",
+      "Cook on a hot tawa and finish directly over flame if desired."
+    ],
+    "tags": [
+      "bread",
+      "everyday",
+      "north-indian"
+    ],
+    "ingredients_original": [
+      "2 cups whole wheat flour",
+      "water",
+      "salt optional"
+    ],
+    "image_url": "https://loremflickr.com/640/480/indian,food,roti?lock=1024"
   },
   {
     "name": "Lachha Paratha",
     "slug": "lachha-paratha",
     "category": "Indian Bread",
-    "mealTypes": ["breakfast", "lunch", "dinner"],
+    "mealTypes": [
+      "breakfast",
+      "lunch",
+      "dinner"
+    ],
     "isEgg": false,
     "prepMinutes": 25,
     "cookMinutes": 20,
     "servings": 4,
-    "ingredients": ["2 cups whole wheat flour", "water", "salt", "ghee"],
-    "instructions": ["Make a soft dough and rest it.", "Roll a portion, layer with ghee and fold into pleats.", "Roll gently into a layered round.", "Cook on a hot tawa with ghee until crisp and golden."],
-    "tags": ["bread", "paratha", "punjabi"]
+    "ingredients": [
+      {
+        "item": "whole wheat flour",
+        "quantity": "2",
+        "unit": "cups",
+        "original": "2 cups whole wheat flour"
+      },
+      {
+        "item": "water",
+        "quantity": "",
+        "unit": "",
+        "original": "water"
+      },
+      {
+        "item": "salt",
+        "quantity": "",
+        "unit": "",
+        "original": "salt"
+      },
+      {
+        "item": "ghee",
+        "quantity": "",
+        "unit": "",
+        "original": "ghee"
+      }
+    ],
+    "instructions": [
+      "Make a soft dough and rest it.",
+      "Roll a portion, layer with ghee and fold into pleats.",
+      "Roll gently into a layered round.",
+      "Cook on a hot tawa with ghee until crisp and golden."
+    ],
+    "tags": [
+      "bread",
+      "paratha",
+      "punjabi"
+    ],
+    "ingredients_original": [
+      "2 cups whole wheat flour",
+      "water",
+      "salt",
+      "ghee"
+    ],
+    "image_url": "https://loremflickr.com/640/480/indian,food,lachha-paratha?lock=1025"
   },
   {
     "name": "Cucumber Raita",
     "slug": "cucumber-raita",
     "category": "Side Dish",
-    "mealTypes": ["lunch", "dinner"],
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
     "isEgg": false,
     "prepMinutes": 8,
     "cookMinutes": 0,
     "servings": 4,
-    "ingredients": ["2 cups yogurt", "1 cucumber", "roasted cumin powder", "salt", "coriander"],
-    "instructions": ["Whisk yogurt.", "Grate or finely chop cucumber and squeeze excess water.", "Mix cucumber into yogurt.", "Season with cumin and salt and garnish with coriander."],
-    "tags": ["raita", "no-cook", "side"]
+    "ingredients": [
+      {
+        "item": "yogurt",
+        "quantity": "2",
+        "unit": "cups",
+        "original": "2 cups yogurt"
+      },
+      {
+        "item": "cucumber",
+        "quantity": "1",
+        "unit": "",
+        "original": "1 cucumber"
+      },
+      {
+        "item": "roasted cumin powder",
+        "quantity": "",
+        "unit": "",
+        "original": "roasted cumin powder"
+      },
+      {
+        "item": "salt",
+        "quantity": "",
+        "unit": "",
+        "original": "salt"
+      },
+      {
+        "item": "coriander",
+        "quantity": "",
+        "unit": "",
+        "original": "coriander"
+      }
+    ],
+    "instructions": [
+      "Whisk yogurt.",
+      "Grate or finely chop cucumber and squeeze excess water.",
+      "Mix cucumber into yogurt.",
+      "Season with cumin and salt and garnish with coriander."
+    ],
+    "tags": [
+      "raita",
+      "no-cook",
+      "side"
+    ],
+    "ingredients_original": [
+      "2 cups yogurt",
+      "1 cucumber",
+      "roasted cumin powder",
+      "salt",
+      "coriander"
+    ],
+    "image_url": "https://loremflickr.com/640/480/indian,food,cucumber-raita?lock=1026"
   },
   {
     "name": "Green Coriander Chutney",
     "slug": "green-coriander-chutney",
     "category": "Chutney",
-    "mealTypes": ["breakfast", "lunch", "dinner"],
+    "mealTypes": [
+      "breakfast",
+      "lunch",
+      "dinner"
+    ],
     "isEgg": false,
     "prepMinutes": 8,
     "cookMinutes": 0,
     "servings": 6,
-    "ingredients": ["1 cup coriander", "1/2 cup mint", "1 green chilli", "1 inch ginger", "lemon juice", "salt"],
-    "instructions": ["Blend all ingredients with a splash of water.", "Adjust salt and lemon.", "Serve fresh."],
-    "tags": ["chutney", "no-cook", "condiment"]
+    "ingredients": [
+      {
+        "item": "coriander",
+        "quantity": "1",
+        "unit": "cup",
+        "original": "1 cup coriander"
+      },
+      {
+        "item": "mint",
+        "quantity": "1/2",
+        "unit": "cup",
+        "original": "1/2 cup mint"
+      },
+      {
+        "item": "green chilli",
+        "quantity": "1",
+        "unit": "",
+        "original": "1 green chilli"
+      },
+      {
+        "item": "inch ginger",
+        "quantity": "1",
+        "unit": "",
+        "original": "1 inch ginger"
+      },
+      {
+        "item": "lemon juice",
+        "quantity": "",
+        "unit": "",
+        "original": "lemon juice"
+      },
+      {
+        "item": "salt",
+        "quantity": "",
+        "unit": "",
+        "original": "salt"
+      }
+    ],
+    "instructions": [
+      "Blend all ingredients with a splash of water.",
+      "Adjust salt and lemon.",
+      "Serve fresh."
+    ],
+    "tags": [
+      "chutney",
+      "no-cook",
+      "condiment"
+    ],
+    "ingredients_original": [
+      "1 cup coriander",
+      "1/2 cup mint",
+      "1 green chilli",
+      "1 inch ginger",
+      "lemon juice",
+      "salt"
+    ],
+    "image_url": "https://loremflickr.com/640/480/indian,food,green-coriander-chutney?lock=1027"
   },
   {
     "name": "Mango Pickle",
     "slug": "mango-pickle",
     "category": "Pickle",
-    "mealTypes": ["lunch", "dinner"],
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
     "isEgg": false,
     "prepMinutes": 30,
     "cookMinutes": 10,
     "servings": 10,
-    "ingredients": ["2 raw mangoes", "mustard seeds", "fenugreek seeds", "turmeric", "red chilli powder", "salt", "mustard oil"],
-    "instructions": ["Cut mango into small pieces and dry thoroughly.", "Mix with salt and spices.", "Warm mustard oil and cool slightly.", "Combine with mango and spices.", "Store in a clean dry jar and mature according to the chosen pickle method."],
-    "tags": ["pickle", "condiment", "preserve"]
+    "ingredients": [
+      {
+        "item": "raw mangoes",
+        "quantity": "2",
+        "unit": "",
+        "original": "2 raw mangoes"
+      },
+      {
+        "item": "mustard seeds",
+        "quantity": "",
+        "unit": "",
+        "original": "mustard seeds"
+      },
+      {
+        "item": "fenugreek seeds",
+        "quantity": "",
+        "unit": "",
+        "original": "fenugreek seeds"
+      },
+      {
+        "item": "turmeric",
+        "quantity": "",
+        "unit": "",
+        "original": "turmeric"
+      },
+      {
+        "item": "red chilli powder",
+        "quantity": "",
+        "unit": "",
+        "original": "red chilli powder"
+      },
+      {
+        "item": "salt",
+        "quantity": "",
+        "unit": "",
+        "original": "salt"
+      },
+      {
+        "item": "mustard oil",
+        "quantity": "",
+        "unit": "",
+        "original": "mustard oil"
+      }
+    ],
+    "instructions": [
+      "Cut mango into small pieces and dry thoroughly.",
+      "Mix with salt and spices.",
+      "Warm mustard oil and cool slightly.",
+      "Combine with mango and spices.",
+      "Store in a clean dry jar and mature according to the chosen pickle method."
+    ],
+    "tags": [
+      "pickle",
+      "condiment",
+      "preserve"
+    ],
+    "ingredients_original": [
+      "2 raw mangoes",
+      "mustard seeds",
+      "fenugreek seeds",
+      "turmeric",
+      "red chilli powder",
+      "salt",
+      "mustard oil"
+    ],
+    "image_url": "https://loremflickr.com/640/480/indian,food,mango-pickle?lock=1028"
   },
   {
     "name": "Samosa",
     "slug": "samosa",
     "category": "Snack",
-    "mealTypes": ["evening"],
+    "mealTypes": [
+      "evening"
+    ],
     "isEgg": false,
     "prepMinutes": 30,
     "cookMinutes": 25,
     "servings": 8,
-    "ingredients": ["2 cups flour", "3 potatoes", "1/2 cup peas", "cumin", "coriander seeds", "amchur", "salt", "oil"],
-    "instructions": ["Make a firm flour dough.", "Prepare spiced potato and pea filling.", "Shape dough into cones and fill.", "Seal well and deep-fry on medium heat until crisp."],
-    "tags": ["snack", "north-indian", "fried"]
+    "ingredients": [
+      {
+        "item": "flour",
+        "quantity": "2",
+        "unit": "cups",
+        "original": "2 cups flour"
+      },
+      {
+        "item": "potatoes",
+        "quantity": "3",
+        "unit": "",
+        "original": "3 potatoes"
+      },
+      {
+        "item": "peas",
+        "quantity": "1/2",
+        "unit": "cup",
+        "original": "1/2 cup peas"
+      },
+      {
+        "item": "cumin",
+        "quantity": "",
+        "unit": "",
+        "original": "cumin"
+      },
+      {
+        "item": "coriander seeds",
+        "quantity": "",
+        "unit": "",
+        "original": "coriander seeds"
+      },
+      {
+        "item": "amchur",
+        "quantity": "",
+        "unit": "",
+        "original": "amchur"
+      },
+      {
+        "item": "salt",
+        "quantity": "",
+        "unit": "",
+        "original": "salt"
+      },
+      {
+        "item": "oil",
+        "quantity": "",
+        "unit": "",
+        "original": "oil"
+      }
+    ],
+    "instructions": [
+      "Make a firm flour dough.",
+      "Prepare spiced potato and pea filling.",
+      "Shape dough into cones and fill.",
+      "Seal well and deep-fry on medium heat until crisp."
+    ],
+    "tags": [
+      "snack",
+      "north-indian",
+      "fried"
+    ],
+    "ingredients_original": [
+      "2 cups flour",
+      "3 potatoes",
+      "1/2 cup peas",
+      "cumin",
+      "coriander seeds",
+      "amchur",
+      "salt",
+      "oil"
+    ],
+    "image_url": "https://loremflickr.com/640/480/indian,food,samosa?lock=1029"
   },
   {
     "name": "Vegetable Pakora",
     "slug": "vegetable-pakora",
     "category": "Snack",
-    "mealTypes": ["evening"],
+    "mealTypes": [
+      "evening"
+    ],
     "isEgg": false,
     "prepMinutes": 15,
     "cookMinutes": 20,
     "servings": 4,
-    "ingredients": ["1 cup gram flour", "1 onion", "1 potato", "spinach optional", "carom seeds", "chilli powder", "salt", "water", "oil"],
-    "instructions": ["Slice vegetables thinly.", "Mix gram flour and spices with enough water for a thick batter.", "Coat vegetables.", "Deep-fry spoonfuls until crisp and golden."],
-    "tags": ["snack", "pakora", "fried"]
+    "ingredients": [
+      {
+        "item": "gram flour",
+        "quantity": "1",
+        "unit": "cup",
+        "original": "1 cup gram flour"
+      },
+      {
+        "item": "onion",
+        "quantity": "1",
+        "unit": "",
+        "original": "1 onion"
+      },
+      {
+        "item": "potato",
+        "quantity": "1",
+        "unit": "",
+        "original": "1 potato"
+      },
+      {
+        "item": "spinach optional",
+        "quantity": "",
+        "unit": "",
+        "original": "spinach optional"
+      },
+      {
+        "item": "carom seeds",
+        "quantity": "",
+        "unit": "",
+        "original": "carom seeds"
+      },
+      {
+        "item": "chilli powder",
+        "quantity": "",
+        "unit": "",
+        "original": "chilli powder"
+      },
+      {
+        "item": "salt",
+        "quantity": "",
+        "unit": "",
+        "original": "salt"
+      },
+      {
+        "item": "water",
+        "quantity": "",
+        "unit": "",
+        "original": "water"
+      },
+      {
+        "item": "oil",
+        "quantity": "",
+        "unit": "",
+        "original": "oil"
+      }
+    ],
+    "instructions": [
+      "Slice vegetables thinly.",
+      "Mix gram flour and spices with enough water for a thick batter.",
+      "Coat vegetables.",
+      "Deep-fry spoonfuls until crisp and golden."
+    ],
+    "tags": [
+      "snack",
+      "pakora",
+      "fried"
+    ],
+    "ingredients_original": [
+      "1 cup gram flour",
+      "1 onion",
+      "1 potato",
+      "spinach optional",
+      "carom seeds",
+      "chilli powder",
+      "salt",
+      "water",
+      "oil"
+    ],
+    "image_url": "https://loremflickr.com/640/480/indian,food,vegetable-pakora?lock=1030"
   },
   {
     "name": "Gulab Jamun",
     "slug": "gulab-jamun",
     "category": "Dessert",
-    "mealTypes": ["dessert"],
+    "mealTypes": [
+      "dessert"
+    ],
     "isEgg": false,
     "prepMinutes": 20,
     "cookMinutes": 25,
     "servings": 8,
-    "ingredients": ["200 g khoya or milk powder mix", "2 tbsp flour", "milk as needed", "sugar", "water", "cardamom", "oil or ghee"],
-    "instructions": ["Make a soft dough and form small smooth balls.", "Prepare sugar syrup with cardamom.", "Fry balls on low-medium heat until evenly golden.", "Soak warm gulab jamun in warm syrup."],
-    "tags": ["dessert", "sweet", "festival"]
+    "ingredients": [
+      {
+        "item": "khoya or milk powder mix",
+        "quantity": "200",
+        "unit": "g",
+        "original": "200 g khoya or milk powder mix"
+      },
+      {
+        "item": "flour",
+        "quantity": "2",
+        "unit": "tbsp",
+        "original": "2 tbsp flour"
+      },
+      {
+        "item": "milk as needed",
+        "quantity": "",
+        "unit": "",
+        "original": "milk as needed"
+      },
+      {
+        "item": "sugar",
+        "quantity": "",
+        "unit": "",
+        "original": "sugar"
+      },
+      {
+        "item": "water",
+        "quantity": "",
+        "unit": "",
+        "original": "water"
+      },
+      {
+        "item": "cardamom",
+        "quantity": "",
+        "unit": "",
+        "original": "cardamom"
+      },
+      {
+        "item": "oil or ghee",
+        "quantity": "",
+        "unit": "",
+        "original": "oil or ghee"
+      }
+    ],
+    "instructions": [
+      "Make a soft dough and form small smooth balls.",
+      "Prepare sugar syrup with cardamom.",
+      "Fry balls on low-medium heat until evenly golden.",
+      "Soak warm gulab jamun in warm syrup."
+    ],
+    "tags": [
+      "dessert",
+      "sweet",
+      "festival"
+    ],
+    "ingredients_original": [
+      "200 g khoya or milk powder mix",
+      "2 tbsp flour",
+      "milk as needed",
+      "sugar",
+      "water",
+      "cardamom",
+      "oil or ghee"
+    ],
+    "image_url": "https://loremflickr.com/640/480/indian,food,gulab-jamun?lock=1031"
   },
   {
     "name": "Rice Kheer",
     "slug": "rice-kheer",
     "category": "Dessert",
-    "mealTypes": ["dessert"],
+    "mealTypes": [
+      "dessert"
+    ],
     "isEgg": false,
     "prepMinutes": 5,
     "cookMinutes": 40,
     "servings": 6,
-    "ingredients": ["1/4 cup rice", "1 litre milk", "sugar", "cardamom", "almonds", "raisins"],
-    "instructions": ["Wash and soak rice briefly.", "Bring milk to a simmer.", "Add rice and cook slowly, stirring often.", "Add sugar and cardamom.", "Finish with nuts and raisins."],
-    "tags": ["dessert", "milk", "indian-sweet"]
+    "ingredients": [
+      {
+        "item": "rice",
+        "quantity": "1/4",
+        "unit": "cup",
+        "original": "1/4 cup rice"
+      },
+      {
+        "item": "milk",
+        "quantity": "1",
+        "unit": "litre",
+        "original": "1 litre milk"
+      },
+      {
+        "item": "sugar",
+        "quantity": "",
+        "unit": "",
+        "original": "sugar"
+      },
+      {
+        "item": "cardamom",
+        "quantity": "",
+        "unit": "",
+        "original": "cardamom"
+      },
+      {
+        "item": "almonds",
+        "quantity": "",
+        "unit": "",
+        "original": "almonds"
+      },
+      {
+        "item": "raisins",
+        "quantity": "",
+        "unit": "",
+        "original": "raisins"
+      }
+    ],
+    "instructions": [
+      "Wash and soak rice briefly.",
+      "Bring milk to a simmer.",
+      "Add rice and cook slowly, stirring often.",
+      "Add sugar and cardamom.",
+      "Finish with nuts and raisins."
+    ],
+    "tags": [
+      "dessert",
+      "milk",
+      "indian-sweet"
+    ],
+    "ingredients_original": [
+      "1/4 cup rice",
+      "1 litre milk",
+      "sugar",
+      "cardamom",
+      "almonds",
+      "raisins"
+    ],
+    "image_url": "https://loremflickr.com/640/480/indian,food,rice-kheer?lock=1032"
   },
   {
     "name": "Suji Halwa",
     "slug": "suji-halwa",
     "category": "Dessert",
-    "mealTypes": ["breakfast", "dessert"],
+    "mealTypes": [
+      "breakfast",
+      "dessert"
+    ],
     "isEgg": false,
     "prepMinutes": 5,
     "cookMinutes": 20,
     "servings": 4,
-    "ingredients": ["1 cup semolina", "1/2 cup sugar", "3 cups water", "3 tbsp ghee", "cardamom", "nuts"],
-    "instructions": ["Roast semolina in ghee until aromatic.", "Add hot water carefully.", "Cook while stirring until thick.", "Add sugar and cardamom.", "Garnish with nuts."],
-    "tags": ["dessert", "halwa", "quick"]
+    "ingredients": [
+      {
+        "item": "semolina",
+        "quantity": "1",
+        "unit": "cup",
+        "original": "1 cup semolina"
+      },
+      {
+        "item": "sugar",
+        "quantity": "1/2",
+        "unit": "cup",
+        "original": "1/2 cup sugar"
+      },
+      {
+        "item": "water",
+        "quantity": "3",
+        "unit": "cups",
+        "original": "3 cups water"
+      },
+      {
+        "item": "ghee",
+        "quantity": "3",
+        "unit": "tbsp",
+        "original": "3 tbsp ghee"
+      },
+      {
+        "item": "cardamom",
+        "quantity": "",
+        "unit": "",
+        "original": "cardamom"
+      },
+      {
+        "item": "nuts",
+        "quantity": "",
+        "unit": "",
+        "original": "nuts"
+      }
+    ],
+    "instructions": [
+      "Roast semolina in ghee until aromatic.",
+      "Add hot water carefully.",
+      "Cook while stirring until thick.",
+      "Add sugar and cardamom.",
+      "Garnish with nuts."
+    ],
+    "tags": [
+      "dessert",
+      "halwa",
+      "quick"
+    ],
+    "ingredients_original": [
+      "1 cup semolina",
+      "1/2 cup sugar",
+      "3 cups water",
+      "3 tbsp ghee",
+      "cardamom",
+      "nuts"
+    ],
+    "image_url": "https://loremflickr.com/640/480/indian,food,suji-halwa?lock=1033"
   },
   {
     "name": "Masala Milk",
     "slug": "masala-milk",
     "category": "Drinks",
-    "mealTypes": ["evening", "dessert"],
+    "mealTypes": [
+      "evening",
+      "dessert"
+    ],
     "isEgg": false,
     "prepMinutes": 5,
     "cookMinutes": 10,
     "servings": 2,
-    "ingredients": ["2 cups milk", "cardamom", "saffron", "almonds", "pistachios", "sugar"],
-    "instructions": ["Simmer milk with cardamom and saffron.", "Add sugar.", "Simmer until fragrant.", "Serve warm with chopped nuts."],
-    "tags": ["drink", "milk", "festive"]
+    "ingredients": [
+      {
+        "item": "milk",
+        "quantity": "2",
+        "unit": "cups",
+        "original": "2 cups milk"
+      },
+      {
+        "item": "cardamom",
+        "quantity": "",
+        "unit": "",
+        "original": "cardamom"
+      },
+      {
+        "item": "saffron",
+        "quantity": "",
+        "unit": "",
+        "original": "saffron"
+      },
+      {
+        "item": "almonds",
+        "quantity": "",
+        "unit": "",
+        "original": "almonds"
+      },
+      {
+        "item": "pistachios",
+        "quantity": "",
+        "unit": "",
+        "original": "pistachios"
+      },
+      {
+        "item": "sugar",
+        "quantity": "",
+        "unit": "",
+        "original": "sugar"
+      }
+    ],
+    "instructions": [
+      "Simmer milk with cardamom and saffron.",
+      "Add sugar.",
+      "Simmer until fragrant.",
+      "Serve warm with chopped nuts."
+    ],
+    "tags": [
+      "drink",
+      "milk",
+      "festive"
+    ],
+    "ingredients_original": [
+      "2 cups milk",
+      "cardamom",
+      "saffron",
+      "almonds",
+      "pistachios",
+      "sugar"
+    ],
+    "image_url": "https://loremflickr.com/640/480/indian,food,masala-milk?lock=1034"
   },
   {
     "name": "Lemon Rice",
     "slug": "lemon-rice",
     "category": "Rice",
-    "mealTypes": ["lunch", "dinner"],
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
     "isEgg": false,
     "prepMinutes": 10,
     "cookMinutes": 15,
     "servings": 4,
-    "ingredients": ["3 cups cooked rice", "1 lemon", "peanuts", "mustard seeds", "curry leaves", "green chilli", "turmeric", "salt"],
-    "instructions": ["Temper mustard seeds, peanuts, chilli and curry leaves.", "Add turmeric.", "Fold in cooked rice.", "Turn off heat and add lemon juice and salt."],
-    "tags": ["rice", "south-indian", "quick"]
+    "ingredients": [
+      {
+        "item": "cooked rice",
+        "quantity": "3",
+        "unit": "cups",
+        "original": "3 cups cooked rice"
+      },
+      {
+        "item": "lemon",
+        "quantity": "1",
+        "unit": "",
+        "original": "1 lemon"
+      },
+      {
+        "item": "peanuts",
+        "quantity": "",
+        "unit": "",
+        "original": "peanuts"
+      },
+      {
+        "item": "mustard seeds",
+        "quantity": "",
+        "unit": "",
+        "original": "mustard seeds"
+      },
+      {
+        "item": "curry leaves",
+        "quantity": "",
+        "unit": "",
+        "original": "curry leaves"
+      },
+      {
+        "item": "green chilli",
+        "quantity": "",
+        "unit": "",
+        "original": "green chilli"
+      },
+      {
+        "item": "turmeric",
+        "quantity": "",
+        "unit": "",
+        "original": "turmeric"
+      },
+      {
+        "item": "salt",
+        "quantity": "",
+        "unit": "",
+        "original": "salt"
+      }
+    ],
+    "instructions": [
+      "Temper mustard seeds, peanuts, chilli and curry leaves.",
+      "Add turmeric.",
+      "Fold in cooked rice.",
+      "Turn off heat and add lemon juice and salt."
+    ],
+    "tags": [
+      "rice",
+      "south-indian",
+      "quick"
+    ],
+    "ingredients_original": [
+      "3 cups cooked rice",
+      "1 lemon",
+      "peanuts",
+      "mustard seeds",
+      "curry leaves",
+      "green chilli",
+      "turmeric",
+      "salt"
+    ],
+    "image_url": "https://loremflickr.com/640/480/indian,food,lemon-rice?lock=1035"
   },
   {
     "name": "Vegetable Khichdi",
     "slug": "vegetable-khichdi",
     "category": "Main Course",
-    "mealTypes": ["lunch", "dinner"],
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
     "isEgg": false,
     "prepMinutes": 10,
     "cookMinutes": 25,
     "servings": 4,
-    "ingredients": ["1 cup rice", "1/2 cup moong dal", "1 cup mixed vegetables", "turmeric", "cumin", "salt", "ghee"],
-    "instructions": ["Rinse rice and dal.", "Temper cumin in ghee.", "Add vegetables, rice, dal, turmeric and water.", "Pressure cook until soft.", "Adjust consistency and salt."],
-    "tags": ["one-pot", "comfort-food", "light"]
+    "ingredients": [
+      {
+        "item": "rice",
+        "quantity": "1",
+        "unit": "cup",
+        "original": "1 cup rice"
+      },
+      {
+        "item": "moong dal",
+        "quantity": "1/2",
+        "unit": "cup",
+        "original": "1/2 cup moong dal"
+      },
+      {
+        "item": "mixed vegetables",
+        "quantity": "1",
+        "unit": "cup",
+        "original": "1 cup mixed vegetables"
+      },
+      {
+        "item": "turmeric",
+        "quantity": "",
+        "unit": "",
+        "original": "turmeric"
+      },
+      {
+        "item": "cumin",
+        "quantity": "",
+        "unit": "",
+        "original": "cumin"
+      },
+      {
+        "item": "salt",
+        "quantity": "",
+        "unit": "",
+        "original": "salt"
+      },
+      {
+        "item": "ghee",
+        "quantity": "",
+        "unit": "",
+        "original": "ghee"
+      }
+    ],
+    "instructions": [
+      "Rinse rice and dal.",
+      "Temper cumin in ghee.",
+      "Add vegetables, rice, dal, turmeric and water.",
+      "Pressure cook until soft.",
+      "Adjust consistency and salt."
+    ],
+    "tags": [
+      "one-pot",
+      "comfort-food",
+      "light"
+    ],
+    "ingredients_original": [
+      "1 cup rice",
+      "1/2 cup moong dal",
+      "1 cup mixed vegetables",
+      "turmeric",
+      "cumin",
+      "salt",
+      "ghee"
+    ],
+    "image_url": "https://loremflickr.com/640/480/indian,food,vegetable-khichdi?lock=1036"
   },
   {
     "name": "Tomato Rasam",
     "slug": "tomato-rasam",
     "category": "Main Course",
-    "mealTypes": ["lunch", "dinner"],
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
     "isEgg": false,
     "prepMinutes": 10,
     "cookMinutes": 20,
     "servings": 4,
-    "ingredients": ["3 tomatoes", "1/2 cup cooked dal water", "rasam powder", "cumin", "mustard seeds", "curry leaves", "tamarind", "salt"],
-    "instructions": ["Cook and crush tomatoes.", "Add tamarind, rasam powder and dal water.", "Simmer gently.", "Temper mustard, cumin and curry leaves and add.", "Serve hot."],
-    "tags": ["south-indian", "rasam", "light"]
+    "ingredients": [
+      {
+        "item": "tomatoes",
+        "quantity": "3",
+        "unit": "",
+        "original": "3 tomatoes"
+      },
+      {
+        "item": "cooked dal water",
+        "quantity": "1/2",
+        "unit": "cup",
+        "original": "1/2 cup cooked dal water"
+      },
+      {
+        "item": "rasam powder",
+        "quantity": "",
+        "unit": "",
+        "original": "rasam powder"
+      },
+      {
+        "item": "cumin",
+        "quantity": "",
+        "unit": "",
+        "original": "cumin"
+      },
+      {
+        "item": "mustard seeds",
+        "quantity": "",
+        "unit": "",
+        "original": "mustard seeds"
+      },
+      {
+        "item": "curry leaves",
+        "quantity": "",
+        "unit": "",
+        "original": "curry leaves"
+      },
+      {
+        "item": "tamarind",
+        "quantity": "",
+        "unit": "",
+        "original": "tamarind"
+      },
+      {
+        "item": "salt",
+        "quantity": "",
+        "unit": "",
+        "original": "salt"
+      }
+    ],
+    "instructions": [
+      "Cook and crush tomatoes.",
+      "Add tamarind, rasam powder and dal water.",
+      "Simmer gently.",
+      "Temper mustard, cumin and curry leaves and add.",
+      "Serve hot."
+    ],
+    "tags": [
+      "south-indian",
+      "rasam",
+      "light"
+    ],
+    "ingredients_original": [
+      "3 tomatoes",
+      "1/2 cup cooked dal water",
+      "rasam powder",
+      "cumin",
+      "mustard seeds",
+      "curry leaves",
+      "tamarind",
+      "salt"
+    ],
+    "image_url": "https://loremflickr.com/640/480/indian,food,tomato-rasam?lock=1037"
   },
   {
     "name": "Curd Rice",
     "slug": "curd-rice",
     "category": "Rice",
-    "mealTypes": ["lunch", "dinner"],
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
     "isEgg": false,
     "prepMinutes": 10,
     "cookMinutes": 15,
     "servings": 4,
-    "ingredients": ["2 cups cooked rice", "2 cups yogurt", "milk as needed", "mustard seeds", "urad dal", "curry leaves", "green chilli", "salt"],
-    "instructions": ["Mash cooled rice lightly.", "Mix with yogurt and a little milk.", "Prepare tempering with mustard, urad dal, chilli and curry leaves.", "Mix into rice and season with salt."],
-    "tags": ["south-indian", "rice", "no-fuss"]
+    "ingredients": [
+      {
+        "item": "cooked rice",
+        "quantity": "2",
+        "unit": "cups",
+        "original": "2 cups cooked rice"
+      },
+      {
+        "item": "yogurt",
+        "quantity": "2",
+        "unit": "cups",
+        "original": "2 cups yogurt"
+      },
+      {
+        "item": "milk as needed",
+        "quantity": "",
+        "unit": "",
+        "original": "milk as needed"
+      },
+      {
+        "item": "mustard seeds",
+        "quantity": "",
+        "unit": "",
+        "original": "mustard seeds"
+      },
+      {
+        "item": "urad dal",
+        "quantity": "",
+        "unit": "",
+        "original": "urad dal"
+      },
+      {
+        "item": "curry leaves",
+        "quantity": "",
+        "unit": "",
+        "original": "curry leaves"
+      },
+      {
+        "item": "green chilli",
+        "quantity": "",
+        "unit": "",
+        "original": "green chilli"
+      },
+      {
+        "item": "salt",
+        "quantity": "",
+        "unit": "",
+        "original": "salt"
+      }
+    ],
+    "instructions": [
+      "Mash cooled rice lightly.",
+      "Mix with yogurt and a little milk.",
+      "Prepare tempering with mustard, urad dal, chilli and curry leaves.",
+      "Mix into rice and season with salt."
+    ],
+    "tags": [
+      "south-indian",
+      "rice",
+      "no-fuss"
+    ],
+    "ingredients_original": [
+      "2 cups cooked rice",
+      "2 cups yogurt",
+      "milk as needed",
+      "mustard seeds",
+      "urad dal",
+      "curry leaves",
+      "green chilli",
+      "salt"
+    ],
+    "image_url": "https://loremflickr.com/640/480/indian,food,curd-rice?lock=1038"
   },
   {
     "name": "Carrot Beans Poriyal",
     "slug": "carrot-beans-poriyal",
     "category": "Side Dish",
-    "mealTypes": ["lunch", "dinner"],
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
     "isEgg": false,
     "prepMinutes": 10,
     "cookMinutes": 15,
     "servings": 4,
-    "ingredients": ["2 carrots", "250 g beans", "mustard seeds", "curry leaves", "grated coconut", "green chilli", "salt"],
-    "instructions": ["Chop carrots and beans.", "Temper mustard and curry leaves.", "Add vegetables, chilli and salt.", "Cook covered until just tender.", "Finish with grated coconut."],
-    "tags": ["south-indian", "vegetable", "side"]
+    "ingredients": [
+      {
+        "item": "carrots",
+        "quantity": "2",
+        "unit": "",
+        "original": "2 carrots"
+      },
+      {
+        "item": "beans",
+        "quantity": "250",
+        "unit": "g",
+        "original": "250 g beans"
+      },
+      {
+        "item": "mustard seeds",
+        "quantity": "",
+        "unit": "",
+        "original": "mustard seeds"
+      },
+      {
+        "item": "curry leaves",
+        "quantity": "",
+        "unit": "",
+        "original": "curry leaves"
+      },
+      {
+        "item": "grated coconut",
+        "quantity": "",
+        "unit": "",
+        "original": "grated coconut"
+      },
+      {
+        "item": "green chilli",
+        "quantity": "",
+        "unit": "",
+        "original": "green chilli"
+      },
+      {
+        "item": "salt",
+        "quantity": "",
+        "unit": "",
+        "original": "salt"
+      }
+    ],
+    "instructions": [
+      "Chop carrots and beans.",
+      "Temper mustard and curry leaves.",
+      "Add vegetables, chilli and salt.",
+      "Cook covered until just tender.",
+      "Finish with grated coconut."
+    ],
+    "tags": [
+      "south-indian",
+      "vegetable",
+      "side"
+    ],
+    "ingredients_original": [
+      "2 carrots",
+      "250 g beans",
+      "mustard seeds",
+      "curry leaves",
+      "grated coconut",
+      "green chilli",
+      "salt"
+    ],
+    "image_url": "https://loremflickr.com/640/480/indian,food,carrot-beans-poriyal?lock=1039"
   },
   {
     "name": "Kachumber Salad",
     "slug": "kachumber-salad",
     "category": "Side Dish",
-    "mealTypes": ["lunch", "dinner"],
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
     "isEgg": false,
     "prepMinutes": 10,
     "cookMinutes": 0,
     "servings": 4,
-    "ingredients": ["1 cucumber", "2 tomatoes", "1 onion", "coriander", "lemon juice", "salt", "roasted cumin"],
-    "instructions": ["Dice vegetables.", "Mix with coriander, lemon juice, salt and cumin.", "Serve immediately."],
-    "tags": ["salad", "no-cook", "side"]
+    "ingredients": [
+      {
+        "item": "cucumber",
+        "quantity": "1",
+        "unit": "",
+        "original": "1 cucumber"
+      },
+      {
+        "item": "tomatoes",
+        "quantity": "2",
+        "unit": "",
+        "original": "2 tomatoes"
+      },
+      {
+        "item": "onion",
+        "quantity": "1",
+        "unit": "",
+        "original": "1 onion"
+      },
+      {
+        "item": "coriander",
+        "quantity": "",
+        "unit": "",
+        "original": "coriander"
+      },
+      {
+        "item": "lemon juice",
+        "quantity": "",
+        "unit": "",
+        "original": "lemon juice"
+      },
+      {
+        "item": "salt",
+        "quantity": "",
+        "unit": "",
+        "original": "salt"
+      },
+      {
+        "item": "roasted cumin",
+        "quantity": "",
+        "unit": "",
+        "original": "roasted cumin"
+      }
+    ],
+    "instructions": [
+      "Dice vegetables.",
+      "Mix with coriander, lemon juice, salt and cumin.",
+      "Serve immediately."
+    ],
+    "tags": [
+      "salad",
+      "no-cook",
+      "side"
+    ],
+    "ingredients_original": [
+      "1 cucumber",
+      "2 tomatoes",
+      "1 onion",
+      "coriander",
+      "lemon juice",
+      "salt",
+      "roasted cumin"
+    ],
+    "image_url": "https://loremflickr.com/640/480/indian,food,kachumber-salad?lock=1040"
   }
 ]

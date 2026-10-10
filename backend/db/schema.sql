@@ -27,6 +27,8 @@ CREATE TABLE IF NOT EXISTS recipes (
   is_vegetarian BOOLEAN NOT NULL DEFAULT TRUE,
   contains_egg BOOLEAN NOT NULL DEFAULT FALSE,
   ingredients TEXT NOT NULL,
+  ingredient_items JSONB NOT NULL DEFAULT '[]'::jsonb,
+  image_url TEXT,
   preparation TEXT NOT NULL,
   serving_size VARCHAR(80) DEFAULT '2 servings',
   prep_minutes INT NOT NULL DEFAULT 10,
@@ -35,6 +37,9 @@ CREATE TABLE IF NOT EXISTS recipes (
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   UNIQUE(name, category_id)
 );
+
+ALTER TABLE recipes ADD COLUMN IF NOT EXISTS ingredient_items JSONB NOT NULL DEFAULT '[]'::jsonb;
+ALTER TABLE recipes ADD COLUMN IF NOT EXISTS image_url TEXT;
 
 CREATE TABLE IF NOT EXISTS meal_plans (
   id BIGSERIAL PRIMARY KEY,
