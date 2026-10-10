@@ -48,7 +48,23 @@ export default function Planner() {
   const [editingItem, setEditingItem] = useState(null);
   const [viewingRecipe, setViewingRecipe] = useState(null);
   const [confirmingRemoval, setConfirmingRemoval] = useState(null);
+  const [showAddFoodModal, setShowAddFoodModal] = useState(false);
+  const [closingAddFoodModal, setClosingAddFoodModal] = useState(false);
+  const addFoodCloseTimer = useRef(null);
   const savedNotes = useRef('');
+
+  useEffect(() => () => {
+    if (addFoodCloseTimer.current) clearTimeout(addFoodCloseTimer.current);
+  }, []);
+
+  const closeAddFoodModal = () => {
+    if (closingAddFoodModal) return;
+    setClosingAddFoodModal(true);
+    addFoodCloseTimer.current = setTimeout(() => {
+      setShowAddFoodModal(false);
+      setClosingAddFoodModal(false);
+    }, 400);
+  };
 
   useEffect(() => {
     let active = true;
@@ -132,10 +148,12 @@ export default function Planner() {
         setPlanDate(savingDate);
       }
       setMessage(successMessage);
+      return true;
     } catch (requestError) {
       // Keep the user's edit in the interface so they can retry saving it.
       if (savingDate === date) setPlan(nextPlan);
       setError(requestError.response?.data?.error || 'Could not save the menu. Your changes are still on screen.');
+      return false;
     } finally {
       setBusy(false);
     }
@@ -180,8 +198,11 @@ export default function Planner() {
         unit: normalizedUnit
       }]
     };
-    await persist(nextPlan, `${selectedRecipe.name} added to ${MEALS.find(([key]) => key === mealSlot)?.[1]}.`);
-    setRecipeId('');
+    const saved = await persist(nextPlan, `${selectedRecipe.name} added to ${MEALS.find(([key]) => key === mealSlot)?.[1]}.`);
+    if (saved) {
+      setRecipeId('');
+      closeAddFoodModal();
+    }
   };
 
   const removeFood = item => setConfirmingRemoval(item);
@@ -266,12 +287,20 @@ export default function Planner() {
             <path d="m9 18 6-6-6-6" />
           </svg>
         </button>
+        <button type="button" className="primary" onClick={() => { setClosingAddFoodModal(false); setShowAddFoodModal(true); }}>
+          <span aria-hidden="true">＋</span> Add food
+        </button>
       </div>
     </div>
 
-    <section className="add-menu-panel">
+    {showAddFoodModal && <div className={`modal-backdrop${closingAddFoodModal ? ' is-closing' : ''}`} onClick={closeAddFoodModal}>
+      <section className={`modal add-food-modal${closingAddFoodModal ? ' is-closing' : ''}`} role="dialog" aria-modal="true" aria-labelledby="add-food-modal-title"
+        onClick={event => event.stopPropagation()}>
+        <div className="modal-title">
+          <div><h2 id="add-food-modal-title">Add food to this date</h2><p>Select the timing, food type and recipe for {selectedDateLabel}.</p></div>
+          <button type="button" onClick={closeAddFoodModal} aria-label="Close add food popup">×</button>
+        </div>
       <div className="add-menu-heading">
-        <div><h2>Add food to this date</h2><p>Select the timing, food type and recipe.</p></div>
         <span className="catalog-count">{recipes.length} recipes loaded</span>
       </div>
       <form className="menu-form-row" onSubmit={addFood}>
@@ -310,7 +339,8 @@ export default function Planner() {
           <span aria-hidden="true">＋</span> Add food
         </button>
       </form>
-    </section>
+      </section>
+    </div>}
 
     <StatusMessage error={error} success={message}
       confirmation={confirmingRemoval ? `${confirmingRemoval.recipeName} from the menu for ${selectedDateLabel}` : null}
