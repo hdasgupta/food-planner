@@ -71,7 +71,7 @@ function formatPreparationSteps(value) {
     return text.replace(/\r/g, '').split(/\n+/).flatMap(line => {
       const cleaned = line.trim();
       if (!cleaned) return [];
-      const parts = cleaned.split(/(?<!^)(?=\s+\d+[.)]\s+(?:\(\s*\d+\s*min\s*\)\s*)?[A-Z])/);
+      const parts = cleaned.split(/(?<!^)(?=\s+\d+[.)]\s+(?=(?:\(\s*\d+(?:\s*[–—-]\s*\d+)?\s*min\s*\)\s*)?[A-Z(]))/);
       return parts.map(part => part.replace(/^\s*\d+[.)]\s*/, '').trim()).filter(Boolean);
     });
   });
