@@ -33,10 +33,17 @@ export async function listRecipes({ search = '', categoryId = '', vegetarian = '
   const offsetIndex = params.length;
 
   const { rows } = await query(
-    `SELECT r.*, c.name AS category_name
-     FROM recipes r JOIN categories c ON c.id=r.category_id
+    `SELECT r.*, c.name AS category_name,
+            COALESCE(recipe_usage.usage_count, 0) AS usage_count
+     FROM recipes r
+     JOIN categories c ON c.id=r.category_id
+     LEFT JOIN (
+       SELECT recipe_id, COUNT(*) AS usage_count
+       FROM meal_plan_items
+       GROUP BY recipe_id
+     ) recipe_usage ON recipe_usage.recipe_id=r.id
      ${conditions.length ? `WHERE ${conditions.join(' AND ')}` : ''}
-     ORDER BY c.meal_order,c.name,r.name
+     ORDER BY COALESCE(recipe_usage.usage_count, 0) DESC, r.name ASC
      LIMIT $${limitIndex} OFFSET $${offsetIndex}`,
     params
   );
