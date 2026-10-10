@@ -2,14 +2,10 @@ name: Release Android APK
 
 on:
   push:
-    tags:
-      - 'v*'
+    branches:
+      - main
+      - master
   workflow_dispatch:
-    inputs:
-      version:
-        description: 'Release version (for example 1.2.0 or v1.2.0)'
-        required: true
-        type: string
 
 permissions:
   contents: write
@@ -26,34 +22,18 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Determine release version
+      - name: Automatically increment application version
         id: version
         shell: bash
         run: |
-          if [[ "${GITHUB_EVENT_NAME}" == "workflow_dispatch" ]]; then
-            VERSION="${{ inputs.version }}"
-          else
-            VERSION="${GITHUB_REF_NAME}"
-          fi
-          VERSION="${VERSION#v}"
-          if [[ ! "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+([.-][0-9A-Za-z.-]+)?$ ]]; then
-            echo "Invalid version '$VERSION'. Use a version such as 1.2.3 or 1.2.3-rc.1." >&2
-            exit 1
-          fi
-          VERSION_CODE=$(VERSION="$VERSION" python - <<'PY'
-          import os, re, sys
-          version = os.environ['VERSION']
-          match = re.match(r'^(\d+)\.(\d+)\.(\d+)', version)
-          major, minor, patch = map(int, match.groups())
-          code = major * 1000000 + minor * 1000 + patch
-          if code < 1 or code > 2100000000:
-              sys.exit('Version is outside the supported Android versionCode range')
-          print(code)
-          PY
-          )
+          # GitHub increments run_number for every run of this workflow.
+          # This produces a unique, monotonically increasing Android version.
+          VERSION="1.0.${GITHUB_RUN_NUMBER}"
+          VERSION_CODE="${GITHUB_RUN_NUMBER}"
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
           echo "tag=v$VERSION" >> "$GITHUB_OUTPUT"
           echo "version_code=$VERSION_CODE" >> "$GITHUB_OUTPUT"
+          echo "Building Food Planner v$VERSION (versionCode $VERSION_CODE)"
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
