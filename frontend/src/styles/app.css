@@ -245,3 +245,62 @@
 }
 .recipe-preparation-steps li:last-child { margin-bottom: 0; }
 :root[data-theme="dark"] .recipe-preparation-steps { color: var(--theme-text-muted); }
+
+
+/* Planner: keep every planned recipe on one compact horizontal line. */
+.planned-item {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  justify-content: space-between;
+  gap: 8px;
+  min-width: 0;
+}
+.planned-item-copy {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center;
+  gap: 8px;
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+}
+.planned-item-copy strong {
+  display: block;
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow-wrap: normal;
+}
+.planned-item-copy small {
+  display: block;
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 36%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.planned-item .icon-actions {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center;
+  gap: 4px;
+  flex: 0 0 auto;
+}
+.planned-item .icon-button {
+  flex: 0 0 31px;
+  width: 31px;
+  height: 31px;
+}
+@media (max-width: 420px) {
+  .planned-item { gap: 5px; }
+  .planned-item-copy { gap: 5px; }
+  .planned-item-copy small { max-width: 30%; font-size: 11px; }
+  .planned-item .icon-actions { gap: 2px; }
+  .planned-item .icon-button { flex-basis: 28px; width: 28px; height: 28px; }
+}
