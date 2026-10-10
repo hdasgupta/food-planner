@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-const QUANTITY_PREFIX = /^\s*((?:about\s+|approximately\s+|approx\.?\s*)?(?:\d+\s+\d+\s*\/\s*\d+|\d+\s*\/\s*\d+|\d+\s*[¼½¾⅓⅔⅛⅜⅝⅞]|[¼½¾⅓⅔⅛⅜⅝⅞]|\d+(?:[.,]\d+)?|\d+\s*[-–—]\s*\d+(?:\s*[¼½¾⅓⅔⅛⅜⅝⅞])?)(?:\s*[-–—]\s*(?:\d+(?:[.,]\d+)?|[¼½¾⅓⅔⅛⅜⅝⅞]))?\s*(?:cups?|cupfuls?|tbsp|tablespoons?|tsp|teaspoons?|ml|l|litres?|liters?|grams?|g|kg|kilograms?|mg|ounces?|oz|pounds?|lbs?|pieces?|pcs?|cloves?|pinch(?:es)?|bunch(?:es)?|slices?|sprigs?|sticks?|cans?|packets?|medium|large|small)?\b)\s*(.*)$/i;
+const QUANTITY_PREFIX = /^\s*((?:about\s+|approximately\s+|approx\.?\s*)?(?:\d+\s*\d\/\d+|\d+\s*[¼½¾⅓⅔⅛⅜⅝⅞]|[¼½¾⅓⅔⅛⅜⅝⅞]|\d+(?:[.,]\d+)?|\d+\s*[-–—]\s*\d+(?:\s*[¼½¾⅓⅔⅛⅜⅝⅞])?)(?:\s*[-–—]\s*(?:\d+(?:[.,]\d+)?|[¼½¾⅓⅔⅛⅜⅝⅞]))?\s*(?:cups?|cupfuls?|tbsp|tablespoons?|tsp|teaspoons?|ml|l|litres?|liters?|grams?|g|kg|kilograms?|mg|ounces?|oz|pounds?|lbs?|pieces?|pcs?|cloves?|pinch(?:es)?|bunch(?:es)?|slices?|sprigs?|sticks?|cans?|packets?|medium|large|small)?\b)\s*(.*)$/i;
 
 function parseIngredientLine(value) {
   if (value && typeof value === 'object') {
@@ -32,9 +32,44 @@ function formatIngredients(value) {
 }
 
 function formatPreparationSteps(value) {
-  if (Array.isArray(value)) return value.map(step => String(step).trim()).filter(Boolean);
   if (value == null || value === '') return [];
-  return String(value).split(/\n+/).map(step => step.replace(/^\s*\d+[.)]\s*/, '').trim()).filter(Boolean);
+
+  // Some API/database rows return preparation as a JSON-encoded array rather
+  // than an actual array. Decode it before splitting so the JSON is not shown
+  // as one long instruction.
+  let steps = value;
+  if (typeof steps === 'string') {
+    const source = steps.trim();
+    if (!source) return [];
+    if ((source.startsWith('[') && source.endsWith(']')) ||
+        (source.startsWith('\"') && source.endsWith('\"'))) {
+      try {
+        const decoded = JSON.parse(source);
+        if (Array.isArray(decoded)) steps = decoded;
+        else if (typeof decoded === 'string') steps = decoded;
+      } catch { /* Treat malformed JSON as ordinary instruction text. */ }
+    }
+  }
+
+  const cleanStep = step => {
+    if (step && typeof step === 'object') {
+      step = step.step ?? step.instruction ?? step.text ?? step.description ?? step.preparation ?? '';
+    }
+    return String(step ?? '').replace(/^\s*(?:(?:step\s*)?\d+\s*[.):-]|[-*•]+)\s*/i, '').trim();
+  };
+
+  if (Array.isArray(steps)) {
+    return steps.map(cleanStep).filter(Boolean);
+  }
+
+  const source = String(steps).trim();
+  if (!source) return [];
+  // Handle newline/bullet lists and numbered steps that were flattened into
+  // one line by the API, while keeping ordinary sentence text intact.
+  return source
+    .split(/\r?\n+|\s+(?=(?:(?:step\s*)?\d+\s*[.):]|[-*•])\s+)/i)
+    .map(cleanStep)
+    .filter(Boolean);
 }
 
 function fallbackFoodImage(name = '') { const slug = String(name).toLowerCase().replace(/[^a-z0-9]+/g, ',').replace(/^,|,$/g, ''); const lock = [...String(name)].reduce((sum, char) => sum + char.charCodeAt(0), 0); return `https://loremflickr.com/900/640/indian-food,${slug}?lock=${lock}`; }
