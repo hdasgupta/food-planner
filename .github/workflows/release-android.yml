@@ -1,0 +1,143 @@
+name: Release Android APK
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version (for example 1.2.0 or v1.2.0)'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: android-release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build-and-release:
+    name: Build and publish APK
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Determine release version
+        id: version
+        shell: bash
+        run: |
+          if [[ "${GITHUB_EVENT_NAME}" == "workflow_dispatch" ]]; then
+            VERSION="${{ inputs.version }}"
+          else
+            VERSION="${GITHUB_REF_NAME}"
+          fi
+          VERSION="${VERSION#v}"
+          if [[ ! "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+([.-][0-9A-Za-z.-]+)?$ ]]; then
+            echo "Invalid version '$VERSION'. Use a version such as 1.2.3 or 1.2.3-rc.1." >&2
+            exit 1
+          fi
+          VERSION_CODE=$(VERSION="$VERSION" python - <<'PY'
+          import os, re, sys
+          version = os.environ['VERSION']
+          match = re.match(r'^(\d+)\.(\d+)\.(\d+)', version)
+          major, minor, patch = map(int, match.groups())
+          code = major * 1000000 + minor * 1000 + patch
+          if code < 1 or code > 2100000000:
+              sys.exit('Version is outside the supported Android versionCode range')
+          print(code)
+          PY
+          )
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "tag=v$VERSION" >> "$GITHUB_OUTPUT"
+          echo "version_code=$VERSION_CODE" >> "$GITHUB_OUTPUT"
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install frontend dependencies
+        working-directory: frontend
+        run: npm install
+
+      - name: Build web frontend
+        working-directory: frontend
+        run: npm run build
+
+      - name: Generate Capacitor Android project
+        working-directory: frontend
+        run: npx cap add android
+
+      - name: Synchronize Capacitor assets
+        working-directory: frontend
+        run: npx cap sync android
+
+      - name: Set Android app version
+        env:
+          APP_VERSION: ${{ steps.version.outputs.version }}
+          APP_VERSION_CODE: ${{ steps.version.outputs.version_code }}
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import os, re, sys
+
+          path = Path('frontend/android/app/build.gradle')
+          if not path.exists():
+              path = Path('frontend/android/app/build.gradle.kts')
+          if not path.exists():
+              sys.exit('Could not find generated Android app Gradle file')
+
+          content = path.read_text()
+          if path.suffix == '.kts':
+              content, code_count = re.subn(r'versionCode\s*=\s*\d+', f"versionCode = {os.environ['APP_VERSION_CODE']}", content, count=1)
+              content, name_count = re.subn(r'versionName\s*=\s*"[^"]*"', f"versionName = \"{os.environ['APP_VERSION']}\"", content, count=1)
+          else:
+              content, code_count = re.subn(r'versionCode\s+\d+', f"versionCode {os.environ['APP_VERSION_CODE']}", content, count=1)
+              content, name_count = re.subn(r"versionName\s+['\"][^'\"]*['\"]", f"versionName '{os.environ['APP_VERSION']}'", content, count=1)
+          if code_count != 1 or name_count != 1:
+              sys.exit('Could not safely update versionCode/versionName in Gradle file')
+          path.write_text(content)
+          print(f'Set Android version to {os.environ["APP_VERSION"]} ({os.environ["APP_VERSION_CODE"]})')
+          PY
+
+      - name: Build APK
+        working-directory: frontend/android
+        run: ./gradlew --no-daemon assembleDebug
+
+      - name: Prepare versioned APK
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          mkdir -p release-assets
+          cp frontend/android/app/build/outputs/apk/debug/app-debug.apk "release-assets/food-planner-v${VERSION}.apk"
+          sha256sum "release-assets/food-planner-v${VERSION}.apk" > "release-assets/food-planner-v${VERSION}.apk.sha256"
+
+      - name: Publish GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ steps.version.outputs.version }}
+          TAG: ${{ steps.version.outputs.tag }}
+        run: |
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" release-assets/* --clobber
+          else
+            gh release create "$TAG" release-assets/* \
+              --title "Food Planner v${VERSION}" \
+              --notes "Android APK release v${VERSION}. Download the APK below and install it on your Android device. This is a debug-signed APK intended for direct installation/testing." \
+              --target "$GITHUB_SHA"
+          fi
