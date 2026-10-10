@@ -246,93 +246,65 @@
 .recipe-preparation-steps li:last-child { margin-bottom: 0; }
 :root[data-theme="dark"] .recipe-preparation-steps { color: var(--theme-text-muted); }
 
+/* Recipe-specific imagery; keeps cards responsive without changing planner rows. */
+.recipe-card-image{display:block;width:100%;height:112px;object-fit:cover;border-radius:8px;margin-bottom:5px;background:#f3f4f6}.recipe-detail-image{display:block;width:100%;max-height:260px;object-fit:cover;border-radius:12px;margin:8px 0 16px;background:#f3f4f6}
+@media(max-width:640px){.recipe-card-image{height:96px}.recipe-detail-image{max-height:200px}}
 
-/* Compact, responsive single-line planner rows. */
-.planner-grid { gap: 12px; }
-.meal-slot { min-width: 0; padding: 13px; }
-.slot-heading { padding-bottom: 8px; }
-.planned-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  min-width: 0;
-  padding: 7px 0;
-}
-.planned-item-copy {
-  display: flex !important;
-  align-items: center;
-  gap: 8px !important;
-  flex: 1 1 auto;
-  min-width: 0;
-  overflow: hidden;
-}
-.planned-item-copy strong,
-.planned-item-copy small {
+/* Compact planner rows: recipe name, serving amount and three actions stay on one line. */
+.planner-grid { gap: 10px; }
+.meal-slot { padding: 12px; min-width: 0; }
+.slot-heading { padding-bottom: 7px; }
+.slot-heading h2 { font-size: 16px; }
+.planned-item { display:flex; flex-wrap:nowrap; align-items:center; gap:7px; padding:5px 0; min-width:0; }
+.planned-item-copy { display:flex !important; flex-direction:row; align-items:center; gap:7px !important; flex:1 1 auto; min-width:0; overflow:hidden; }
+.planned-item-name { display:block; min-width:0; flex:1 1 auto; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; cursor:pointer; font-size:13px; line-height:1.25; }
+.planned-item-serving { flex:0 0 auto; white-space:nowrap; font-size:11px; }
+.icon-actions { flex:0 0 auto; gap:3px; }
+.icon-button { width:27px; height:27px; border-radius:7px; }
+.icon-button svg { width:15px; height:15px; }
+.recipe-name-tooltip { position:absolute; z-index:12; max-width:min(320px,75vw); padding:7px 10px; border:1px solid var(--theme-border); border-radius:8px; background:var(--theme-surface); color:var(--theme-text); box-shadow:0 4px 16px #0002; white-space:normal; overflow-wrap:anywhere; font-size:12px; }
+.planned-item-copy { position:relative; }
+.recipe-card-image { display:block; width:100%; height:130px; object-fit:cover; border-radius:9px; background:var(--theme-surface-muted); }
+.recipe-detail-image { display:block; width:100%; max-height:300px; object-fit:cover; border-radius:12px; background:var(--theme-surface-muted); }
+.ingredient-row { display:flex; align-items:baseline; justify-content:space-between; gap:14px; border-bottom:1px solid var(--theme-border); padding:7px 0 !important; margin:0 !important; }
+.ingredient-name { min-width:0; flex:1; overflow-wrap:anywhere; }
+.ingredient-amount { flex:0 0 auto; min-width:70px; text-align:right; font-weight:700; color:var(--theme-accent); white-space:nowrap; }
+@media(max-width:620px) { .planner-grid { gap:8px; } .meal-slot { padding:10px; border-radius:12px; } .planned-item { gap:5px; } .planned-item-copy { gap:5px !important; } .planned-item-name { font-size:12px; } .planned-item-serving { font-size:10px; } .icon-actions { gap:2px; } .icon-button { width:25px; height:25px; } .icon-button svg { width:14px; height:14px; } }
+
+/* Keep planner action controls in a single horizontal row, overriding generic nested div layout. */
+.planned-item { display:flex !important; flex-flow:row nowrap !important; align-items:center !important; }
+.planned-item > .planned-item-copy { display:flex !important; flex-flow:row nowrap !important; align-items:center !important; min-width:0 !important; flex:1 1 auto !important; }
+.planned-item > .icon-actions { display:flex !important; flex-flow:row nowrap !important; align-items:center !important; justify-content:flex-end !important; flex:0 0 auto !important; }
+.planned-item > .icon-actions > .icon-button { display:inline-flex !important; flex:0 0 auto !important; align-items:center !important; justify-content:center !important; padding:0 !important; }
+.planned-item-name { min-width:0 !important; }
+
+/* Ingredient rows: item flush left and quantity flush right across both recipe views. */
+.recipe-detail .recipe-ingredients {
   display: block;
+  width: 100%;
+  box-sizing: border-box;
+  list-style: none;
+  padding-left: 0;
+  padding-right: 0;
+}
+.recipe-detail .recipe-ingredients > .ingredient-row {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) max-content;
+  align-items: baseline;
+  column-gap: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.recipe-detail .ingredient-name {
   min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  text-align: left;
+  overflow-wrap: anywhere;
 }
-.planned-item-copy strong { flex: 1 1 auto; }
-.planned-item-copy small { flex: 0 1 38%; }
-.icon-actions {
-  display: flex !important;
-  flex: 0 0 auto;
-  flex-wrap: nowrap;
-  align-items: center;
-  gap: 4px;
-}
-.icon-actions .icon-button {
-  flex: 0 0 32px;
-  width: 32px;
-  height: 32px;
-}
-@media (max-width: 620px) {
-  .page { padding: 14px 10px 28px; }
-  .planner-grid { grid-template-columns: minmax(0, 1fr); gap: 10px; }
-  .meal-slot { padding: 11px; border-radius: 14px; }
-  .slot-heading h2 { font-size: 17px; }
-  .planned-item { gap: 6px; padding: 6px 0; }
-  .planned-item-copy { gap: 5px !important; }
-  .planned-item-copy strong { flex-basis: 45%; }
-  .planned-item-copy small { flex-basis: 34%; font-size: 11px; }
-  .icon-actions { gap: 3px; }
-  .icon-actions .icon-button { flex-basis: 29px; width: 29px; height: 29px; border-radius: 8px; }
-  .icon-actions .icon-button svg { width: 16px; height: 16px; }
-  .empty-slot { padding: 12px 3px; }
-  .notes { margin-top: 12px; gap: 6px; }
-  .notes textarea { min-height: 64px; }
-}
-@media (max-width: 380px) {
-  .planned-item { gap: 4px; }
-  .planned-item-copy { gap: 4px !important; }
-  .planned-item-copy small { flex-basis: 31%; font-size: 10px; }
-  .icon-actions { gap: 2px; }
-  .icon-actions .icon-button { flex-basis: 27px; width: 27px; height: 29px; }
-}
-
-
-/* Click-to-reveal full recipe names without changing the compact row layout. */
-.planned-item-copy { position: relative; }
-.planned-item-name { cursor: pointer; }
-.planned-item-name:focus-visible { outline: 2px solid #8b5cf6; outline-offset: 2px; border-radius: 3px; }
-.recipe-name-tooltip {
-  position: absolute;
-  z-index: 20;
-  left: 0;
-  top: calc(100% + 5px);
-  max-width: min(320px, calc(100vw - 48px));
-  width: max-content;
+.recipe-detail .ingredient-amount {
+  min-width: 0;
+  max-width: 42vw;
+  text-align: right;
   white-space: normal;
   overflow-wrap: anywhere;
-  padding: 8px 10px;
-  border: 1px solid var(--theme-border, #4b5563);
-  border-radius: 8px;
-  background: var(--theme-card, #1f232d);
-  color: var(--theme-text, #f9fafb);
-  box-shadow: 0 5px 16px #0004;
-  font-size: 13px;
-  font-weight: 500;
-  line-height: 1.4;
+  justify-self: end;
 }
