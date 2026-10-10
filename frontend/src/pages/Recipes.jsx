@@ -99,7 +99,7 @@ export default function Recipes() {
             <p><b>{category}</b>{category && region ? ' · ' : ''}{region}{servingSize ? ` · ${servingSize}` : ''}</p>
             <h3>Ingredients</h3>
             {ingredients.length ? (
-              <ul className="recipe-ingredients">{ingredients.map((ingredient, index) => <li className="ingredient-row" key={`${index}-${ingredient.item}-${ingredient.quantity}-${ingredient.unit}`}><span className="ingredient-name">{ingredient.item || ingredient.original}</span>{(ingredient.quantity || ingredient.unit) && <span className="ingredient-amount">{[ingredient.quantity, ingredient.unit].filter(Boolean).join(' ')}</span>}</li>)}</ul>
+              <ul className="recipe-ingredients">{ingredients.map((ingredient, index) => <li className="ingredient-row" key={`${index}-${ingredient.item}-${ingredient.quantity}`}><span className="ingredient-name">{ingredient.item || ingredient.original || 'Ingredient'}</span>{(ingredient.quantity || ingredient.unit) && <span className="ingredient-amount">{[ingredient.quantity, ingredient.unit].filter(Boolean).join(' ')}</span>}</li>)}</ul>
             ) : <p className="recipe-long-text">No ingredients listed.</p>}
             <h3>Preparation</h3>
             {preparationSteps.length ? (

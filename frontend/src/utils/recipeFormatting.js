@@ -9,46 +9,40 @@ function parseSerialized(value) {
   }
 }
 
-const QUANTITY_PREFIX = /^\s*((?:(?:about|approximately|approx\.?|around)\s+)?(?:\d+\s+\d+\s*\/\s*\d+|\d+\s*\/\s*\d+|\d+\s*[¼½¾⅓⅔⅛⅜⅝⅞]|[¼½¾⅓⅔⅛⅜⅝⅞]|\d+(?:[.,]\d+)?)(?:\s*(?:-|–|—|to)\s*(?:\d+\s*\/\s*\d+|\d+(?:[.,]\d+)?|[¼½¾⅓⅔⅛⅜⅝⅞]))?\s*(?:cups?|cupfuls?|tbsp|tablespoons?|tsp|teaspoons?|ml|l|lit(?:re|er)s?|grams?|g|kg|kilograms?|mg|ounces?|oz|pounds?|lbs?|pieces?|pcs?|cloves?|pinches?|bunches?|slices?|sprigs?|sticks?|cans?|packets?|medium|large|small|handfuls?)?\b)\s*(.*)$/i;
-
-function splitQuantity(itemName, quantity = '', unit = '', original = '') {
-  let item = String(itemName ?? '').trim();
-  let amount = String(quantity ?? '').trim();
-  let measure = String(unit ?? '').trim();
-  // Legacy records sometimes store the full line in item/name and leave quantity/unit blank.
-  if (item && !amount && !measure) {
-    const match = item.match(QUANTITY_PREFIX);
-    if (match && match[2] && /\S/.test(match[2])) {
-      amount = match[1].trim();
-      item = match[2].trim().replace(/^[:\-–—]+\s*/, '');
-    }
-  }
-  return { item, quantity: amount, unit: measure, original: String(original || [amount, measure, item].filter(Boolean).join(' ')).trim() };
-}
+const INGREDIENT_PREFIX = /^\s*((?:about\s+|approximately\s+|approx\.?\s*)?(?:\d+\s+\d+\s*\/\s*\d+|\d+\s*\/\s*\d+|\d+\s*[¼½¾⅓⅔⅛⅜⅝⅞]|[¼½¾⅓⅔⅛⅜⅝⅞]|\d+(?:[.,]\d+)?)(?:\s*[-–—]\s*(?:\d+\s*\/\s*\d+|\d+(?:[.,]\d+)?|[¼½¾⅓⅔⅛⅜⅝⅞]))?\s*(?:cups?|cupfuls?|tbsp|tablespoons?|tsp|teaspoons?|ml|lit(?:re|er)s?|grams?|g|kg|kilograms?|mg|ounces?|oz|pounds?|lbs?|pieces?|pcs?|cloves?|pinch(?:es)?|bunch(?:es)?|slices?|sprigs?|sticks?|cans?|packets?|medium|large|small)?\b)\s*(.*)$/i;
 
 function ingredientText(value) {
-  if (value == null) return splitQuantity('');
-  if (typeof value !== 'object') {
-    const original = String(value).trim();
-    return splitQuantity(original, '', '', original);
+  if (value == null) return { item: '', quantity: '', unit: '', original: '' };
+  let name, quantity, unit, original;
+  if (typeof value === 'object') {
+    name = String(value.item ?? value.name ?? value.ingredient ?? value.title ?? '').trim();
+    quantity = String(value.quantity ?? value.amount ?? value.qty ?? '').trim();
+    unit = String(value.unit ?? '').trim();
+    original = String(value.original ?? [quantity, unit, name].filter(Boolean).join(' ')).trim();
+  } else {
+    name = String(value).trim(); quantity = ''; unit = ''; original = name;
   }
-  const name = value.item ?? value.name ?? value.ingredient ?? value.title ?? value.original ?? '';
-  const quantity = value.quantity ?? value.amount ?? value.qty ?? '';
-  const unit = value.unit ?? '';
-  return splitQuantity(name, quantity, unit, value.original ?? '');
+  // Older catalog/database rows may store the whole line in `item`/`name`.
+  if (!quantity && name) {
+    const match = name.match(INGREDIENT_PREFIX);
+    if (match && match[2]) {
+      quantity = match[1].trim();
+      name = match[2].trim();
+    }
+  }
+  return { item: name, quantity, unit, original };
 }
-
 export function formatIngredients(value) {
   const parsed = parseSerialized(value);
   if (parsed == null || parsed === '') return [];
   let values;
   if (Array.isArray(parsed)) values = parsed;
   else if (typeof parsed === 'object') values = Object.entries(parsed).map(([key, item]) => {
-    if (item && typeof item === 'object' && !Array.isArray(item)) return { ...item, item: item.item ?? item.name ?? key };
+    if (item && typeof item === 'object' && !Array.isArray(item)) return { item: item.item ?? item.name ?? key, ...item };
     return { item: key, quantity: item, original: `${key}: ${item}` };
   });
-  else values = String(parsed).split(/\n+|\s*;\s*/).map(item => item.trim().replace(/^(?:[-*•]|\d+[.)])\s*/, '')).filter(Boolean);
-  return values.map(ingredientText).filter(item => item.item || item.quantity || item.unit || item.original);
+  else values = String(parsed).split(/\n+|\s*;\s*|\s*,\s*/).map(item => item.trim().replace(/^(?:[-*•]|\d+[.)])\s*/, '')).filter(Boolean);
+  return values.map(ingredientText).filter(item => item.item || item.quantity || item.original);
 }
 
 export function formatPreparationSteps(value) {

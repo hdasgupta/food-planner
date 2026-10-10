@@ -1,5 +1,41 @@
 import { useEffect, useRef, useState } from 'react';
-import { formatIngredients, formatPreparationSteps } from '../utils/recipeFormatting.js';
+const QUANTITY_PREFIX = /^\s*((?:about\s+|approximately\s+|approx\.?\s*)?(?:\d+\s+\d+\s*\/\s*\d+|\d+\s*\/\s*\d+|\d+\s*[¼½¾⅓⅔⅛⅜⅝⅞]|[¼½¾⅓⅔⅛⅜⅝⅞]|\d+(?:[.,]\d+)?|\d+\s*[-–—]\s*\d+(?:\s*[¼½¾⅓⅔⅛⅜⅝⅞])?)(?:\s*[-–—]\s*(?:\d+(?:[.,]\d+)?|[¼½¾⅓⅔⅛⅜⅝⅞]))?\s*(?:cups?|cupfuls?|tbsp|tablespoons?|tsp|teaspoons?|ml|l|litres?|liters?|grams?|g|kg|kilograms?|mg|ounces?|oz|pounds?|lbs?|pieces?|pcs?|cloves?|pinch(?:es)?|bunch(?:es)?|slices?|sprigs?|sticks?|cans?|packets?|medium|large|small)?\b)\s*(.*)$/i;
+
+function parseIngredientLine(value) {
+  if (value && typeof value === 'object') {
+    let item = String(value.item ?? value.name ?? value.original ?? '').trim();
+    let quantity = String(value.quantity ?? '').trim();
+    let unit = String(value.unit ?? '').trim();
+    // Older records sometimes stored the complete line in `item` and left quantity blank.
+    if (!quantity && item) {
+      const match = item.match(QUANTITY_PREFIX);
+      if (match && match[2]) {
+        quantity = match[1].trim();
+        item = match[2].trim();
+      }
+    }
+    return { item, quantity, unit, original: value.original || '' };
+  }
+  const original = String(value ?? '').trim();
+  const match = original.match(QUANTITY_PREFIX);
+  if (match && match[2]) return { item: match[2].trim(), quantity: match[1].trim(), unit: '', original };
+  return { item: original, quantity: '', unit: '', original };
+}
+
+function formatIngredients(value) {
+  let parsed = value;
+  if (typeof parsed === 'string') {
+    try { parsed = JSON.parse(parsed); } catch { parsed = parsed.split(/\s*[,;]\s*|\n+/).filter(Boolean); }
+  }
+  if (!Array.isArray(parsed)) return [];
+  return parsed.map(parseIngredientLine).filter(item => item.item || item.quantity || item.unit);
+}
+
+function formatPreparationSteps(value) {
+  if (Array.isArray(value)) return value.map(step => String(step).trim()).filter(Boolean);
+  if (value == null || value === '') return [];
+  return String(value).split(/\n+/).map(step => step.replace(/^\s*\d+[.)]\s*/, '').trim()).filter(Boolean);
+}
 
 function fallbackFoodImage(name = '') { const slug = String(name).toLowerCase().replace(/[^a-z0-9]+/g, ',').replace(/^,|,$/g, ''); const lock = [...String(name)].reduce((sum, char) => sum + char.charCodeAt(0), 0); return `https://loremflickr.com/900/640/indian-food,${slug}?lock=${lock}`; }
 
