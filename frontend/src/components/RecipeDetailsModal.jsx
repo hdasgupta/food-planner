@@ -48,9 +48,34 @@ function formatIngredients(value) {
 }
 
 function formatPreparationSteps(value) {
-  if (Array.isArray(value)) return value.map(step => String(step).trim()).filter(Boolean);
   if (value == null || value === '') return [];
-  return String(value).split(/\n+/).map(step => step.replace(/^\s*\d+[.)]\s*/, '').trim()).filter(Boolean);
+  let parsed = value;
+  if (typeof parsed === 'string') {
+    const text = parsed.trim();
+    if (!text) return [];
+    // Some records store preparation as a JSON array/object string.
+    if ((text.startsWith('[') && text.endsWith(']')) || (text.startsWith('{') && text.endsWith('}'))) {
+      try { parsed = JSON.parse(text); } catch { parsed = text; }
+    }
+  }
+  if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) {
+    parsed = Object.entries(parsed).map(([key, step]) => {
+      if (step && typeof step === 'object') return step.instruction ?? step.text ?? step.step ?? '';
+      return typeof step === 'string' ? step : `${key}. ${step}`;
+    });
+  }
+  const entries = Array.isArray(parsed) ? parsed : [parsed];
+  const steps = entries.flatMap(entry => {
+    const text = typeof entry === 'string' ? entry : String(entry?.instruction ?? entry?.text ?? entry?.step ?? '');
+    // Split numbered steps even when the database stored the whole recipe on one line.
+    return text.replace(/\r/g, '').split(/\n+/).flatMap(line => {
+      const cleaned = line.trim();
+      if (!cleaned) return [];
+      const parts = cleaned.split(/(?<!^)(?=\s+\d+[.)]\s+(?:\(\s*\d+\s*min\s*\)\s*)?[A-Z])/);
+      return parts.map(part => part.replace(/^\s*\d+[.)]\s*/, '').trim()).filter(Boolean);
+    });
+  });
+  return steps;
 }
 
 function fallbackFoodImage(name = '') { const slug = String(name).toLowerCase().replace(/[^a-z0-9]+/g, ',').replace(/^,|,$/g, ''); const lock = [...String(name)].reduce((sum, char) => sum + char.charCodeAt(0), 0); return `https://loremflickr.com/900/640/indian-food,${slug}?lock=${lock}`; }
