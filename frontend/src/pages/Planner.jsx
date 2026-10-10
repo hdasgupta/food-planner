@@ -303,7 +303,7 @@ export default function Planner() {
       <div className="add-menu-heading">
         <span className="catalog-count">{recipes.length} recipes loaded</span>
       </div>
-      <form className="menu-form-row" onSubmit={addFood}>
+      <form className="menu-form-row add-food-vertical-form" onSubmit={addFood} style={{ display: 'flex', flexDirection: 'column', alignItems: 'stretch', gap: '12px' }}>
         <label>Food timing
           <select value={mealSlot} onChange={event => setMealSlot(event.target.value)} disabled={busy}>
             {MEALS.map(([key, label]) => <option key={key} value={key}>{label}</option>)}
