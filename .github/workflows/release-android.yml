@@ -95,9 +95,15 @@ jobs:
         working-directory: frontend
         run: npm run build
 
-      - name: Generate Capacitor Android project
+      - name: Generate Capacitor Android project if missing
         working-directory: frontend
-        run: npx cap add android
+        shell: bash
+        run: |
+          if [ -d android ]; then
+            echo "Capacitor Android platform already exists; skipping npx cap add android."
+          else
+            npx cap add android
+          fi
 
       - name: Synchronize Capacitor assets
         working-directory: frontend
