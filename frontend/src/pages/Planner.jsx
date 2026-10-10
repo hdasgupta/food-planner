@@ -237,7 +237,7 @@ export default function Planner() {
   return <div>
     <div className="page-header">
       <div><h1>Daily Food Planner</h1><p>Plan homemade Indian food from breakfast to dinner.</p></div>
-      <div className="date-actions">
+      <div className="date-actions" style={{ alignItems: 'center' }}>
         <button
           type="button"
           className="icon-button"
