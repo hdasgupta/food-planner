@@ -4,45 +4,47 @@ const QUANTITY_PREFIX = /^\s*((?:about\s+|approximately\s+|approx\.?\s*)?(?:\d+\
 function parseIngredientLine(value) {
   if (value && typeof value === 'object') {
     let item = String(value.item ?? value.name ?? value.original ?? '').trim();
-    let quantity = String(value.quantity ?? '').trim();
+    let quantity = String(value.quantity ?? value.amount ?? value.qty ?? '').trim();
     let unit = String(value.unit ?? '').trim();
-    // Older records sometimes stored the complete line in `item` and left quantity blank.
+    // Older records sometimes store several semicolon-separated ingredients in one field.
+    if (item && /[;\n]/.test(item)) return splitIngredientText(item).map(entry => ({ ...entry, original: value.original || '' }));
     if (!quantity && item) {
       const match = item.match(QUANTITY_PREFIX);
-      if (match && match[2]) {
-        quantity = match[1].trim();
-        item = match[2].trim();
-      }
+      if (match && match[2]) { quantity = match[1].trim(); item = match[2].trim(); }
     }
-    return { item, quantity, unit, original: value.original || '' };
+    return [{ item, quantity, unit, original: value.original || '' }];
   }
-  const original = String(value ?? '').trim();
-  const match = original.match(QUANTITY_PREFIX);
-  if (match && match[2]) return { item: match[2].trim(), quantity: match[1].trim(), unit: '', original };
-  return { item: original, quantity: '', unit: '', original };
+  return splitIngredientText(String(value ?? '').trim());
+}
+
+function splitIngredientText(text) {
+  // Split the source delimiters first, then separate quantity-prefixed entries.
+  const segments = String(text || '').split(/[;\n]+/).map(part => part.trim().replace(/^(?:[-*•]|\d+[.)])\s*/, '')).filter(Boolean);
+  const parsed = [];
+  for (const segment of segments) {
+    const match = segment.match(QUANTITY_PREFIX);
+    if (match && match[2]) {
+      parsed.push({ item: match[2].trim(), quantity: match[1].trim(), unit: '', original: segment });
+    } else if (parsed.length) {
+      // Descriptions like "thinly sliced" are continuations of the preceding ingredient.
+      parsed[parsed.length - 1].item = `${parsed[parsed.length - 1].item.replace(/[,:;\s]+$/, '')}, ${segment}`;
+    } else {
+      parsed.push({ item: segment, quantity: '', unit: '', original: segment });
+    }
+  }
+  return parsed;
 }
 
 function formatIngredients(value) {
   let parsed = value;
   if (typeof parsed === 'string') {
-    try { parsed = JSON.parse(parsed); } catch { parsed = parsed.split(/\s*[,;]\s*|\n+/).filter(Boolean); }
+    try { parsed = JSON.parse(parsed); } catch { return splitIngredientText(parsed); }
+  }
+  if (parsed && !Array.isArray(parsed) && typeof parsed === 'object') {
+    parsed = Object.entries(parsed).map(([key, entry]) => entry && typeof entry === 'object' ? { item: entry.item ?? entry.name ?? key, ...entry } : { item: key, quantity: entry });
   }
   if (!Array.isArray(parsed)) return [];
-  return parsed.map(parseIngredientLine).filter(item => item.item || item.quantity || item.unit);
-}
-
-function getDietLabel(recipe) {
-  const flatten = value => {
-    if (value == null) return '';
-    if (typeof value === 'string' || typeof value === 'number') return String(value);
-    if (Array.isArray(value)) return value.map(flatten).join(' ');
-    if (typeof value === 'object') return Object.values(value).map(flatten).join(' ');
-    return '';
-  };
-  const source = [recipe?.name, recipe?.ingredients, recipe?.ingredient_items].map(flatten).join(' ').toLowerCase();
-  if (/\b(prawn|prawns|shrimp|crab|lobster|fish|salmon|tuna|anchov|sardine|mackerel|pomfret|hilsa|rohu|katla|chicken|mutton|lamb|beef|pork|meat|clam|mussel|oyster|squid|octopus)\b/.test(source)) return 'Non-vegetarian';
-  if (recipe?.contains_egg === true || recipe?.contains_egg === 1 || ['true', '1', 'yes'].includes(String(recipe?.contains_egg).toLowerCase())) return 'Contains egg';
-  return 'Vegetarian';
+  return parsed.flatMap(parseIngredientLine).filter(item => item.item || item.quantity || item.unit);
 }
 
 function formatPreparationSteps(value) {
@@ -78,7 +80,7 @@ export default function RecipeDetailsModal({ recipe, onClose }) {
       </div>
       {recipe.image_url && <img className="recipe-detail-image" src={recipe.image_url} alt={recipe.name} onError={event => { event.currentTarget.onerror = null; event.currentTarget.style.display = 'none'; }} />}
       <div className="recipe-meta">
-        <span>{getDietLabel(recipe)}</span>
+        <span>{/prawn|shrimp|fish|seafood|chicken|mutton|lamb|beef|pork|crab|lobster|meat/i.test([recipe.name, recipe.ingredients, JSON.stringify(recipe.ingredient_items || [])].join(' ')) ? 'Non-vegetarian' : recipe.contains_egg ? 'Contains egg' : 'Vegetarian'}</span>
         <span>{recipe.serving_size || '2 servings'}</span>
         <span>{Number(recipe.prep_minutes || 0) + Number(recipe.cook_minutes || 0)} min total</span>
       </div>
