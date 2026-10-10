@@ -9,13 +9,29 @@ function parseSerialized(value) {
   }
 }
 
+const INGREDIENT_QUANTITY_PREFIX = /^\s*((?:\d+\s*\d\/\d+|\d+\s*[¼½¾⅓⅔⅛⅜⅝⅞]|[¼½¾⅓⅔⅛⅜⅝⅞]|\d+(?:[.,]\d+)?|\d+\s*[-–—]\s*\d+(?:\s*[¼½¾⅓⅔⅛⅜⅝⅞])?)(?:\s*[-–—]\s*(?:\d+(?:[.,]\d+)?|[¼½¾⅓⅔⅛⅜⅝⅞]))?\s*(?:cups?|tbsp|tablespoons?|tsp|teaspoons?|ml|litres?|liters?|grams?|g|kg|mg|ounces?|oz|pounds?|lbs?|pieces?|pcs?|cloves?|pinches?|bunches?|slices?|sprigs?|sticks?|cans?|packets?|medium|large|small)?\b)\s+(.*)$/i;
+
 function ingredientText(item) {
   if (item == null) return { item: '', quantity: '', unit: '', original: '' };
-  if (typeof item !== 'object') return { item: String(item).trim(), quantity: '', unit: '', original: String(item).trim() };
-  const name = String(item.item ?? item.name ?? item.ingredient ?? item.title ?? '').trim();
-  const quantity = String(item.quantity ?? item.amount ?? item.qty ?? '').trim();
+  if (typeof item !== 'object') {
+    const original = String(item).trim();
+    const match = original.match(INGREDIENT_QUANTITY_PREFIX);
+    return match && match[2]
+      ? { item: match[2].trim(), quantity: match[1].trim(), unit: '', original }
+      : { item: original, quantity: '', unit: '', original };
+  }
+  let name = String(item.item ?? item.name ?? item.ingredient ?? item.title ?? '').trim();
+  let quantity = String(item.quantity ?? item.amount ?? item.qty ?? '').trim();
   const unit = String(item.unit ?? '').trim();
   const original = String(item.original ?? [quantity, unit, name].filter(Boolean).join(' ')).trim();
+  // Some older records store the entire ingredient line in `item`.
+  if (!quantity && name) {
+    const match = name.match(INGREDIENT_QUANTITY_PREFIX);
+    if (match && match[2]) {
+      quantity = match[1].trim();
+      name = match[2].trim();
+    }
+  }
   return { item: name, quantity, unit, original };
 }
 

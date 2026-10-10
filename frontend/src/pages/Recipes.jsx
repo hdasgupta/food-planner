@@ -13,16 +13,6 @@ const displayText = value => {
   return '';
 };
 
-function safelyFormat(formatter, value) {
-  try {
-    const result = formatter(value);
-    return Array.isArray(result) ? result.map(displayText).filter(Boolean) : [];
-  } catch (error) {
-    console.error('Unable to format recipe details:', error);
-    return [];
-  }
-}
-
 export default function Recipes() {
   const [recipes, setRecipes] = useState([]);
   const [q, setQ] = useState('');
@@ -61,7 +51,7 @@ export default function Recipes() {
   const ingredientSource = selected
     ? (selected.ingredient_items?.length ? selected.ingredient_items : selected.ingredients)
     : [];
-  const ingredients = selected ? safelyFormat(formatIngredients, ingredientSource) : [];
+  const ingredients = selected ? formatIngredients(ingredientSource) : [];
   const preparationSteps = selected ? safelyFormat(formatPreparationSteps, selected.preparation) : [];
   const name = displayText(selected?.name) || 'Recipe details';
   const category = displayText(selected?.category_name ?? selected?.category);
@@ -99,7 +89,12 @@ export default function Recipes() {
             <p><b>{category}</b>{category && region ? ' · ' : ''}{region}{servingSize ? ` · ${servingSize}` : ''}</p>
             <h3>Ingredients</h3>
             {ingredients.length ? (
-              <ul className="recipe-ingredients">{ingredients.map((ingredient, index) => <li key={`${index}-${ingredient}`}>{ingredient}</li>)}</ul>
+              <ul className="recipe-ingredients">{ingredients.map((ingredient, index) => (
+                <li className="ingredient-row" key={`${index}-${ingredient.item}-${ingredient.quantity}`}>
+                  <span className="ingredient-name">{ingredient.item || ingredient.original}</span>
+                  {(ingredient.quantity || ingredient.unit) && <span className="ingredient-amount">{[ingredient.quantity, ingredient.unit].filter(Boolean).join(' ')}</span>}
+                </li>
+              ))}</ul>
             ) : <p className="recipe-long-text">No ingredients listed.</p>}
             <h3>Preparation</h3>
             {preparationSteps.length ? (
