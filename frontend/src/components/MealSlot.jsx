@@ -36,7 +36,18 @@ export default function MealSlot({ title, items, onEdit, onRemove, onShowRecipe,
     {items.length === 0 ? <div className="empty-slot">No food selected yet.</div> :
       items.map(item => <div className="planned-item" key={item.id ?? item._key}>
         <div className="planned-item-copy">
-          <strong title={item.recipeName}>{item.recipeName}</strong>
+          <strong
+            title="Tap to view the full recipe name"
+            role="button"
+            tabIndex={0}
+            onClick={() => window.alert(item.recipeName)}
+            onKeyDown={event => {
+              if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                window.alert(item.recipeName);
+              }
+            }}
+          >{item.recipeName}</strong>
           <small title={`${item.category} · ${item.quantity} ${item.unit}`}>{item.category} · {item.quantity} {item.unit}</small>
         </div>
         <div className="icon-actions">
