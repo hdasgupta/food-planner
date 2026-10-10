@@ -1,6 +1,5 @@
 export const MEALS = [
   ['breakfast', 'Breakfast'],
-  ['mid_morning', 'Mid-morning'],
   ['lunch', 'Lunch'],
   ['evening_snack', 'Evening Snack'],
   ['dinner', 'Dinner']
