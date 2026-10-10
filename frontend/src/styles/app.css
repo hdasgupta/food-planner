@@ -485,3 +485,13 @@
     min-height: 22px !important;
   }
 }
+
+
+/* Keep the app header below Android's system status/notification bar.
+   Scoped to native Capacitor builds so the normal web layout is unchanged. */
+@media (max-width: 900px) {
+  html.capacitor-native .topbar {
+    height: auto;
+    padding-top: calc(13px + max(env(safe-area-inset-top, 0px), 24px));
+  }
+}
