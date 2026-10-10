@@ -246,58 +246,38 @@
 .recipe-preparation-steps li:last-child { margin-bottom: 0; }
 :root[data-theme="dark"] .recipe-preparation-steps { color: var(--theme-text-muted); }
 
-/* Responsive planner rows: keep recipe text, metadata, and all three actions on one line. */
-.meal-slot .planned-item {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  gap: clamp(5px, 1.5vw, 10px);
-  min-width: 0;
+
+/* Prevent mobile horizontal overflow that exposes a white strip on the right. */
+html, body, #root, .app-shell {
   width: 100%;
-}
-.meal-slot .planned-item .planned-item-copy {
-  display: flex;
-  flex: 1 1 0%;
-  flex-direction: column;
-  justify-content: center;
-  gap: 3px;
+  max-width: 100%;
   min-width: 0;
-  overflow: hidden;
+  overflow-x: clip;
 }
-.meal-slot .planned-item .planned-item-copy strong,
-.meal-slot .planned-item .planned-item-copy small {
-  display: block;
+.page {
+  width: 100%;
+  max-width: 1200px;
+  min-width: 0;
+  box-sizing: border-box;
+}
+.planner-grid {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  grid-template-columns: minmax(0, 1fr);
+}
+.meal-slot {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+.meal-slot .planned-item,
+.meal-slot .planned-item-copy {
   min-width: 0;
   max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow-wrap: normal;
 }
-.meal-slot .planned-item .icon-actions {
-  display: flex;
-  flex: 0 0 auto;
-  flex-flow: row nowrap;
-  align-items: center;
-  justify-content: flex-end;
-  gap: clamp(2px, 0.8vw, 5px);
-  min-width: max-content;
-}
-.meal-slot .planned-item .icon-actions .icon-button {
-  display: inline-grid;
-  flex: 0 0 auto;
-  place-items: center;
-  width: clamp(27px, 8vw, 34px);
-  height: clamp(27px, 8vw, 34px);
-  padding: 0;
-}
-.meal-slot .planned-item .icon-actions .icon-button svg {
-  width: clamp(16px, 4.5vw, 18px);
-  height: clamp(16px, 4.5vw, 18px);
-}
-@media (max-width: 380px) {
-  .meal-slot { padding: 12px; }
-  .meal-slot .planned-item { gap: 4px; }
-  .meal-slot .planned-item .icon-actions { gap: 2px; }
-  .meal-slot .planned-item .icon-actions .icon-button { width: 27px; height: 27px; }
+@media (max-width: 620px) {
+  .page { padding-left: 12px; padding-right: 12px; }
+  .planner-grid { grid-template-columns: minmax(0, 1fr); }
 }
