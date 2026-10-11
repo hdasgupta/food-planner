@@ -3843,5 +3843,764 @@
       "oil for frying (as needed)"
     ],
     "image_url": ""
+  },
+  {
+    "name": "Pointed Gourd Fry (Potol Bhaja)",
+    "slug": "pointed-gourd-fry-potol-bhaja",
+    "category": "Side Dish",
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
+    "isEgg": false,
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 2,
+    "ingredients": [
+      {
+        "item": "pointed gourd (potol), sliced lengthwise",
+        "quantity": "250",
+        "unit": "g",
+        "original": "250 g pointed gourd (potol), sliced lengthwise"
+      },
+      {
+        "item": "turmeric powder",
+        "quantity": "¼",
+        "unit": "tsp",
+        "original": "¼ tsp turmeric powder"
+      },
+      {
+        "item": "salt",
+        "quantity": "to taste",
+        "unit": "",
+        "original": "salt to taste"
+      },
+      {
+        "item": "mustard oil",
+        "quantity": "2",
+        "unit": "tbsp",
+        "original": "2 tbsp mustard oil"
+      }
+    ],
+    "instructions": [
+      "Wash and slit the pointed gourds lengthwise; remove seeds if desired.",
+      "Rub with turmeric and salt and rest for 10 minutes.",
+      "Heat mustard oil and shallow-fry the gourds, turning until golden and tender."
+    ],
+    "tags": [
+      "pointed gourd",
+      "potol",
+      "vegetarian",
+      "pointed-gourd-fry-potol-bhaja"
+    ],
+    "ingredients_original": [
+      "250 g pointed gourd (potol), sliced lengthwise",
+      "¼ tsp turmeric powder",
+      "salt to taste",
+      "2 tbsp mustard oil"
+    ],
+    "image_url": "https://loremflickr.com/640/480/indian,food,pointed-gourd-fry-potol-bhaja?lock=9001"
+  },
+  {
+    "name": "Pointed Gourd Bharta (Potol Bhorta)",
+    "slug": "pointed-gourd-bharta-potol-bhorta",
+    "category": "Side Dish",
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
+    "isEgg": false,
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 2,
+    "ingredients": [
+      {
+        "item": "pointed gourd (potol)",
+        "quantity": "250",
+        "unit": "g",
+        "original": "250 g pointed gourd (potol)"
+      },
+      {
+        "item": "mustard oil",
+        "quantity": "1",
+        "unit": "tbsp",
+        "original": "1 tbsp mustard oil"
+      },
+      {
+        "item": "onion, finely chopped",
+        "quantity": "1",
+        "unit": "small",
+        "original": "1 small onion, finely chopped"
+      },
+      {
+        "item": "green chilli, chopped",
+        "quantity": "1",
+        "unit": "",
+        "original": "1  green chilli, chopped"
+      },
+      {
+        "item": "salt",
+        "quantity": "to taste",
+        "unit": "",
+        "original": "salt to taste"
+      }
+    ],
+    "instructions": [
+      "Steam or roast pointed gourds until soft, then peel if desired.",
+      "Mash the cooked gourds with mustard oil, onion, chilli and salt.",
+      "Taste and adjust seasoning; serve with rice."
+    ],
+    "tags": [
+      "pointed gourd",
+      "potol",
+      "vegetarian",
+      "pointed-gourd-bharta-potol-bhorta"
+    ],
+    "ingredients_original": [
+      "250 g pointed gourd (potol)",
+      "1 tbsp mustard oil",
+      "1 small onion, finely chopped",
+      "1  green chilli, chopped",
+      "salt to taste"
+    ],
+    "image_url": "https://loremflickr.com/640/480/indian,food,pointed-gourd-bharta-potol-bhorta?lock=9002"
+  },
+  {
+    "name": "Pointed Gourd and Potato Curry (Aloo Potol Tarkari)",
+    "slug": "pointed-gourd-and-potato-curry-aloo-potol-tarkari",
+    "category": "Main Course",
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
+    "isEgg": false,
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 2,
+    "ingredients": [
+      {
+        "item": "pointed gourd, peeled in stripes",
+        "quantity": "250",
+        "unit": "g",
+        "original": "250 g pointed gourd, peeled in stripes"
+      },
+      {
+        "item": "potato, cubed",
+        "quantity": "1",
+        "unit": "medium",
+        "original": "1 medium potato, cubed"
+      },
+      {
+        "item": "tomato, chopped",
+        "quantity": "1",
+        "unit": "medium",
+        "original": "1 medium tomato, chopped"
+      },
+      {
+        "item": "ginger paste",
+        "quantity": "1",
+        "unit": "tsp",
+        "original": "1 tsp ginger paste"
+      },
+      {
+        "item": "cumin seeds",
+        "quantity": "½",
+        "unit": "tsp",
+        "original": "½ tsp cumin seeds"
+      },
+      {
+        "item": "turmeric powder",
+        "quantity": "½",
+        "unit": "tsp",
+        "original": "½ tsp turmeric powder"
+      },
+      {
+        "item": "cumin powder",
+        "quantity": "1",
+        "unit": "tsp",
+        "original": "1 tsp cumin powder"
+      },
+      {
+        "item": "mustard oil",
+        "quantity": "2",
+        "unit": "tbsp",
+        "original": "2 tbsp mustard oil"
+      },
+      {
+        "item": "salt",
+        "quantity": "to taste",
+        "unit": "",
+        "original": "salt to taste"
+      }
+    ],
+    "instructions": [
+      "Rub the pointed gourds with turmeric and salt; lightly fry and set aside.",
+      "Fry potato cubes until lightly golden. Add cumin seeds, ginger and tomato.",
+      "Add powdered spices, pointed gourd and water; cover and simmer until tender."
+    ],
+    "tags": [
+      "pointed gourd",
+      "potol",
+      "vegetarian",
+      "pointed-gourd-and-potato-curry-aloo-potol-tarkari"
+    ],
+    "ingredients_original": [
+      "250 g pointed gourd, peeled in stripes",
+      "1 medium potato, cubed",
+      "1 medium tomato, chopped",
+      "1 tsp ginger paste",
+      "½ tsp cumin seeds",
+      "½ tsp turmeric powder",
+      "1 tsp cumin powder",
+      "2 tbsp mustard oil",
+      "salt to taste"
+    ],
+    "image_url": "https://loremflickr.com/640/480/indian,food,pointed-gourd-and-potato-curry-aloo-potol-tarkari?lock=9003"
+  },
+  {
+    "name": "Stuffed Pointed Gourd (Potol Dorma)",
+    "slug": "stuffed-pointed-gourd-potol-dorma",
+    "category": "Main Course",
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
+    "isEgg": false,
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 2,
+    "ingredients": [
+      {
+        "item": "pointed gourd",
+        "quantity": "6",
+        "unit": "pieces",
+        "original": "6 pieces pointed gourd"
+      },
+      {
+        "item": "grated coconut",
+        "quantity": "3",
+        "unit": "tbsp",
+        "original": "3 tbsp grated coconut"
+      },
+      {
+        "item": "roasted peanuts, crushed",
+        "quantity": "2",
+        "unit": "tbsp",
+        "original": "2 tbsp roasted peanuts, crushed"
+      },
+      {
+        "item": "ginger, grated",
+        "quantity": "1",
+        "unit": "tsp",
+        "original": "1 tsp ginger, grated"
+      },
+      {
+        "item": "green chilli",
+        "quantity": "1",
+        "unit": "",
+        "original": "1  green chilli"
+      },
+      {
+        "item": "cumin powder",
+        "quantity": "½",
+        "unit": "tsp",
+        "original": "½ tsp cumin powder"
+      },
+      {
+        "item": "mustard oil",
+        "quantity": "2",
+        "unit": "tbsp",
+        "original": "2 tbsp mustard oil"
+      },
+      {
+        "item": "salt",
+        "quantity": "to taste",
+        "unit": "",
+        "original": "salt to taste"
+      }
+    ],
+    "instructions": [
+      "Scrape the gourds lightly, cut a slit and carefully remove the seeds.",
+      "Mix coconut, peanuts, ginger, chilli, cumin and salt; fill each gourd.",
+      "Pan-fry gently in oil, turning carefully, until cooked through. Add a splash of water and cover briefly if needed."
+    ],
+    "tags": [
+      "pointed gourd",
+      "potol",
+      "vegetarian",
+      "stuffed-pointed-gourd-potol-dorma"
+    ],
+    "ingredients_original": [
+      "6 pieces pointed gourd",
+      "3 tbsp grated coconut",
+      "2 tbsp roasted peanuts, crushed",
+      "1 tsp ginger, grated",
+      "1  green chilli",
+      "½ tsp cumin powder",
+      "2 tbsp mustard oil",
+      "salt to taste"
+    ],
+    "image_url": "https://loremflickr.com/640/480/indian,food,stuffed-pointed-gourd-potol-dorma?lock=9004"
+  },
+  {
+    "name": "Pointed Gourd Mustard Curry (Potol Shorshe)",
+    "slug": "pointed-gourd-mustard-curry-potol-shorshe",
+    "category": "Main Course",
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
+    "isEgg": false,
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 2,
+    "ingredients": [
+      {
+        "item": "pointed gourd, slit",
+        "quantity": "250",
+        "unit": "g",
+        "original": "250 g pointed gourd, slit"
+      },
+      {
+        "item": "mustard seeds",
+        "quantity": "2",
+        "unit": "tbsp",
+        "original": "2 tbsp mustard seeds"
+      },
+      {
+        "item": "green chilli",
+        "quantity": "2",
+        "unit": "",
+        "original": "2  green chilli"
+      },
+      {
+        "item": "turmeric powder",
+        "quantity": "½",
+        "unit": "tsp",
+        "original": "½ tsp turmeric powder"
+      },
+      {
+        "item": "mustard oil",
+        "quantity": "2",
+        "unit": "tbsp",
+        "original": "2 tbsp mustard oil"
+      },
+      {
+        "item": "salt",
+        "quantity": "to taste",
+        "unit": "",
+        "original": "salt to taste"
+      }
+    ],
+    "instructions": [
+      "Soak mustard seeds briefly, then grind with green chilli and a little water.",
+      "Lightly fry pointed gourds with turmeric and salt.",
+      "Add mustard paste and water; simmer gently until the gourds are tender. Finish with mustard oil."
+    ],
+    "tags": [
+      "pointed gourd",
+      "potol",
+      "vegetarian",
+      "pointed-gourd-mustard-curry-potol-shorshe"
+    ],
+    "ingredients_original": [
+      "250 g pointed gourd, slit",
+      "2 tbsp mustard seeds",
+      "2  green chilli",
+      "½ tsp turmeric powder",
+      "2 tbsp mustard oil",
+      "salt to taste"
+    ],
+    "image_url": "https://loremflickr.com/640/480/indian,food,pointed-gourd-mustard-curry-potol-shorshe?lock=9005"
+  },
+  {
+    "name": "Pointed Gourd Poppy Seed Curry (Potol Posto)",
+    "slug": "pointed-gourd-poppy-seed-curry-potol-posto",
+    "category": "Main Course",
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
+    "isEgg": false,
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 2,
+    "ingredients": [
+      {
+        "item": "pointed gourd, sliced",
+        "quantity": "250",
+        "unit": "g",
+        "original": "250 g pointed gourd, sliced"
+      },
+      {
+        "item": "poppy seeds",
+        "quantity": "2",
+        "unit": "tbsp",
+        "original": "2 tbsp poppy seeds"
+      },
+      {
+        "item": "green chilli",
+        "quantity": "1",
+        "unit": "",
+        "original": "1  green chilli"
+      },
+      {
+        "item": "nigella seeds",
+        "quantity": "¼",
+        "unit": "tsp",
+        "original": "¼ tsp nigella seeds"
+      },
+      {
+        "item": "mustard oil",
+        "quantity": "2",
+        "unit": "tbsp",
+        "original": "2 tbsp mustard oil"
+      },
+      {
+        "item": "salt",
+        "quantity": "to taste",
+        "unit": "",
+        "original": "salt to taste"
+      }
+    ],
+    "instructions": [
+      "Soak and grind poppy seeds with green chilli into a smooth paste.",
+      "Heat oil, add nigella seeds and pointed gourd; sauté with salt.",
+      "Add poppy-seed paste and a little water. Cover and cook until tender and the gravy thickens."
+    ],
+    "tags": [
+      "pointed gourd",
+      "potol",
+      "vegetarian",
+      "pointed-gourd-poppy-seed-curry-potol-posto"
+    ],
+    "ingredients_original": [
+      "250 g pointed gourd, sliced",
+      "2 tbsp poppy seeds",
+      "1  green chilli",
+      "¼ tsp nigella seeds",
+      "2 tbsp mustard oil",
+      "salt to taste"
+    ],
+    "image_url": "https://loremflickr.com/640/480/indian,food,pointed-gourd-poppy-seed-curry-potol-posto?lock=9006"
+  },
+  {
+    "name": "Crispy Pointed Gourd Fry",
+    "slug": "crispy-pointed-gourd-fry",
+    "category": "Snack",
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
+    "isEgg": false,
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 2,
+    "ingredients": [
+      {
+        "item": "pointed gourd, thinly sliced",
+        "quantity": "250",
+        "unit": "g",
+        "original": "250 g pointed gourd, thinly sliced"
+      },
+      {
+        "item": "rice flour",
+        "quantity": "2",
+        "unit": "tbsp",
+        "original": "2 tbsp rice flour"
+      },
+      {
+        "item": "turmeric powder",
+        "quantity": "¼",
+        "unit": "tsp",
+        "original": "¼ tsp turmeric powder"
+      },
+      {
+        "item": "chilli powder",
+        "quantity": "¼",
+        "unit": "tsp",
+        "original": "¼ tsp chilli powder"
+      },
+      {
+        "item": "salt",
+        "quantity": "to taste",
+        "unit": "",
+        "original": "salt to taste"
+      },
+      {
+        "item": "oil, for frying",
+        "quantity": "as needed",
+        "unit": "",
+        "original": "oil, for frying as needed"
+      }
+    ],
+    "instructions": [
+      "Slice the pointed gourds thinly and pat dry.",
+      "Toss with rice flour, turmeric, chilli powder and salt.",
+      "Shallow-fry in batches until crisp and golden; drain and serve."
+    ],
+    "tags": [
+      "pointed gourd",
+      "potol",
+      "vegetarian",
+      "crispy-pointed-gourd-fry"
+    ],
+    "ingredients_original": [
+      "250 g pointed gourd, thinly sliced",
+      "2 tbsp rice flour",
+      "¼ tsp turmeric powder",
+      "¼ tsp chilli powder",
+      "salt to taste",
+      "oil, for frying as needed"
+    ],
+    "image_url": "https://loremflickr.com/640/480/indian,food,crispy-pointed-gourd-fry?lock=9007"
+  },
+  {
+    "name": "Pointed Gourd Besan Fry",
+    "slug": "pointed-gourd-besan-fry",
+    "category": "Snack",
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
+    "isEgg": false,
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 2,
+    "ingredients": [
+      {
+        "item": "pointed gourd, sliced",
+        "quantity": "250",
+        "unit": "g",
+        "original": "250 g pointed gourd, sliced"
+      },
+      {
+        "item": "gram flour (besan)",
+        "quantity": "4",
+        "unit": "tbsp",
+        "original": "4 tbsp gram flour (besan)"
+      },
+      {
+        "item": "rice flour",
+        "quantity": "1",
+        "unit": "tbsp",
+        "original": "1 tbsp rice flour"
+      },
+      {
+        "item": "turmeric powder",
+        "quantity": "¼",
+        "unit": "tsp",
+        "original": "¼ tsp turmeric powder"
+      },
+      {
+        "item": "chilli powder",
+        "quantity": "½",
+        "unit": "tsp",
+        "original": "½ tsp chilli powder"
+      },
+      {
+        "item": "water",
+        "quantity": "as needed",
+        "unit": "",
+        "original": "water as needed"
+      },
+      {
+        "item": "salt",
+        "quantity": "to taste",
+        "unit": "",
+        "original": "salt to taste"
+      },
+      {
+        "item": "oil, for frying",
+        "quantity": "as needed",
+        "unit": "",
+        "original": "oil, for frying as needed"
+      }
+    ],
+    "instructions": [
+      "Mix besan, rice flour, spices and salt with enough water to make a thick coating.",
+      "Dip pointed-gourd slices in the batter.",
+      "Shallow-fry or deep-fry until crisp and cooked through."
+    ],
+    "tags": [
+      "pointed gourd",
+      "potol",
+      "vegetarian",
+      "pointed-gourd-besan-fry"
+    ],
+    "ingredients_original": [
+      "250 g pointed gourd, sliced",
+      "4 tbsp gram flour (besan)",
+      "1 tbsp rice flour",
+      "¼ tsp turmeric powder",
+      "½ tsp chilli powder",
+      "water as needed",
+      "salt to taste",
+      "oil, for frying as needed"
+    ],
+    "image_url": "https://loremflickr.com/640/480/indian,food,pointed-gourd-besan-fry?lock=9008"
+  },
+  {
+    "name": "Pointed Gourd Onion Stir-Fry",
+    "slug": "pointed-gourd-onion-stir-fry",
+    "category": "Side Dish",
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
+    "isEgg": false,
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 2,
+    "ingredients": [
+      {
+        "item": "pointed gourd, thinly sliced",
+        "quantity": "250",
+        "unit": "g",
+        "original": "250 g pointed gourd, thinly sliced"
+      },
+      {
+        "item": "onion, sliced",
+        "quantity": "1",
+        "unit": "medium",
+        "original": "1 medium onion, sliced"
+      },
+      {
+        "item": "green chilli",
+        "quantity": "1",
+        "unit": "",
+        "original": "1  green chilli"
+      },
+      {
+        "item": "turmeric powder",
+        "quantity": "¼",
+        "unit": "tsp",
+        "original": "¼ tsp turmeric powder"
+      },
+      {
+        "item": "nigella seeds",
+        "quantity": "¼",
+        "unit": "tsp",
+        "original": "¼ tsp nigella seeds"
+      },
+      {
+        "item": "mustard oil",
+        "quantity": "1½",
+        "unit": "tbsp",
+        "original": "1½ tbsp mustard oil"
+      },
+      {
+        "item": "salt",
+        "quantity": "to taste",
+        "unit": "",
+        "original": "salt to taste"
+      }
+    ],
+    "instructions": [
+      "Heat mustard oil and add nigella seeds and green chilli.",
+      "Add onion and cook until softened. Add pointed gourd, turmeric and salt.",
+      "Stir-fry until tender with lightly browned edges; serve hot."
+    ],
+    "tags": [
+      "pointed gourd",
+      "potol",
+      "vegetarian",
+      "pointed-gourd-onion-stir-fry"
+    ],
+    "ingredients_original": [
+      "250 g pointed gourd, thinly sliced",
+      "1 medium onion, sliced",
+      "1  green chilli",
+      "¼ tsp turmeric powder",
+      "¼ tsp nigella seeds",
+      "1½ tbsp mustard oil",
+      "salt to taste"
+    ],
+    "image_url": "https://loremflickr.com/640/480/indian,food,pointed-gourd-onion-stir-fry?lock=9009"
+  },
+  {
+    "name": "Pointed Gourd Tomato Curry",
+    "slug": "pointed-gourd-tomato-curry",
+    "category": "Main Course",
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
+    "isEgg": false,
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 2,
+    "ingredients": [
+      {
+        "item": "pointed gourd, sliced",
+        "quantity": "250",
+        "unit": "g",
+        "original": "250 g pointed gourd, sliced"
+      },
+      {
+        "item": "tomato, chopped",
+        "quantity": "1",
+        "unit": "large",
+        "original": "1 large tomato, chopped"
+      },
+      {
+        "item": "ginger paste",
+        "quantity": "1",
+        "unit": "tsp",
+        "original": "1 tsp ginger paste"
+      },
+      {
+        "item": "cumin seeds",
+        "quantity": "½",
+        "unit": "tsp",
+        "original": "½ tsp cumin seeds"
+      },
+      {
+        "item": "coriander powder",
+        "quantity": "1",
+        "unit": "tsp",
+        "original": "1 tsp coriander powder"
+      },
+      {
+        "item": "turmeric powder",
+        "quantity": "¼",
+        "unit": "tsp",
+        "original": "¼ tsp turmeric powder"
+      },
+      {
+        "item": "oil",
+        "quantity": "2",
+        "unit": "tbsp",
+        "original": "2 tbsp oil"
+      },
+      {
+        "item": "salt",
+        "quantity": "to taste",
+        "unit": "",
+        "original": "salt to taste"
+      }
+    ],
+    "instructions": [
+      "Lightly fry pointed-gourd pieces and set aside.",
+      "In the same pan, fry cumin seeds, ginger and tomato until soft.",
+      "Add spices and pointed gourd with a little water; cover and simmer until tender."
+    ],
+    "tags": [
+      "pointed gourd",
+      "potol",
+      "vegetarian",
+      "pointed-gourd-tomato-curry"
+    ],
+    "ingredients_original": [
+      "250 g pointed gourd, sliced",
+      "1 large tomato, chopped",
+      "1 tsp ginger paste",
+      "½ tsp cumin seeds",
+      "1 tsp coriander powder",
+      "¼ tsp turmeric powder",
+      "2 tbsp oil",
+      "salt to taste"
+    ],
+    "image_url": "https://loremflickr.com/640/480/indian,food,pointed-gourd-tomato-curry?lock=9010"
   }
 ]
