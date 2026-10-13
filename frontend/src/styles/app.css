@@ -504,3 +504,33 @@
 .privacy-policy h2 { margin: 24px 0 8px; font-size: 1.15rem; }
 .privacy-policy p, .privacy-policy li { line-height: 1.65; }
 .privacy-policy .privacy-back { display: inline-block; margin-bottom: 18px; color: var(--accent-color, #7c3aed); }
+
+/* Keep the thali brand image confined to the navigation header. */
+.topbar .brand-logo {
+  display: block;
+  width: 38px !important;
+  height: 38px !important;
+  max-width: 38px !important;
+  max-height: 38px !important;
+  min-width: 38px;
+  min-height: 38px;
+  object-fit: contain;
+  flex: 0 0 38px;
+}
+.topbar .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+@media (max-width: 620px) {
+  .topbar .brand-logo {
+    width: 30px !important;
+    height: 30px !important;
+    max-width: 30px !important;
+    max-height: 30px !important;
+    min-width: 30px;
+    min-height: 30px;
+    flex-basis: 30px;
+  }
+}
