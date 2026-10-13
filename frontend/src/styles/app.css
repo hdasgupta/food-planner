@@ -496,41 +496,31 @@
   }
 }
 
-
-.planner-footer { margin: 28px 0 0; padding: 18px 0 max(18px, env(safe-area-inset-bottom)); border-top: 1px solid var(--border-color, #e5e7eb); text-align: center; font-size: 13px; }
-.planner-footer a { color: var(--accent-color, #7c3aed); text-decoration: underline; text-underline-offset: 3px; }
-.privacy-policy { max-width: 850px; margin: 0 auto; }
-.privacy-policy h1 { margin-top: 0; }
-.privacy-policy h2 { margin: 24px 0 8px; font-size: 1.15rem; }
-.privacy-policy p, .privacy-policy li { line-height: 1.65; }
-.privacy-policy .privacy-back { display: inline-block; margin-bottom: 18px; color: var(--accent-color, #7c3aed); }
-
-/* Keep the thali brand image confined to the navigation header. */
-.topbar .brand-logo {
-  display: block;
-  width: 38px !important;
-  height: 38px !important;
-  max-width: 38px !important;
-  max-height: 38px !important;
-  min-width: 38px;
-  min-height: 38px;
-  object-fit: contain;
-  flex: 0 0 38px;
+/* Align each recipe ingredient item on the left and its quantity on the right. */
+.recipe-ingredients .ingredient-row {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.65rem 0;
+  margin: 0;
+  border-bottom: 1px solid var(--theme-border, #e5e7eb);
+  overflow-wrap: normal;
 }
-.topbar .brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
+.recipe-ingredients .ingredient-name {
+  flex: 1 1 auto;
   min-width: 0;
+  text-align: left;
+  overflow-wrap: anywhere;
 }
-@media (max-width: 620px) {
-  .topbar .brand-logo {
-    width: 30px !important;
-    height: 30px !important;
-    max-width: 30px !important;
-    max-height: 30px !important;
-    min-width: 30px;
-    min-height: 30px;
-    flex-basis: 30px;
-  }
+.recipe-ingredients .ingredient-amount {
+  flex: 0 0 auto;
+  margin-left: auto;
+  text-align: right;
+  white-space: nowrap;
+  font-weight: 700;
+  color: var(--theme-accent, #7c3aed);
 }
