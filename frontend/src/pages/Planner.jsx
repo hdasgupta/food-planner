@@ -4,6 +4,7 @@ import MealSlot, { MEALS } from '../components/MealSlot.jsx';
 import RecipeDetailsModal from '../components/RecipeDetailsModal.jsx';
 import EditMenuItemModal from '../components/EditMenuItemModal.jsx';
 import StatusMessage from '../components/StatusMessage.jsx';
+import { Link } from 'react-router-dom';
 
 
 function menuCategoryRank(item) {
@@ -388,5 +389,8 @@ export default function Planner() {
     {editingItem && <EditMenuItemModal item={editingItem} items={plan.items} categories={categories} recipes={recipes}
       onClose={() => setEditingItem(null)} onSave={saveEditedFood} />}
     <RecipeDetailsModal recipe={viewingRecipe} onClose={() => setViewingRecipe(null)} />
+    <footer className="planner-footer">
+      <Link to="/privacy-policy">Privacy Policy</Link>
+    </footer>
   </div>;
 }

@@ -5,6 +5,7 @@ import Planner from '../pages/Planner.jsx';
 import Recipes from '../pages/Recipes.jsx';
 import Login from '../pages/Login.jsx';
 import Register from '../pages/Register.jsx';
+import PrivacyPolicy from '../pages/PrivacyPolicy.jsx';
 
 function Protected(){
  const {user,loading}=useAuth();
@@ -13,7 +14,7 @@ function Protected(){
 }
 export default function AppRoutes(){
  return <Routes>
-  <Route path="/login" element={<Login/>}/><Route path="/register" element={<Register/>}/>
+  <Route path="/login" element={<Login/>}/><Route path="/register" element={<Register/>}/><Route path="/privacy-policy" element={<PrivacyPolicy/>}/>
   <Route element={<Protected/>}><Route element={<Layout/>}><Route path="/" element={<Planner/>}/><Route path="/recipes" element={<Recipes/>}/></Route></Route>
   <Route path="*" element={<Navigate to="/" replace/>}/>
  </Routes>;
