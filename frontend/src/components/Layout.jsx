@@ -29,7 +29,7 @@ export default function Layout(){
 
   return <div className="app-shell">
     <header className="topbar">
-      <Link className="brand" to="/">🍛 Food Planner</Link>
+      <Link className="brand" to="/" aria-label="Food Planner home"><img className="brand-logo" src="/food-planner-logo.png" alt="" /><span>Food Planner</span></Link>
       <nav>
         <Link to="/">Planner</Link>
         <Link to="/recipes">Recipe Master</Link>
