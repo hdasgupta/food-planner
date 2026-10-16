@@ -1,4 +1,4 @@
-const API = import.meta.env.VITE_API_URL || 'https://food-planner-psgn.onrender.com/api';
+const API = import.meta.env.VITE_API_URL || 'https://food-planner-8jkj.vercel.app/api';
 
 async function request(path, options = {}) {
   const response = await fetch(`${API}${path}`, {
