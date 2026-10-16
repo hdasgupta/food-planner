@@ -10,7 +10,26 @@ import { env } from './config/env.js';
 
 export const app = express();
 
-app.use(cors({ origin: env.corsOrigin === '*' ? true : env.corsOrigin }));
+const allowedOrigins = [
+  'https://food-planner-xi.vercel.app',
+  'https://localhost',
+  'http://localhost',
+  'capacitor://localhost',
+];
+
+app.use(cors({
+  origin(origin, callback) {
+    // Allow requests without Origin (for example, native clients).
+    if (!origin || allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    return callback(new Error(`CORS blocked origin: ${origin}`));
+  },
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+}));
+
+
 app.use(express.json({ limit: '1mb' }));
 
 app.get('/api/health', (req, res) => res.json({ ok: true, service: 'daily-food-planner' }));
