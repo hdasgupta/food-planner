@@ -20,3 +20,6 @@ app.use((err, req, res, next) => {
   console.error(err);
   res.status(500).json({ message: err.message || 'Internal server error' });
 });
+
+// Vercel requires the Express application to be the module's default export.
+export default app;
